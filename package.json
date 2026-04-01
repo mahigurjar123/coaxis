@@ -1,0 +1,12 @@
+{
+  "name": "coaxis-home",
+  "version": "1.0.0",
+  "description": "Coaxis AI Landing Page",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vite"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coaxis AI | AI Systems Integrator</title>
+  <meta name="description" content="Coaxis AI — Bridging the gap between AI's promise and business reality.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Custom performant cursor -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- Single performant Three.js background canvas -->
+  <canvas id="three-canvas"></canvas>
+
+  <div class="page">
+
+    <!-- ══ HEADER ══ -->
+    <header class="header" id="header">
+      <a href="/" class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 28 28" fill="none">
+            <defs>
+              <filter id="glo">
+                <feGaussianBlur stdDeviation="1" result="b"/>
+                <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+            <path d="M14 14C16 9.5 19.5 6 23 8C26 9.5 23.5 16 14 14Z" fill="#2BBFB0" filter="url(#glo)"/>
+            <path d="M14 14C18.5 16 22 19.5 20 23C18.5 26 12 23.5 14 14Z" fill="#7DD9D0"/>
+            <path d="M14 14C12 18.5 8.5 22 5 20C2 18.5 4.5 12 14 14Z" fill="#2E5090"/>
+            <path d="M14 14C9.5 12 6 8.5 8 5C9.5 2 16 4.5 14 14Z" fill="#1B2D4F"/>
+            <circle cx="14" cy="14" r="2.8" fill="white"/>
+          </svg>
+        </div>
+        <div class="logo-text">co<em>axis</em>.ai</div>
+      </a>
+
+      <nav class="nav">
+        <!-- Links for separate pages -->
+        <a href="/" class="nav-link nav-btn active">Home</a>
+        <a href="opportunity.html" class="nav-link nav-btn">Opportunity</a>
+        <a href="solution.html" class="nav-link nav-btn">Solution</a>
+        <a href="services.html" class="nav-link nav-btn">Services</a>
+        <a href="process.html" class="nav-link nav-btn">Process</a>
+        <a href="contact.html" class="nav-link nav-btn">Contact</a>
+        <a href="mailto:rahul.budhraja@coaxis.ai" class="nav-cta">Let's Build</a>
+      </nav>
+    </header>
+
+    <!-- ══ HERO ══ -->
+    <section class="hero" id="home">
+      <div class="container hero-container">
+        <div class="hero-content">
+          <span class="hero-badge"><span></span>AI Systems Integrator</span>
+          <h1 class="hero-title">
+            Bridging the gap between<br>
+            <span class="accent">AI's Promise</span><br>
+            and business reality.
+          </h1>
+          <p class="hero-sub">
+            Driving measurable productivity and revenue outcomes with
+            Agentic AI. We turn technology into performance.
+          </p>
+          <div class="hero-cta-group">
+            <button class="btn-primary" type="button">Our Roadmap →</button>
+            <button class="btn-ghost" type="button">Explore Services</button>
+          </div>
+        </div>
+        <div class="hero-spacer"></div> <!-- Spacer for right-side 3D element -->
+      </div>
+      <div class="scroll-cue">
+        <span class="scroll-cue-text">Scroll</span>
+        <div class="scroll-cue-line"></div>
+      </div>
+    </section>
+
+    <!-- ══ OPPORTUNITY ══ -->
+    <section class="section section--center" id="opportunity">
+      <div class="container">
+        <span class="sec-label reveal">Market Landscape</span>
+        <h2 class="section-title reveal reveal-delay-1">The $3 Trillion AI Moment</h2>
+        <p class="section-sub reveal reveal-delay-2">
+          Agentic AI is redefining enterprise productivity. The window to lead is now.
+        </p>
+        <div class="stats-row">
+          <div class="stat-card reveal reveal-delay-1">
+            <div class="card-visual-fx fx-pulse-rings"></div>
+            <span class="stat-label">Cognitive Value</span>
+            <span class="stat-number" data-count="3" data-suffix="T+">0</span>
+            <p class="stat-desc">Global enterprise revenue unlocked by autonomous agentic systems annually.</p>
+            <span class="stat-glyph">$</span>
+          </div>
+          <div class="stat-card reveal reveal-delay-2">
+            <div class="card-visual-fx fx-scanner"></div>
+            <span class="stat-label">Enterprise Adoption</span>
+            <span class="stat-number" data-count="42" data-suffix="%">0</span>
+            <p class="stat-desc">Of Fortune 500s rely on multi-agent collaboration for core workflows.</p>
+            <span class="stat-glyph">%</span>
+          </div>
+          <div class="stat-card reveal reveal-delay-3">
+            <div class="card-visual-fx fx-grid-wave"></div>
+            <span class="stat-label">Hybrid Strategy</span>
+            <span class="stat-number" data-count="57" data-suffix="%">0</span>
+            <p class="stat-desc">Enterprises favoring a 'Borrow & Build' AI architecture for max ROI.</p>
+            <span class="stat-glyph">→</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SOLUTION ══ -->
+    <section class="section" id="solution">
+      <div class="container">
+        <div class="solution-grid">
+          <div class="solution-body">
+            <span class="sec-label reveal">Our Philosophy</span>
+            <h2 class="section-title reveal reveal-delay-1">The Enterprise Dilemma</h2>
+            <p class="reveal reveal-delay-2">
+              Build vs Buy decisions are complex. Off-the-shelf tools fail the "last mile,"
+              while custom builds are slow and expensive. Most enterprises are stuck between two bad options.
+            </p>
+            <div class="tag-group reveal reveal-delay-2">
+              <span class="tag">Domain Expertise</span>
+              <span class="tag">Technical Depth</span>
+              <span class="tag">ROI Accountable</span>
+              <span class="tag">Human-in-the-Loop</span>
+            </div>
+            <div class="highlight-box reveal reveal-delay-3">
+              <h4>The "Borrow" Layer</h4>
+              <p>Coaxis.ai acts as your trusted integration partner — blending your domain expertise with our
+                 technical capability to close the gap between AI's promise and real-world performance.</p>
+            </div>
+          </div>
+          <div class="solution-image reveal reveal-delay-2">
+            <img
+              src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800"
+              alt="AI Technology Integration"
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SERVICES ══ -->
+    <section class="section section--center" id="services">
+      <div class="container">
+        <span class="sec-label reveal">Capabilities</span>
+        <h2 class="section-title reveal reveal-delay-1">What We Do</h2>
+        <p class="section-sub reveal reveal-delay-2">
+          End-to-end AI systems integration designed for enterprise scale and measurable outcomes.
+        </p>
+        <div class="services-grid">
+          <div class="service-card reveal reveal-delay-1">
+            <div class="holo-render-wrapper">
+              <img src="./images/ai_cube.png" class="holo-3d-asset" alt="AI Cube">
+            </div>
+            <div class="service-content-front">
+              <h3>Neural Data Fabric</h3>
+              <p>Transforming fragmented enterprise silos into contiguous, AI-native knowledge graphs for rapid inference.</p>
+              <ul class="service-list">
+                <li><span class="check">✓</span> Multi-Modal Ingestion Pipelines</li>
+                <li><span class="check">✓</span> Semantic Vector Search &amp; RAG</li>
+                <li><span class="check">✓</span> Verifiable Truth Governance</li>
+              </ul>
+            </div>
+          </div>
+          <div class="service-card reveal reveal-delay-2">
+            <div class="holo-render-wrapper">
+              <img src="./images/ai_brain.png" class="holo-3d-asset" alt="AI Brain">
+            </div>
+            <div class="service-content-front">
+              <h3>Autonomous Workflows</h3>
+              <p>Secure, auditable swarms of specialized AI agents orchestrating mission-critical enterprise tasks.</p>
+              <ul class="service-list">
+                <li><span class="check">✓</span> Multi-Agent Orchestration</li>
+                <li><span class="check">✓</span> Human-in-the-Loop Safeguards</li>
+                <li><span class="check">✓</span> Legacy API Bridging</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ PROCESS ══ -->
+    <section class="section section--center" id="process">
+      <div class="container">
+        <span class="sec-label reveal">Our Model</span>
+        <h2 class="section-title reveal reveal-delay-1">From Diagnostic to Scale</h2>
+        <p class="section-sub reveal reveal-delay-2">
+          A proven three-phase engagement built for speed, accountability, and lasting enterprise value.
+        </p>
+        <div class="process-grid">
+          <div class="process-connector"></div>
+          <div class="process-step reveal reveal-delay-1">
+            <div class="step-circle">
+               <div class="fx-step-icon fx-radar"></div>
+            </div>
+            <h4>Cognitive Diagnostic</h4>
+            <span class="step-duration">4 – 6 Weeks</span>
+            <p>Mapping high-friction workflows to high-value AI solutions with definitive ROI models.</p>
+          </div>
+          <div class="process-step reveal reveal-delay-2">
+            <div class="step-circle">
+               <div class="fx-step-icon fx-diamond"></div>
+            </div>
+            <h4>Agentic Proof-of-Concept</h4>
+            <span class="step-duration">6 – 8 Weeks</span>
+            <p>Rapid deployment of autonomous agents within a secure, sandboxed enterprise context.</p>
+          </div>
+          <div class="process-step reveal reveal-delay-3">
+            <div class="step-circle">
+               <div class="fx-step-icon fx-infinity">
+                  <div class="circle1"></div>
+                  <div class="circle2"></div>
+               </div>
+            </div>
+            <h4>Enterprise Synthesis</h4>
+            <span class="step-duration">Ongoing</span>
+            <p>Scaling the agentic workforce with continuous RLHF optimization and secure architecture scaling.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ CONTACT ══ -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact-box reveal">
+          <span class="sec-label" style="display:block;margin-bottom:18px">Ready to begin?</span>
+          <h2>Let's build this together.</h2>
+          <p>Ready to turn AI's promise into measurable business reality? Start the conversation today.</p>
+          <a href="mailto:rahul.budhraja@coaxis.ai" class="btn-primary" style="display:inline-flex">
+            Start The Conversation →
+          </a>
+          <span class="contact-email">
+            or write directly to <a href="mailto:rahul.budhraja@coaxis.ai">rahul.budhraja@coaxis.ai</a>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ FOOTER ══ -->
+    <footer class="footer">
+      <div class="container" style="display:flex; justify-content:space-between; align-items:center; width:100%; flex-wrap:wrap; gap:20px;">
+        <div class="footer-logo">co<em>axis</em>.ai</div>
+        <p class="footer-copy">© 2026 Coaxis AI Systems Integrator. All rights reserved.</p>
+        <div class="footer-tags">
+          <span>Human-in-the-Loop</span>
+          <span>ROI Accountable</span>
+          <span>Privacy First</span>
+        </div>
+      </div>
+    </footer>
+
+  </div><!-- /.page -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
