@@ -24,22 +24,10 @@
     <!-- ══ HEADER ══ -->
     <header class="header" id="header">
       <a href="/" class="logo">
-        <div class="logo-icon">
-          <svg viewBox="0 0 28 28" fill="none">
-            <defs>
-              <filter id="glo">
-                <feGaussianBlur stdDeviation="1" result="b"/>
-                <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-              </filter>
-            </defs>
-            <path d="M14 14C16 9.5 19.5 6 23 8C26 9.5 23.5 16 14 14Z" fill="#2BBFB0" filter="url(#glo)"/>
-            <path d="M14 14C18.5 16 22 19.5 20 23C18.5 26 12 23.5 14 14Z" fill="#7DD9D0"/>
-            <path d="M14 14C12 18.5 8.5 22 5 20C2 18.5 4.5 12 14 14Z" fill="#2E5090"/>
-            <path d="M14 14C9.5 12 6 8.5 8 5C9.5 2 16 4.5 14 14Z" fill="#1B2D4F"/>
-            <circle cx="14" cy="14" r="2.8" fill="white"/>
-          </svg>
+        <div class="logo-wrapper">
+          <img src="./images/coaxis_logo.png" class="brand-logo-img" >
+          <div class="logo-glow"></div>
         </div>
-        <div class="logo-text">co<em>axis</em>.ai</div>
       </a>
 
       <nav class="nav">
@@ -73,7 +61,12 @@
             <button class="btn-ghost" type="button">Explore Services</button>
           </div>
         </div>
-        <div class="hero-spacer"></div> <!-- Spacer for right-side 3D element -->
+        <div class="hero-visual reveal" id="hero-visual">
+          <div class="visual-inner">
+            <!-- Dedicated 3D Core Canvas or Three.js target -->
+            <div id="hero-3d-target"></div>
+          </div>
+        </div>
       </div>
       <div class="scroll-cue">
         <span class="scroll-cue-text">Scroll</span>
@@ -248,11 +241,58 @@
     </section>
 
     <!-- ══ FOOTER ══ -->
-    <footer class="footer">
-      <div class="container" style="display:flex; justify-content:space-between; align-items:center; width:100%; flex-wrap:wrap; gap:20px;">
-        <div class="footer-logo">co<em>axis</em>.ai</div>
+    <footer class="footer" id="main-footer">
+      <!-- 3D Animation Background Container -->
+      <div id="footer-3d-bg"></div>
+      
+      <div class="container footer-grid">
+        <!-- Brand & Tagline -->
+        <div class="footer-brand">
+          <div class="footer-logo-wrap">
+            <img src="./images/coaxis_logo.png" class="footer-brand-logo" >
+            <div class="logo-glow-footer"></div>
+          </div>
+          <p class="footer-tagline">Bridging AI’s promise and your business reality</p>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="footer-col">
+          <h5 class="footer-title">Contact</h5>
+          <div class="footer-contact-item">
+            <span class="icon">📧</span>
+            <a href="mailto:rahul.budhraja@coaxis.ai">rahul.budhraja@coaxis.ai</a>
+          </div>
+          <div class="footer-contact-item">
+            <span class="icon">📧</span>
+            <a href="mailto:vinay.mathur@coaxis.ai">vinay.mathur@coaxis.ai</a>
+          </div>
+        </div>
+
+        <!-- Menu -->
+        <div class="footer-col">
+          <h5 class="footer-title">Company</h5>
+          <ul class="footer-menu">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Security</a></li>
+            <li><a href="#">Terms & Conditions</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h5 class="footer-title">Navigation</h5>
+          <ul class="footer-menu">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
         <p class="footer-copy">© 2026 Coaxis AI Systems Integrator. All rights reserved.</p>
-        <div class="footer-tags">
+        <div class="footer-trust-tags">
           <span>Human-in-the-Loop</span>
           <span>ROI Accountable</span>
           <span>Privacy First</span>

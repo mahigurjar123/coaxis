@@ -107,7 +107,7 @@ const lerp = (a, b, t) => a + (b - a) * t;
       requestAnimationFrame(tick);
       counterObs.unobserve(el);
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0.1 });
   document.querySelectorAll('[data-count]').forEach(el => counterObs.observe(el));
 })();
 
@@ -157,7 +157,7 @@ const lerp = (a, b, t) => a + (b - a) * t;
   scene.add(particleSystem);
 
   const lineMaterial = new THREE.LineBasicMaterial({
-    color: 0x2BBFB0, transparent: true, opacity: 0.15, blending: THREE.AdditiveBlending
+    color: 0x2BBFB0, transparent: true, opacity: 0.08, blending: THREE.AdditiveBlending
   });
   const MAX_LINES = NODE_COUNT * 4;
   const linePositions = new Float32Array(MAX_LINES * 6);
@@ -229,6 +229,206 @@ const lerp = (a, b, t) => a + (b - a) * t;
 })();
 
 /* ══════════════════════════════════════════
+   5. HERO-SPECIFIC 3D CORE — ENTERPRISE DIGITAL TWIN (REAL GLOBE)
+══════════════════════════════════════════ */
+(function initHeroCore() {
+  const container = document.getElementById('hero-3d-target');
+  if (!container || typeof THREE === 'undefined') return;
+
+  setTimeout(() => {
+    let width = container.clientWidth || 500;
+    let height = container.clientHeight || 500;
+
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(width, height);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    container.appendChild(renderer.domElement);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 1000);
+    camera.position.z = 90;
+
+    const group = new THREE.Group();
+    scene.add(group);
+
+    const R = 23;
+
+    // 1. Core Energy Sphere (Atmosphere/Solid Base)
+    const coreGeo = new THREE.SphereGeometry(R - 0.3, 64, 64);
+    const coreMat = new THREE.MeshPhongMaterial({
+      color: 0x05080f,
+      emissive: 0x07111f,
+      specular: 0x2BBFB0,
+      shininess: 60,
+      transparent: true,
+      opacity: 0.98
+    });
+    const core = new THREE.Mesh(coreGeo, coreMat);
+    group.add(core);
+
+    // 2. High-Density Latitude/Longitude Grid (The 'Real' Tech Globe Look)
+    const gridGeo = new THREE.SphereGeometry(R, 32, 24);
+    const gridMat = new THREE.LineBasicMaterial({ 
+      color: 0x2BBFB0, 
+      transparent: true, 
+      opacity: 0.4 
+    });
+    const globeGrid = new THREE.LineSegments(new THREE.WireframeGeometry(gridGeo), gridMat);
+    group.add(globeGrid);
+
+    // 3. Highlighted Data Nodes (Cities/Data Centers)
+    const hubCount = 60;
+    const hubGeo = new THREE.BufferGeometry();
+    const hubPos = new Float32Array(hubCount * 3);
+    for(let i=0; i<hubCount; i++) {
+       const u = Math.random();
+       const v = Math.random();
+       const theta = u * 2.0 * Math.PI;
+       const phi = Math.acos(2.0 * v - 1.0);
+       hubPos[i*3] = (R+0.1) * Math.sin(phi) * Math.cos(theta);
+       hubPos[i*3+1] = (R+0.1) * Math.sin(phi) * Math.sin(theta);
+       hubPos[i*3+2] = (R+0.1) * Math.cos(phi);
+    }
+    hubGeo.setAttribute('position', new THREE.BufferAttribute(hubPos, 3));
+    
+    // Canvas texture for glowing hubs
+    const canvas = document.createElement('canvas');
+    canvas.width = 32; canvas.height = 32;
+    const ctx = canvas.getContext('2d');
+    const grad = ctx.createRadialGradient(16, 16, 0, 16, 16, 16);
+    grad.addColorStop(0, 'rgba(255,255,255,1)');
+    grad.addColorStop(0.2, 'rgba(43,191,176,0.9)');
+    grad.addColorStop(1, 'rgba(43,191,176,0)');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0,0,32,32);
+    const texture = new THREE.CanvasTexture(canvas);
+
+    const hubMat = new THREE.PointsMaterial({
+       size: 5,
+       map: texture,
+       transparent: true,
+       blending: THREE.AdditiveBlending,
+       depthWrite: false
+    });
+    const hubs = new THREE.Points(hubGeo, hubMat);
+    group.add(hubs);
+
+    // 4. Radar Scanning Ring (Moves up and down the globe)
+    const scannerGeo = new THREE.TorusGeometry(R + 0.3, 0.15, 4, 64);
+    const scannerMat = new THREE.MeshBasicMaterial({ 
+        color: 0xffffff, 
+        transparent: true, 
+        opacity: 0.7 
+    });
+    const scanner = new THREE.Mesh(scannerGeo, scannerMat);
+    scanner.rotation.x = Math.PI / 2;
+    group.add(scanner);
+
+    // 5. Precise Technical Data Rings
+    const orbitGroup = new THREE.Group();
+    group.add(orbitGroup);
+    
+    for(let i=0; i<3; i++) {
+        const ringGeo = new THREE.TorusGeometry(R + 6 + (i*4), 0.02, 8, 128);
+        const ringMat = new THREE.MeshBasicMaterial({ color: 0x7DD9D0, transparent: true, opacity: 0.4 });
+        const ring = new THREE.Mesh(ringGeo, ringMat);
+        ring.rotation.x = Math.random() * Math.PI;
+        ring.rotation.y = Math.random() * Math.PI;
+        orbitGroup.add(ring);
+        
+        // Fast moving satellite
+        const sat = new THREE.Mesh(new THREE.SphereGeometry(0.8, 12, 12), new THREE.MeshBasicMaterial({color: 0xffffff}));
+        sat.position.x = R + 6 + (i*4);
+        ring.add(sat);
+    }
+    
+    // 6. UI Dashboard Brackets (Brings the Clean Architecture vibe)
+    // Diamond box enclosing the globe
+    const BracketMat = new THREE.LineBasicMaterial({ color: 0x2BBFB0, transparent: true, opacity: 0.5 });
+    for(let i=0; i<2; i++) {
+       const bracketGeo = new THREE.EdgesGeometry(new THREE.PlaneGeometry(R*2.8, R*2.8));
+       const bracket = new THREE.LineSegments(bracketGeo, BracketMat);
+       if(i===0) {
+           bracket.rotation.x = Math.PI/2;
+       } else {
+           bracket.rotation.y = Math.PI/2;
+       }
+       group.add(bracket);
+    }
+
+    // Lighting
+    const light1 = new THREE.PointLight(0x2BBFB0, 2, 200);
+    light1.position.set(50, 50, 50);
+    scene.add(light1);
+    
+    const light2 = new THREE.PointLight(0xffffff, 1, 200);
+    light2.position.set(-50, -50, -50);
+    scene.add(light2);
+
+    const ambient = new THREE.AmbientLight(0xffffff, 0.3);
+    scene.add(ambient);
+
+    // Base tilt
+    group.rotation.x = 0.2;
+
+    let mouseX = 0, mouseY = 0;
+    
+    function animate() {
+      requestAnimationFrame(animate);
+      
+      const time = Date.now() * 0.001;
+
+      // Real Global rotation
+      globeGrid.rotation.y += 0.002;
+      hubs.rotation.y += 0.002;
+      core.rotation.y += 0.002;
+
+      // Radar scanner moving up and down the globe based on sine wave
+      // The scale also shrinks as it hits the poles to match the sphere perfectly
+      const scanY = Math.sin(time * 1.2) * (R - 1);
+      scanner.position.y = scanY;
+      const scanRadius = Math.sqrt(Math.max(0, R*R - scanY*scanY));
+      const scale = scanRadius / R;
+      scanner.scale.set(scale, scale, 1);
+
+      // Fast Orbiting Satellites
+      orbitGroup.children.forEach((ring, idx) => {
+         ring.rotation.z -= 0.01 * (idx + 1);
+      });
+
+      // Mouse interactive tilt
+      const targetRotX = 0.2 + (mouseY * 0.15);
+      const targetRotZ = -(mouseX * 0.15);
+      group.rotation.x += (targetRotX - group.rotation.x) * 0.05;
+      group.rotation.z += (targetRotZ - group.rotation.z) * 0.05;
+
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    container.addEventListener('mousemove', e => {
+      const rect = container.getBoundingClientRect();
+      mouseX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      mouseY = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+    });
+    
+    container.addEventListener('mouseleave', () => {
+      mouseX = 0;
+      mouseY = 0;
+    });
+
+    window.addEventListener('resize', () => {
+      width = container.clientWidth || 500;
+      height = container.clientHeight || 500;
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height);
+    });
+
+  }, 100);
+})();
+
+/* ══════════════════════════════════════════
    4. ULTIMATE HOLOGRAPHIC 3D CARDS
    (Spotlight border glow + Deep 3D Parallax Inside)
 ══════════════════════════════════════════ */
@@ -279,5 +479,87 @@ const lerp = (a, b, t) => a + (b - a) * t;
       card.style.boxShadow = '';
       glare.style.opacity = '0';
     });
+  });
+})();
+
+/* ══════════════════════════════════════════
+   6. FOOTER 3D ANIMATION — NEURAL FLOOR
+══════════════════════════════════════════ */
+(function initFooter3D() {
+  const container = document.getElementById('footer-3d-bg');
+  if (!container || typeof THREE === 'undefined') return;
+
+  const width = container.clientWidth || window.innerWidth;
+  const height = container.clientHeight || 150;
+
+  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+  renderer.setSize(width, height);
+  renderer.setPixelRatio(window.devicePixelRatio);
+  container.appendChild(renderer.domElement);
+
+  const scene = new THREE.Scene();
+  // Deep fog so the grid fades out smoothly
+  scene.fog = new THREE.Fog(0x05080f, 5, 40);
+
+  const camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 100);
+  camera.position.set(0, 3, 20);
+  camera.lookAt(0, 0, 0);
+
+  // Digital Foundation Floor (Moving Grid)
+  const floorGeo = new THREE.PlaneGeometry(80, 50, 40, 25);
+  floorGeo.rotateX(-Math.PI / 2);
+  
+  const floorMat = new THREE.LineBasicMaterial({
+     color: 0x2BBFB0,
+     transparent: true,
+     opacity: 0.35
+  });
+  
+  const floorWave = new THREE.LineSegments(new THREE.WireframeGeometry(floorGeo), floorMat);
+  scene.add(floorWave);
+  
+  // Data particles floating above the floor
+  const pointsGeo = new THREE.BufferGeometry();
+  const pointsCount = 150;
+  const posArray = new Float32Array(pointsCount * 3);
+  for(let i=0; i<pointsCount; i++) {
+     posArray[i*3] = (Math.random() - 0.5) * 60;
+     posArray[i*3+1] = Math.random() * 5;
+     posArray[i*3+2] = (Math.random() - 0.5) * 30;
+  }
+  pointsGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+  const pointsMat = new THREE.PointsMaterial({ color: 0x7DD9D0, size: 0.3, transparent: true, opacity: 0.8 });
+  const points = new THREE.Points(pointsGeo, pointsMat);
+  scene.add(points);
+
+  let time = 0;
+  function animate() {
+    requestAnimationFrame(animate);
+    time += 0.015;
+
+    // Animate the terrain wave
+    const positions = floorWave.geometry.attributes.position.array;
+    for (let i = 0; i < positions.length; i += 3) {
+      const x = positions[i];
+      const z = positions[i + 2];
+      // Create a smooth flowing wave effect
+      positions[i + 1] = Math.sin(x * 0.2 + time) * 1.5 + Math.cos(z * 0.2 + time * 0.8) * 1.5;
+    }
+    floorWave.geometry.attributes.position.needsUpdate = true;
+    
+    // Slow drift for points
+    points.position.z += 0.05;
+    if(points.position.z > 15) points.position.z = -15;
+
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  window.addEventListener('resize', () => {
+    const w = container.clientWidth || window.innerWidth;
+    const h = container.clientHeight || 150;
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    renderer.setSize(w, h);
   });
 })();
