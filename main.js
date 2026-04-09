@@ -431,16 +431,16 @@ const lerp = (a, b, t) => a + (b - a) * t;
       card.style.setProperty('--mouse-x', `${x}px`);
       card.style.setProperty('--mouse-y', `${y}px`);
       
-      // Extreme 3D Tilt calculation
-      const rotX = -((y - rect.height/2) / rect.height) * 22; // Extreme tilt!
-      const rotY = ((x - rect.width/2) / rect.width) * 22;
+      // Subtle 3D Tilt calculation
+      const rotX = -((y - rect.height/2) / rect.height) * 6; // Subtle tilt
+      const rotY = ((x - rect.width/2) / rect.width) * 6;
 
       card.style.transition = 'transform 0.1s ease-out';
-      // The pop-out scale to look floating
-      card.style.transform = `perspective(1200px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.05, 1.05, 1.05)`;
+      // The subtle pop-out scale to look floating
+      card.style.transform = `perspective(1200px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.02, 1.02, 1.02)`;
       
       // Intensive shadow logic to fake light source
-      card.style.boxShadow = `${-rotY * 2}px ${rotX * 2 + 25}px 60px rgba(0,0,0,0.8), 0 0 45px rgba(43,191,176,0.4)`;
+      card.style.boxShadow = `${-rotY * 2}px ${rotX * 2 + 25}px 40px rgba(0,0,0,0.6), 0 0 30px rgba(43,191,176,0.3)`;
       
       // Realistic glare tracking light source
       glare.style.opacity = '1';

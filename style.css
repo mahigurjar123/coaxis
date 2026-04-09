@@ -37,7 +37,8 @@
 html { font-size: 16px; overflow-x: hidden; scroll-behavior: smooth; }
 body {
   font-family: var(--font-sans);
-  background: var(--clr-bg);
+  background: radial-gradient(circle at 50% 0%, rgba(27, 45, 79, 0.5), var(--clr-bg) 60%), radial-gradient(circle at 100% 100%, rgba(43, 191, 176, 0.05), var(--clr-bg) 50%), var(--clr-bg);
+  background-attachment: fixed;
   color: var(--clr-text);
   overflow-x: hidden;
   line-height: 1.65;
@@ -268,7 +269,7 @@ button { font-family: inherit; background: none; border: none; cursor: pointer; 
 .section { padding: 40px 0; width: 100%; position: relative; }
 .section--center { text-align: center; }
 .sec-label { font-family: var(--font-mono); font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--clr-accent); margin-bottom: 16px; display: block; }
-.section-title { font-size: clamp(2.2rem, 3.5vw, 3.2rem); font-weight: 800; line-height: 1.15; margin-bottom: 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+.section-title { font-size: clamp(2.2rem, 3.5vw, 3.2rem); font-weight: 900; line-height: 1.15; margin-bottom: 20px; text-shadow: 0 4px 15px rgba(0,0,0,0.8); color: #fff; }
 .section-sub { font-size: 1.1rem; color: var(--clr-muted); max-width: 540px; line-height: 1.7; margin-bottom: 40px; }
 .section--center .section-sub { margin-left: auto; margin-right: auto; }
 
@@ -651,15 +652,20 @@ button { font-family: inherit; background: none; border: none; cursor: pointer; 
 /* ── RESPONSIVE ── */
 /* ── MSMEs & SMEs ── */
 .sme-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; text-align: left; margin-top: 40px; }
-.sme-col-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 24px; color: var(--clr-text); }
-.sme-card { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
-.sme-icon { width: 48px; height: 48px; border-radius: 50%; background: rgba(43,191,176,0.1); border: 1px solid var(--clr-accent); color: var(--clr-accent); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem; flex-shrink: 0; }
-.sme-card-content h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
-.sme-card-content p { font-size: 0.95rem; color: var(--clr-muted); line-height: 1.5; }
+.sme-col-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 24px; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+.sme-card { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px; transition: transform 0.3s var(--ease-out); }
+.sme-card:hover { transform: translateX(5px); }
+.sme-icon { width: 56px; height: 56px; border-radius: 50%; background: radial-gradient(circle at center, rgba(43,191,176,0.2) 0%, transparent 70%); border: 2px solid var(--clr-accent); color: var(--clr-accent); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.3rem; flex-shrink: 0; box-shadow: 0 0 15px rgba(43,191,176,0.3), inset 0 0 10px rgba(43,191,176,0.2); text-shadow: 0 0 8px var(--clr-accent); }
+.sme-card-content h4 { font-size: 1.15rem; font-weight: 800; margin-bottom: 8px; color: #fff; }
+.sme-card-content p { font-size: 0.95rem; color: var(--clr-muted); line-height: 1.6; }
 
-.highlight-col { background: rgba(18, 28, 48, 0.6); padding: 40px; border-radius: var(--radius-lg); border: 1px solid rgba(43,191,176,0.3); box-shadow: 0 10px 40px rgba(0,0,0,0.4); }
-.highlight-text { color: var(--clr-accent); }
-.sme-box .service-list li { background: rgba(5,8,15,0.6); border: 1px solid rgba(43,191,176,0.2); align-items: flex-start; }
+.highlight-col { background: linear-gradient(160deg, rgba(27, 45, 79, 0.6) 0%, rgba(8, 12, 22, 0.8) 100%); backdrop-filter: blur(20px); padding: 48px; border-radius: var(--radius-lg); border: 1px solid rgba(43,191,176,0.4); box-shadow: 0 20px 50px rgba(0,0,0,0.6), inset 0 0 30px rgba(43,191,176,0.05); position: relative; overflow: hidden; }
+.highlight-col::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(43,191,176,0.1) 0%, transparent 60%); pointer-events: none; animation: slowSpin 15s linear infinite; }
+@keyframes slowSpin { to { transform: rotate(360deg); } }
+.highlight-text { color: var(--clr-accent); text-shadow: 0 0 15px rgba(43,191,176,0.4); }
+.sme-box { position: relative; z-index: 2; }
+.sme-box .service-list li { background: rgba(5,8,15,0.75); border: 1px solid rgba(43,191,176,0.25); align-items: flex-start; padding: 16px 20px; transition: all 0.3s; }
+.sme-box .service-list li:hover { background: rgba(27, 45, 79, 0.9); border-color: rgba(43,191,176,0.6); box-shadow: 0 8px 25px rgba(0,0,0,0.5), inset 0 0 15px rgba(43,191,176,0.15); transform: translateY(-3px); }
 
 /* ── SECURITY LAYERS ── */
 .security-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: left; margin-top: 40px; }
@@ -670,10 +676,11 @@ button { font-family: inherit; background: none; border: none; cursor: pointer; 
 .sec-zero { background: linear-gradient(135deg, #11998E, #38EF7D); }
 .sec-llm { background: linear-gradient(135deg, #8E2DE2, #4A00E0); }
 
-.sec-item { background: rgba(8, 12, 22, 0.65); border: 1px solid rgba(255,255,255,0.06); padding: 20px; border-radius: var(--radius-sm); flex-grow: 1; transition: all 0.3s; }
-.sec-item:hover { border-color: rgba(43,191,176,0.4); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-.sec-item h5 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; color: #fff; }
-.sec-item p { font-size: 0.85rem; color: var(--clr-muted); line-height: 1.5; }
+.sec-item { background: linear-gradient(135deg, rgba(18, 28, 48, 0.6), rgba(8, 12, 22, 0.8)); border: 1px solid rgba(255,255,255,0.06); padding: 24px; border-radius: var(--radius-sm); flex-grow: 1; transition: all 0.4s var(--ease-out); position: relative; overflow: hidden; }
+.sec-item::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(255,255,255,0.05) 0%, transparent 50%); pointer-events: none; }
+.sec-item:hover { transform: translateY(-4px) scale(1.02); border-color: rgba(43,191,176,0.5); box-shadow: 0 15px 30px rgba(0,0,0,0.5), inset 0 0 20px rgba(43,191,176,0.1); z-index: 2; }
+.sec-item h5 { font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.6); }
+.sec-item p { font-size: 0.85rem; color: var(--clr-muted); line-height: 1.6; }
 
 @media (max-width: 1024px) {
   .hero-container { flex-direction: column; text-align: center; }
