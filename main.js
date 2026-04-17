@@ -4,6 +4,148 @@
    ============================================= */
 'use strict';
 
+/* ══════════════════════════════════════════
+   1. INTRO VIDEO OVERLAY LOGIC
+══════════════════════════════════════════ */
+let introSceneActive = false;
+let introRenderer, introScene, introCamera, particleSystem;
+
+function initIntro3D() {
+  const container = document.getElementById('intro-3d-target');
+  if (!container) return;
+
+  introScene = new THREE.Scene();
+  introCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  introRenderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+  introRenderer.setSize(window.innerWidth, window.innerHeight);
+  container.appendChild(introRenderer.domElement);
+
+  // Massive Particle Swarm (Neural Vortex)
+  const particlesCount = 50000;
+  const positions = new Float32Array(particlesCount * 3);
+  const colors = new Float32Array(particlesCount * 3);
+  
+  for (let i = 0; i < particlesCount; i++) {
+    const rx = (Math.random() - 0.5) * 10;
+    const ry = (Math.random() - 0.5) * 10;
+    const rz = (Math.random() - 0.5) * 10;
+    positions[i * 3] = rx;
+    positions[i * 3 + 1] = ry;
+    positions[i * 3 + 2] = rz;
+    
+    colors[i * 3] = 0.17; // 2BBFB0 color components
+    colors[i * 3 + 1] = 0.75;
+    colors[i * 3 + 2] = 0.69;
+  }
+  
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+  
+  const material = new THREE.PointsMaterial({
+    size: 0.015,
+    vertexColors: true,
+    transparent: true,
+    opacity: 0.8,
+    blending: THREE.AdditiveBlending
+  });
+  
+  particleSystem = new THREE.Points(geometry, material);
+  introScene.add(particleSystem);
+
+  introCamera.position.z = 2; // Close up for 4K detail
+
+  function animate() {
+    if (!introSceneActive) return;
+    requestAnimationFrame(animate);
+    
+    particleSystem.rotation.y += 0.002;
+    particleSystem.rotation.z += 0.001;
+    
+    // Pulse and distort for "Powerful" feeling
+    const time = Date.now() * 0.001;
+    const sizes = geometry.attributes.position.array;
+    for(let i=0; i<particlesCount; i++) {
+        const x = sizes[i*3];
+        const y = sizes[i*3+1];
+        // Subtle drift
+        sizes[i*3+2] += Math.sin(time + x) * 0.001;
+    }
+    geometry.attributes.position.needsUpdate = true;
+    
+    introRenderer.render(introScene, introCamera);
+  }
+  
+  introSceneActive = true;
+  animate();
+  
+  // Start System Console Simulation
+  startIntroConsole();
+}
+
+function startIntroConsole() {
+    const logs = [
+        "INITIALIZING NEURAL CORE...",
+        "LINKING AGENTIC BACKBONE...",
+        "SYNTHESIZING DATA FABRIC (4K)...",
+        "ORCHESTRATING MULTI-AGENT SWARMS...",
+        "STATUS: AUTONOMOUS EXECUTION READY.",
+        "COAXIS AI: SYSTEMS INTEGRATED."
+    ];
+    const desc = document.querySelector('.intro-desc');
+    if(!desc) return;
+    desc.textContent = "";
+    let i = 0;
+    const interval = setInterval(() => {
+        if(i >= logs.length || !introSceneActive) {
+            clearInterval(interval);
+            return;
+        }
+        const p = document.createElement('div');
+        p.style.fontFamily = "var(--font-mono)";
+        p.style.fontSize = "0.9rem";
+        p.style.color = "var(--clr-accent)";
+        p.style.opacity = "0.7";
+        p.textContent = "> " + logs[i];
+        desc.appendChild(p);
+        i++;
+    }, 1200);
+}
+
+function toggleIntro(show) {
+  const overlay = document.getElementById('intro-overlay');
+  if (!overlay) return;
+  if (show) {
+    overlay.style.display = 'flex';
+    setTimeout(() => {
+      overlay.classList.add('active');
+      if (!introSceneActive) initIntro3D();
+    }, 50);
+    document.body.style.overflow = 'hidden';
+  } else {
+    overlay.classList.remove('active');
+    setTimeout(() => {
+      overlay.style.display = 'none';
+      document.body.style.overflow = '';
+      // Cleanup if needed, or just keep it for next time
+    }, 800);
+  }
+}
+
+(function initIntro() {
+  document.querySelectorAll('.logo').forEach(logo => {
+    logo.addEventListener('click', (e) => {
+      e.preventDefault();
+      toggleIntro(true);
+    });
+  });
+  
+  const closeBtn = document.getElementById('intro-close');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => toggleIntro(false));
+  }
+})();
+
 const lerp = (a, b, t) => a + (b - a) * t;
 
 /* ══════════════════════════════════════════

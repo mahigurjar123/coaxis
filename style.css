@@ -65,7 +65,7 @@ button { font-family: inherit; background: none; border: none; cursor: pointer; 
   padding: 0 40px;
   height: 80px;
   display: flex; align-items: center; justify-content: space-between;
-  z-index: 100;
+  z-index: 20000;
   transition: background 0.4s var(--ease-out), border-bottom 0.4s, padding 0.4s;
   border-bottom: 1px solid transparent;
 }
@@ -758,3 +758,84 @@ button { font-family: inherit; background: none; border: none; cursor: pointer; 
   .services-grid { grid-template-columns: 1fr; }
   .footer .container { flex-direction: column; justify-content: center; text-align: center; }
 }
+
+/* ── INTRO OVERLAY (LOGO CLICK) ── */
+.intro-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+  background: #05080f; z-index: 10000; display: none;
+  align-items: center; justify-content: center; overflow: hidden;
+  opacity: 0; transition: opacity 0.8s ease;
+}
+.intro-overlay.active { display: flex; opacity: 1; }
+
+.intro-video-bg {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  object-fit: cover; opacity: 0; filter: brightness(0.5) contrast(1.2);
+  transition: 2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.intro-overlay.active .intro-video-bg { opacity: 0.4; }
+
+.intro-content {
+  position: relative; z-index: 10002; text-align: center; max-width: 1000px; padding: 40px;
+  transform: translateY(100px); opacity: 0; transition: 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s;
+}
+.intro-overlay.active .intro-content { transform: translateY(0); opacity: 1; }
+
+.intro-title { 
+  font-size: clamp(3rem, 12vw, 8rem); font-weight: 900; color: #fff; line-height: 0.8; margin-bottom: 30px;
+  background: linear-gradient(to right, #fff, var(--clr-accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  letter-spacing: -4px;
+}
+.intro-subtitle { font-family: var(--font-mono); font-size: 1.2rem; color: var(--clr-accent); text-transform: uppercase; letter-spacing: 5px; margin-bottom: 20px; display: block; }
+.intro-desc { font-size: 1.6rem; color: var(--clr-muted); line-height: 1.6; margin-bottom: 50px; font-weight: 400; }
+
+.intro-close {
+  position: absolute; top: 40px; right: 40px; font-size: 0.9rem; color: #fff;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2);
+  padding: 12px 30px; border-radius: 4px; cursor: pointer; font-weight: 900;
+  transition: 0.4s; z-index: 10005; letter-spacing: 2px; text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+.intro-close:hover { background: #fff; color: #000; box-shadow: 0 0 50px rgba(255,255,255,0.4); transform: scale(1.05); }
+
+/* ── HUD ELEMENTS ── */
+.intro-hud { position: absolute; inset: 0; z-index: 10003; pointer-events: none; }
+.hud-corner { position: absolute; width: 40px; height: 40px; border: 2px solid var(--clr-accent); opacity: 0.5; }
+.hud-tl { top: 40px; left: 40px; border-right: none; border-bottom: none; }
+.hud-tr { top: 40px; right: 40px; border-left: none; border-bottom: none; }
+.hud-bl { bottom: 40px; left: 40px; border-right: none; border-top: none; }
+.hud-br { bottom: 40px; right: 40px; border-left: none; border-top: none; }
+
+.intro-glitch-layer {
+  position: absolute; inset: 0; background: url('./images/intro_bg.png'); background-size: cover;
+  mix-blend-mode: color-dodge; opacity: 0.2; animation: glitchNoise 0.1s infinite;
+  filter: hue-rotate(90deg) contrast(1.5);
+}
+@keyframes glitchNoise {
+  0% { transform: translate(0) skew(0deg); filter: brightness(1); }
+  10% { transform: translate(-10px, 10px) skew(5deg); filter: brightness(2) hue-rotate(180deg); }
+  20% { transform: translate(10px, -10px) skew(-5deg); filter: brightness(0.5); }
+  30% { transform: translate(-20px, 0px) skew(2deg); }
+  40% { transform: translate(20px, 5px); }
+  100% { transform: translate(0); }
+}
+
+.intro-3d-target {
+  position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 10001; opacity: 0.9;
+  filter: drop-shadow(0 0 50px var(--clr-accent));
+}
+
+.intro-scanline {
+  position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+  background: var(--clr-accent); opacity: 0.4; z-index: 10003;
+  animation: scanIntro 6s infinite linear;
+}
+@keyframes scanIntro { from { top: -2%; } to { top: 102%; } }
+
+.intro-particles { 
+  position: absolute; inset: 0; z-index: 10001; 
+  background-image: radial-gradient(circle, var(--clr-accent) 1px, transparent 1px);
+  background-size: 80px 80px; opacity: 0.1;
+  animation: bgScroll 60s linear infinite;
+}
+@keyframes bgScroll { from { background-position: 0 0; } to { background-position: 800px 800px; } }
