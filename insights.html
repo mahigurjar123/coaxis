@@ -9,7 +9,7 @@
   <style>
     /* ── INSIGHTS PAGE SPECIFIC ── */
     .ins-hero { min-height: 100vh; display: flex; align-items: center; padding-top: 100px; padding-bottom: 60px; position: relative; overflow: hidden; }
-    .ins-hero .container { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .ins-hero .container { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center; }
     
     /* ── 3D WISDOM SPHERE VISUAL ── */
     .ins-visual-container { position: relative; width: 100%; aspect-ratio: 1; max-width: 500px; margin: 0 auto; perspective: 1000px; }
@@ -27,40 +27,53 @@
     .sphere-ring:nth-child(2) { transform: rotateY(45deg); border-color: rgba(43,191,176,0.1); }
     .sphere-ring:nth-child(3) { transform: rotateZ(45deg); border-style: dashed; }
     .sphere-core {
-      position: absolute; width: 60px; height: 60px; top: 50%; left: 50%;
-      margin: -30px; background: var(--clr-accent); border-radius: 50%;
-      box-shadow: 0 0 50px var(--clr-accent); animation: corePulse 2s infinite alternate;
+      position: absolute; width: 100px; height: 100px; top: 50%; left: 50%;
+      margin: -50px; background: radial-gradient(circle, var(--clr-accent), transparent); border-radius: 50%;
+      box-shadow: 0 0 80px var(--clr-accent); animation: corePulse 3s infinite alternate;
+      display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-weight: 800; font-size: 0.8rem; color: #fff;
     }
 
-    @keyframes sphereRotate { to { transform: rotateX(360deg) rotateY(360deg); } }
-    @keyframes corePulse { from { transform: scale(0.8); opacity: 0.5; } to { transform: scale(1.2); opacity: 1; } }
+    @keyframes sphereRotate { to { transform: rotateX(360deg) rotateY(720deg); } }
+    @keyframes corePulse { from { transform: scale(0.9); opacity: 0.4; } to { transform: scale(1.1); opacity: 1; } }
 
     /* ── INSIGHT CARDS ── */
     .ins-grid { padding: 120px 0; }
     .ins-card { 
       background: rgba(255,255,255,0.02); border: 1px solid rgba(43,191,176,0.1); 
-      border-radius: var(--radius-xl); padding: 50px; margin-bottom: 40px;
+      border-radius: var(--radius-xl); padding: 60px; margin-bottom: 60px;
       display: flex; flex-direction: column; gap: 30px; position: relative; overflow: hidden;
-      transition: all 0.5s var(--ease-out);
+      transition: all 0.5s var(--ease-out); transform-style: preserve-3d;
     }
-    .ins-card:hover { border-color: var(--clr-accent); transform: translateY(-10px); background: rgba(43,191,176,0.03); }
+    .ins-card:hover { border-color: var(--clr-accent); transform: perspective(1000px) rotateX(2deg) translateY(-10px); background: rgba(43,191,176,0.03); }
     
     .ins-card-badge { 
       background: rgba(43,191,176,0.1); color: var(--clr-accent); 
-      padding: 6px 15px; border-radius: 20px; font-size: 0.85rem; font-weight: 800;
-      text-transform: uppercase; display: inline-block; width: fit-content;
+      padding: 8px 20px; border-radius: 30px; font-size: 0.9rem; font-weight: 900;
+      text-transform: uppercase; display: inline-block; width: fit-content; letter-spacing: 1px;
     }
-    .ins-card h2 { font-size: 2.2rem; margin-top: 10px; }
-    .ins-card p { color: var(--clr-muted); line-height: 1.8; font-size: 1.1rem; }
-    .ins-card-link { color: var(--clr-accent); text-decoration: none; font-weight: 700; display: flex; align-items: center; gap: 8px; margin-top: auto; }
-    .ins-card-link:hover { gap: 12px; }
+    .ins-card h2 { font-size: 3rem; margin-top: 10px; font-weight: 900; line-height: 1; }
+    .ins-card p { color: var(--clr-muted); line-height: 1.9; font-size: 1.2rem; max-width: 800px; }
+    .ins-card-link { color: var(--clr-accent); text-decoration: none; font-weight: 800; display: flex; align-items: center; gap: 10px; margin-top: auto; font-size: 1.1rem; }
+    .ins-card-link:hover { gap: 18px; }
+
+    /* ── THESIS SECTION ── */
+    .thesis-sec { padding: 120px 0; background: rgba(5,8,15,0.6); position: relative; border-top: 1px solid rgba(43,191,176,0.1); }
+    .thesis-box { max-width: 900px; margin: 0 auto; text-align: center; }
+    .thesis-box h2 { font-size: 3.5rem; color: #fff; margin-bottom: 40px; }
+    .thesis-box p { font-size: 1.25rem; color: var(--clr-muted); line-height: 2; margin-bottom: 30px; }
+
+    /* ── RESEARCH GRID ── */
+    .res-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-top: 80px; }
+    .res-card { padding: 50px; background: rgba(255,255,255,0.02); border-left: 4px solid var(--clr-accent); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; }
+    .res-card h4 { font-size: 1.6rem; color: #fff; margin-bottom: 15px; }
 
     /* Animated background text */
-    .ins-bg-text { position: absolute; font-size: 15vw; font-weight: 900; color: rgba(43,191,176,0.02); bottom: -5%; right: -5%; line-height: 1; pointer-events: none; z-index: -1; }
+    .ins-bg-text { position: absolute; font-size: 20vw; font-weight: 900; color: rgba(43,191,176,0.015); bottom: -10%; right: -5%; line-height: 1; pointer-events: none; z-index: -1; white-space: nowrap; }
 
     @media (max-width: 900px) {
       .ins-hero .container { grid-template-columns: 1fr; text-align: center; }
-      .ins-grid { grid-template-columns: 1fr; }
+      .ins-hero h1 { font-size: 3.5rem !important; }
+      .res-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -99,8 +112,18 @@
       <div class="container reveal">
         <div class="ins-hero-left">
           <span class="hero-badge" style="margin-bottom: 24px;"><span></span>Knowledge Hub</span>
-          <h1>Intelligence <span class="accent">Unbound</span>.</h1>
-          <p style="font-size: 1.2rem; color: var(--clr-muted); line-height: 1.8; max-width: 550px;">Access the latest thinking on Agentic AI, industry news, and real-world outcomes that demonstrate how we're reshaping business performance.</p>
+          <h1 style="font-size: clamp(3rem, 8vw, 5.5rem); line-height: 0.85; font-weight: 900; margin-bottom: 30px;">Wisdom <span class="accent">Applied</span>.</h1>
+          <p style="font-size: 1.35rem; color: var(--clr-muted); line-height: 1.8; max-width: 650px;">We move beyond speculation. Our Insights layer provides a deep, technical, and strategic look into how Agentic systems are fundamentally altering the competitive landscape.</p>
+          <div style="margin-top: 40px; display: flex; gap: 20px;">
+             <div style="border-left: 2px solid var(--clr-accent); padding-left: 20px;">
+                <span style="font-family: var(--font-mono); color: #fff; font-size: 1.5rem; font-weight: 800;">50+</span>
+                <p style="font-size: 0.8rem; text-transform: uppercase;">Published Guides</p>
+             </div>
+             <div style="border-left: 2px solid var(--clr-accent); padding-left: 20px;">
+                <span style="font-family: var(--font-mono); color: #fff; font-size: 1.5rem; font-weight: 800;">12</span>
+                <p style="font-size: 0.8rem; text-transform: uppercase;">Whitepapers</p>
+             </div>
+          </div>
         </div>
         
         <div class="ins-visual-container">
@@ -108,7 +131,7 @@
             <div class="sphere-ring"></div>
             <div class="sphere-ring"></div>
             <div class="sphere-ring"></div>
-            <div class="sphere-core"></div>
+            <div class="sphere-core">DATA_LAKE</div>
           </div>
         </div>
       </div>
@@ -120,32 +143,57 @@
         
         <!-- News -->
         <div class="ins-card reveal">
-          <div class="ins-bg-text">NEWS</div>
-          <span class="ins-card-badge">Industry Updates</span>
-          <h2>Latest Developments</h2>
-          <p>Stay updated on the core shifts in the global AI landscape and how Coaxis is positioning itself within the evolving market of autonomous systems.</p>
-          <a href="news.html" class="ins-card-link">Read Latest News <span>→</span></a>
+          <div class="ins-bg-text">REALTIME NEWS</div>
+          <span class="ins-card-badge">Industry Velocity</span>
+          <h2>The AI Momentum</h2>
+          <p>The global AI market is shifting from large-language models to large-action models. Stay updated on how Coaxis navigated the core pivots in the global AI landscape and how we are currently positioning ourselves within the evolving market of autonomous systems.</p>
+          <p>We track the intersection of regulatory MAS requirements and technological breakthroughs to ensure our clients are always ahead of the compliance curve while maximizing computational efficiency.</p>
+          <a href="news.html" class="ins-card-link">Stream Latest Updates <span>→</span></a>
         </div>
 
         <!-- Blogs -->
         <div class="ins-card reveal reveal-delay-1">
-          <div class="ins-bg-text">BLOGS</div>
-          <span class="ins-card-badge">Thought Leadership</span>
+          <div class="ins-bg-text">DEEP BLOGS</div>
+          <span class="ins-card-badge">Thought Architecture</span>
           <h2>Strategic Perspectives</h2>
-          <p>Deep dives into the "Why" and "How" of Agentic AI. We share our internal frameworks for data readiness and transition architectures.</p>
-          <a href="blogs.html" class="ins-card-link">View Blog Posts <span>→</span></a>
+          <p>Go beyond the surface level. Our engineering team shares internal frameworks for data readiness, vector-database optimization, and the philosophy of human-in-the-loop agentic security.</p>
+          <p>Each post is designed to provide actionable intelligence for CTOs and Transformation leaders looking to move their organizations beyond experimental sandboxes and into production-grade infrastructure.</p>
+          <a href="blogs.html" class="ins-card-link">Enter the Thinktank <span>→</span></a>
         </div>
 
         <!-- Case Studies -->
         <div class="ins-card reveal reveal-delay-2">
-          <div class="ins-bg-text">CASES</div>
-          <span class="ins-card-badge">Proven Results</span>
-          <h2>Success Roadmaps</h2>
-          <p>Explore the raw ROI of our deployments across Finance and Logistics. We show you the exact metrics of our impact on operational efficiency.</p>
-          <a href="case-studies.html" class="ins-card-link">Browse Case Studies <span>→</span></a>
+          <div class="ins-bg-text">CASE ARCHIVE</div>
+          <span class="ins-card-badge">Evidence Based</span>
+          <h2>Success Roadmap Proofs</h2>
+          <p>We provide exhaustive documentation of our deployments across highly-regulated sectors like Finance and Global Supply Chains. We show you the exact metrics, the initial bottlenecks, and the final ROI realized through our systems.</p>
+          <p>These are not just testimonials; they are blueprint-level deep dives into how we solved the 'Execution Gap' for Fortune 500 enterprises.</p>
+          <a href="case-studies.html" class="ins-card-link">Browse Evidence Vault <span>→</span></a>
         </div>
 
       </div>
+    </section>
+
+    <!-- ══ THESIS SECTION ── NEW ══ -->
+    <section class="thesis-sec section">
+       <div class="glow-blob" style="left: -100px; opacity: 0.1;"></div>
+       <div class="container thesis-box reveal">
+          <span class="sec-label">The Coaxis Thesis</span>
+          <h2>Agency is the new UI.</h2>
+          <p>We believe that in the coming decade, the traditional interface (buttons, menus, forms) will give way to the Agentic Interface. Systems will no longer wait for a human to tell them *how* to do a task; they will understand the *intent* and execute the objective autonomously.</p>
+          <p>Our research is focused on minimizing the 'Intent Gap'—the distance between a business strategy and its technological execution. By building agents that understand context, policy, and goals, we are erasing this gap forever.</p>
+          
+          <div class="res-grid">
+             <div class="res-card reveal">
+                <h4>Research: Multi-Agent Swarms</h4>
+                <p>Exploring how 100+ narrow AI agents can self-organize to solve massive logistics disruptions in real-time without central human management.</p>
+             </div>
+             <div class="res-card reveal reveal-delay-1">
+                <h4>R&D: Zero-Knowledge Data Training</h4>
+                <p>Developing methods for agents to learn and optimize your internal workflows without ever exposing sensitive private data to external models.</p>
+             </div>
+          </div>
+       </div>
     </section>
 
     <!-- ══ FOOTER ══ -->

@@ -35,15 +35,15 @@
 
     @keyframes matrixSpin {
       0% { transform: rotateX(0) rotateY(0) rotateZ(0); }
-      100% { transform: rotateX(360deg) rotateY(720deg) rotateZ(360deg); }
+      100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
     }
 
     /* ── SECTION SUMMARIES ── */
     .sol-summary-sec { padding: 120px 0; }
     .sol-card { 
       background: rgba(255,255,255,0.02); border: 1px solid rgba(43,191,176,0.1); 
-      border-radius: var(--radius-xl); padding: 60px; margin-bottom: 60px;
-      display: grid; grid-template-columns: 1.5fr 1fr; gap: 60px; align-items: center;
+      border-radius: var(--radius-xl); padding: 80px; margin-bottom: 80px;
+      display: grid; grid-template-columns: 1.5fr 1fr; gap: 80px; align-items: center;
       transition: all 0.5s var(--ease-out); transform-style: preserve-3d;
     }
     .sol-card:hover { border-color: var(--clr-accent); transform: translateY(-10px) rotateX(1deg); background: rgba(43,191,176,0.03); }
@@ -51,22 +51,37 @@
     .sol-card:nth-child(even) .sol-card-text { order: 2; }
     .sol-card:nth-child(even) .sol-card-visual { order: 1; }
 
-    .sol-card-text h2 { font-size: 2.8rem; margin-bottom: 25px; }
-    .sol-card-text p { color: var(--clr-muted); font-size: 1.15rem; line-height: 1.8; margin-bottom: 30px; }
+    .sol-card-text h2 { font-size: 3.5rem; margin-bottom: 25px; line-height: 1.1; font-weight: 900; }
+    .sol-card-text p { color: var(--clr-muted); font-size: 1.2rem; line-height: 1.9; margin-bottom: 30px; }
     .sol-card-btn { 
       display: inline-flex; align-items: center; gap: 12px; color: var(--clr-accent); 
-      font-weight: 700; text-decoration: none; font-size: 1.1rem; border-bottom: 1px solid transparent; transition: 0.3s;
+      font-weight: 700; text-decoration: none; font-size: 1.2rem; border-bottom: 1px solid transparent; transition: 0.3s;
     }
     .sol-card-btn:hover { border-color: var(--clr-accent); gap: 18px; }
 
-    .sol-card-visual { position: relative; width: 100%; height: 300px; display: flex; align-items: center; justify-content: center; }
-    .mini-3d { width: 150px; height: 150px; background: rgba(43,191,176,0.1); border: 1px solid var(--clr-accent); transform: rotateX(45deg) rotateZ(45deg); animation: float 4s infinite ease-in-out alternate; }
+    .sol-card-visual { position: relative; width: 100%; height: 400px; display: flex; align-items: center; justify-content: center; }
+    .mini-3d { width: 180px; height: 180px; background: rgba(43,191,176,0.1); border: 1px solid var(--clr-accent); transform: rotateX(45deg) rotateZ(45deg); animation: float 4s infinite ease-in-out alternate; }
+
+    /* ── NEW SECTIONS ── */
+    .industry-focus { padding: 120px 0; background: rgba(43,191,176,0.02); }
+    .industry-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 60px; }
+    .ind-card { padding: 40px; background: rgba(5,8,15,0.8); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); transition: 0.4s; }
+    .ind-card:hover { border-color: var(--clr-accent); transform: translateY(-10px); }
+    .ind-card h3 { font-size: 1.8rem; margin-bottom: 20px; color: var(--clr-accent); }
+    .ind-card p { line-height: 1.7; color: var(--clr-muted); font-size: 1.05rem; }
+
+    .arch-sec { padding: 120px 0; text-align: center; }
+    .arch-box { max-width: 900px; margin: 60px auto; padding: 60px; background: rgba(255,255,255,0.01); border: 1px dashed var(--clr-accent); border-radius: var(--radius-xl); }
+    .arch-step { margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(43,191,176,0.1); }
+    .arch-step:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .arch-step h4 { font-size: 1.5rem; margin-bottom: 15px; font-family: var(--font-mono); color: #fff; }
 
     @media (max-width: 900px) {
       .sol-hero .container { grid-template-columns: 1fr; text-align: center; }
       .sol-card { grid-template-columns: 1fr !important; padding: 40px; text-align: center; }
       .sol-card-text { order: 1 !important; }
-      .sol-card-visual { order: 2 !important; height: 200px; }
+      .sol-card-visual { order: 2 !important; height: 300px; }
+      .industry-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -105,8 +120,8 @@
       <div class="container reveal">
         <div class="sol-hero-left">
           <span class="hero-badge" style="margin-bottom: 24px;"><span></span>Integrated Ecosystem</span>
-          <h1>Engineered for <span class="accent">Impact</span>.</h1>
-          <p style="font-size: 1.2rem; color: var(--clr-muted); line-height: 1.8; max-width: 550px;">Coaxis provides a comprehensive suite of AI-driven solutions designed to bridge the gap between technology and tangible business performance.</p>
+          <h1 style="font-size: clamp(3rem, 8vw, 5rem); line-height: 0.9;">Architecting <span class="accent">Flow</span>.</h1>
+          <p style="font-size: 1.3rem; color: var(--clr-muted); line-height: 1.8; max-width: 600px; margin-top: 30px;">Coaxis provides an expansive architecture for the next era of enterprise operations. We don't just solve problems; we rebuild the logic of productivity through autonomous agentic swarms.</p>
         </div>
         
         <div class="sol-visual-container">
@@ -122,7 +137,7 @@
       </div>
     </section>
 
-    <!-- ══ SOLUTIONS SUMMARY ══ -->
+    <!-- ══ SOLUTIONS DEEP DIVE ══ -->
     <section class="sol-summary-sec section">
       <div class="container">
         
@@ -130,9 +145,10 @@
         <div class="sol-card reveal">
           <div class="sol-card-text">
             <span class="sec-label">Our Capability</span>
-            <h2>Tailored Services</h2>
-            <p>From Data Readiness Assessments to the deployment of complex Agentic Orchestration layers, our services are built to scale. we don't just provide tools; we provide the architectural foundation for long-term AI success.</p>
-            <a href="services.html" class="sol-card-btn">Explore Services <span>→</span></a>
+            <h2>Bespoke Services</h2>
+            <p>Our service layer is designed for extreme flexibility. Whether you are at the start of your data journey or ready to deploy production-grade Agentic Orchestration, Coaxis provides the precise engineering talent required.</p>
+            <p>We specialize in Data Readiness Assessments (DRA)—a critical first step that ensures your messy legacy information is structured, cleaned, and primed for LLM ingestion. From there, we build the "Action Layers" that turn information into automated outcomes.</p>
+            <a href="services.html" class="sol-card-btn">Deep Dive into Services <span>→</span></a>
           </div>
           <div class="sol-card-visual">
             <div class="mini-3d" style="border-radius: 50%;"></div>
@@ -143,9 +159,10 @@
         <div class="sol-card reveal">
           <div class="sol-card-text">
             <span class="sec-label">Our Network</span>
-            <h2>Strategic Partnerships</h2>
-            <p>We collaborate with industry leaders like AWS, Snowflake, and LangChain to ensure your AI infrastructure is resilient, secure, and powered by the most advanced technologies available on the market.</p>
-            <a href="partners.html" class="sol-card-btn">View Partners <span>→</span></a>
+            <h2>Enterprise Partnerships</h2>
+            <p>An AI solution is only as strong as its foundation. Coaxis maintains high-level strategic partnerships with the world's most trusted data and cloud providers. We ensure your tech stack is future-proof and vendor-agnostic.</p>
+            <p>By leveraging deep integrations with AWS for scale, Snowflake for data warehousing, and NVIDIA for compute optimization, we deliver performance that outpaces standard off-the-shelf software. Our partners are your competitive advantage.</p>
+            <a href="partners.html" class="sol-card-btn">Explore Our Alliances <span>→</span></a>
           </div>
           <div class="sol-card-visual">
              <div class="mini-3d" style="transform: rotateX(60deg) rotateY(30deg);"></div>
@@ -156,9 +173,10 @@
         <div class="sol-card reveal">
           <div class="sol-card-text">
             <span class="sec-label">Our Methodology</span>
-            <h2>The Diagnostic Process</h2>
-            <p>Our unique 3-phase execution model—Foundation, Integration, and Orchestration—ensures a low-risk, high-impact transition into autonomous business operations.</p>
-            <a href="process.html" class="sol-card-btn">Learn Our Process <span>→</span></a>
+            <h2>The execution Model</h2>
+            <p>Complexity is the enemy of execution. We use a strictly phased methodology—Foundation, Integration, and Orchestration—to migrate enterprise workflows from manual toil to autonomous efficiency.</p>
+            <p>Our process begins with a risk-mitigated diagnostic phase, where we identify a single, high-impact bottleneck to automate. This proof-of-value approach ensures that your AI investments are always anchored to verifiable ROI before you scale across the organization.</p>
+            <a href="process.html" class="sol-card-btn">Learn the Roadmap <span>→</span></a>
           </div>
           <div class="sol-card-visual">
             <div class="mini-3d" style="transform: rotateX(-45deg) rotateZ(10deg); border-radius: 10px;"></div>
@@ -166,6 +184,52 @@
         </div>
 
       </div>
+    </section>
+
+    <!-- ══ INDUSTRY FOCUS ── NEW ══ -->
+    <section class="industry-focus section">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: 80px;" class="reveal">
+          <span class="sec-label">Sector Impact</span>
+          <h2 style="font-size: 3rem; color: #fff;">Industry-Specific Intelligence</h2>
+        </div>
+        <div class="industry-grid">
+          <div class="ind-card reveal">
+            <h3>Banking & Finance</h3>
+            <p>Automating KYC, AML, and risk assessment pipelines. We convert days of manual document auditing into seconds of autonomous verification while maintaining absolute MAS compliance and security standards.</p>
+          </div>
+          <div class="ind-card reveal reveal-delay-1">
+            <h3>Supply Chain</h3>
+            <p>Dynamic routing and predictive inventory management. Our Agentic swarms monitor global freight anomalies 24/7, providing instant rerouting plans and customs adjustments before a human even sees the notification.</p>
+          </div>
+          <div class="ind-card reveal reveal-delay-2">
+            <h3>Legal & Compliance</h3>
+            <p>Accelerating contract review and regulatory adherence. We deploy highly secure, private RAG systems that allow your legal teams to query thousands of documents instantly with 100% source-attribution.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ ARCHITECTURE SECTION ── NEW ══ -->
+    <section class="arch-sec section">
+       <div class="container reveal">
+          <span class="sec-label">The Blueprint</span>
+          <h2 style="font-size: 3rem; color: #fff;">Scalable AI Architecture</h2>
+          <div class="arch-box">
+             <div class="arch-step">
+                <h4>01. DATA READINESS LAYER</h4>
+                <p>Cleaning, structuring, and normalizing unstructured legacy data into a high-performance vector-ready format.</p>
+             </div>
+             <div class="arch-step">
+                <h4>02. AGENTIC CORE</h4>
+                <p>Deploying specialized AI agents equipped with 'Tools' to interact with your ERP, CRM, and external APIs.</p>
+             </div>
+             <div class="arch-step">
+                <h4>03. ORCHESTRATION SWARM</h4>
+                <p>Managing multiple agents working in parallel to solve complex, multi-step business objectives without manual intervention.</p>
+             </div>
+          </div>
+       </div>
     </section>
 
     <!-- ══ FOOTER ══ -->

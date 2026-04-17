@@ -10,7 +10,7 @@
     /* ── CONTACT PAGE SPECIFIC ── */
     .con-hero { min-height: 80vh; display: flex; align-items: center; padding-top: 100px; padding-bottom: 60px; position: relative; overflow: hidden; }
     .con-hero .container { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: center; }
-    .con-hero h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 900; margin-bottom: 30px; letter-spacing: -1px; }
+    .con-hero h1 { font-size: clamp(3rem, 8vw, 5rem); font-weight: 900; margin-bottom: 30px; letter-spacing: -2px; line-height: 0.9; }
 
     /* ── 3D PORTAL VISUAL ── */
     .con-visual { position: relative; width: 100%; aspect-ratio: 1 / 1; max-width: 500px; margin: 0 auto; perspective: 800px; display: flex; align-items: center; justify-content: center; }
@@ -24,22 +24,22 @@
     @keyframes pPulse { 0% { transform: scale(1) translateZ(0); } 100% { transform: scale(1.05) translateZ(50px); box-shadow: 0 0 100px var(--clr-accent), inset 0 0 60px var(--clr-accent); } }
 
     /* ── CONTACT FORM SECTION ── */
-    .contact-form-sec { padding: 80px 0 120px; }
-    .cf-wrapper { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; }
+    .contact-form-sec { padding: 80px 0 150px; }
+    .cf-wrapper { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: flex-start; }
     
-    .cf-info { display: flex; flex-direction: column; gap: 40px; }
-    .info-item { display: flex; align-items: flex-start; gap: 20px; }
-    .info-icon { width: 60px; height: 60px; border-radius: 50%; background: rgba(43,191,176,0.1); border: 1px solid var(--clr-accent); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--clr-accent); transition: 0.3s; }
-    .info-item:hover .info-icon { transform: rotateY(360deg); box-shadow: 0 0 20px var(--clr-accent); }
-    .info-text h3 { font-size: 1.4rem; color: #fff; margin-bottom: 5px; }
-    .info-text p, .info-text a { color: var(--clr-muted); text-decoration: none; font-size: 1.1rem; line-height: 1.6; }
+    .cf-info { display: flex; flex-direction: column; gap: 50px; position: sticky; top: 120px; }
+    .info-item { display: flex; align-items: flex-start; gap: 25px; }
+    .info-icon { width: 60px; height: 60px; border-radius: 20px; background: rgba(43,191,176,0.05); border: 1px solid rgba(43,191,176,0.2); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--clr-accent); transition: 0.3s; }
+    .info-item:hover .info-icon { transform: translateY(-5px) rotateY(180deg); border-color: var(--clr-accent); box-shadow: 0 10px 30px rgba(43,191,176,0.2); }
+    .info-text h3 { font-size: 1.5rem; color: #fff; margin-bottom: 8px; font-weight: 800; }
+    .info-text p, .info-text a { color: var(--clr-muted); text-decoration: none; font-size: 1.2rem; line-height: 1.6; }
     .info-text a:hover { color: var(--clr-accent); }
 
     /* Animated Form */
     .form-container { 
       background: rgba(255,255,255,0.02); border: 1px solid rgba(43,191,176,0.1); 
-      border-radius: var(--radius-xl); padding: 50px; position: relative; overflow: hidden;
-      box-shadow: 0 40px 80px rgba(0,0,0,0.5); backdrop-filter: blur(20px);
+      border-radius: var(--radius-xl); padding: 60px; position: relative; overflow: hidden;
+      box-shadow: 0 60px 100px rgba(0,0,0,0.6); backdrop-filter: blur(30px);
     }
     .form-container::before {
       content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
@@ -47,25 +47,37 @@
       pointer-events: none;
     }
 
-    .form-group { margin-bottom: 25px; position: relative; }
-    .form-group label { display: block; color: var(--clr-muted); margin-bottom: 10px; font-weight: 700; transform: translateY(0); transition: 0.3s; }
+    .form-group { margin-bottom: 30px; position: relative; }
+    .form-group label { display: block; color: var(--clr-muted); margin-bottom: 12px; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
     .form-input { 
-      width: 100%; padding: 15px 20px; background: rgba(5,8,15,0.6); border: 1px solid rgba(255,255,255,0.1); 
-      border-radius: var(--radius-md); color: #fff; font-size: 1rem; transition: 0.3s;
+      width: 100%; padding: 18px 25px; background: rgba(5,8,15,0.7); border: 1px solid rgba(255,255,255,0.08); 
+      border-radius: var(--radius-md); color: #fff; font-size: 1.1rem; transition: 0.3s;
+      font-family: inherit;
     }
-    .form-input:focus { outline: none; border-color: var(--clr-accent); background: rgba(5,8,15,0.9); box-shadow: 0 0 15px rgba(43,191,176,0.2); }
+    .form-input:focus { outline: none; border-color: var(--clr-accent); background: rgba(5,8,15,0.95); box-shadow: 0 0 25px rgba(43,191,176,0.15); }
     .form-input:focus + label { color: var(--clr-accent); }
 
     .btn-submit { 
-      width: 100%; padding: 18px; background: var(--clr-accent); color: #05080f; 
-      border: none; border-radius: var(--radius-md); font-weight: 800; font-size: 1rem;
-      cursor: pointer; transition: 0.4s; text-transform: uppercase; letter-spacing: 2px;
+      width: 100%; padding: 22px; background: var(--clr-accent); color: #05080f; 
+      border: none; border-radius: var(--radius-md); font-weight: 900; font-size: 1.1rem;
+      cursor: pointer; transition: 0.5s var(--ease-out); text-transform: uppercase; letter-spacing: 3px;
+      position: relative; overflow: hidden;
     }
-    .btn-submit:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(43,191,176,0.4); filter: brightness(1.1); }
+    .btn-submit:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(43,191,176,0.4); filter: brightness(1.2); }
+    
+    /* ── JOURNEY SECTION ── */
+    .journey-sec { padding: 120px 0; background: rgba(43,191,176,0.02); }
+    .journey-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 60px; }
+    .journey-card { text-align: center; position: relative; }
+    .journey-num { font-size: 4rem; font-weight: 900; color: rgba(43,191,176,0.1); line-height: 1; margin-bottom: -20px; display: block; }
+    .journey-card h4 { font-size: 1.4rem; color: #fff; margin-bottom: 10px; }
+    .journey-card p { color: var(--clr-muted); font-size: 0.95rem; line-height: 1.6; }
 
     @media (max-width: 900px) {
       .con-hero .container { grid-template-columns: 1fr; text-align: center; }
       .cf-wrapper { grid-template-columns: 1fr; }
+      .cf-info { position: relative; top: 0; }
+      .journey-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -104,13 +116,13 @@
     <!-- ══ HERO ══ -->
     <section class="con-hero">
       <div class="glow-blob" style="left:50%; top:50%; transform:translate(-50%,-50%);"></div>
-      <div class="container reveal">
+      <div class="container">
         <div class="con-hero-left">
-          <span class="hero-badge" style="margin-bottom: 24px; display: inline-flex;"><span></span>Next Steps</span>
-          <h1><span class="accent">Initiate</span> the Future.</h1>
-          <p style="font-size: 1.25rem; color: var(--clr-muted); line-height: 1.8; max-width: 500px;">Begin your journey from fragmented manual processes to autonomous, highly secure AI-driven workflows.</p>
+          <span class="hero-badge reveal" style="margin-bottom: 24px; display: inline-flex;"><span></span>Direct Access</span>
+          <h1 class="reveal reveal-delay-1">Connect to the <span class="accent">Source</span>.</h1>
+          <p class="reveal reveal-delay-2" style="font-size: 1.4rem; color: var(--clr-muted); line-height: 1.8; max-width: 550px;">Skip the sales layers. Reach out directly to our architects and transformation leaders to begin your autonomous journey.</p>
         </div>
-        <div class="con-visual">
+        <div class="con-visual reveal">
           <div class="portal-ring pr-1"></div>
           <div class="portal-ring pr-2"></div>
           <div class="portal-ring pr-3">
@@ -127,32 +139,43 @@
         <!-- Info Column -->
         <div class="cf-info">
           <div class="reveal">
-            <h2 style="font-size: 2.8rem; color: #fff; margin-bottom: 30px;">Get in Touch</h2>
-            <p style="color: var(--clr-muted); line-height: 1.8; font-size: 1.15rem; margin-bottom: 40px;">Whether you're curious about Agentic AI or ready to deploy, we respond within 12 hours.</p>
+            <span class="sec-label">Inquiry Core</span>
+            <h2 style="font-size: 3.5rem; color: #fff; margin-bottom: 30px; line-height: 1.1;">Let's discuss the outcome.</h2>
+            <p style="color: var(--clr-muted); line-height: 1.8; font-size: 1.2rem; margin-bottom: 40px;">Our lead times for technical discovery are currently under 12 hours. Every message is reviewed by a founding partner.</p>
           </div>
 
           <div class="info-item reveal reveal-delay-1">
              <div class="info-icon">✉</div>
              <div class="info-text">
-                <h3>Direct Emails</h3>
+                <h3>Technical & Strategy</h3>
                 <a href="mailto:rahul.budhraja@coaxis.ai">rahul.budhraja@coaxis.ai</a><br>
-                <a href="mailto:vinay.mathur@coaxis.ai">vinay.mathur@coaxis.ai</a>
+                <span>Rahul Budhraja, Lead Architect</span>
              </div>
           </div>
 
           <div class="info-item reveal reveal-delay-2">
-             <div class="info-icon">📍</div>
+             <div class="info-icon">⌬</div>
              <div class="info-text">
-                <h3>Global HQ</h3>
-                <p>12 Marina View, #11-01 <br> Asia Square Tower 2, Singapore 018961</p>
+                <h3>Operations & Transformation</h3>
+                <a href="mailto:vinay.mathur@coaxis.ai">vinay.mathur@coaxis.ai</a><br>
+                <span>Vinay Mathur, Managing Director</span>
              </div>
           </div>
 
           <div class="info-item reveal reveal-delay-3">
-             <div class="info-icon">🔗</div>
+             <div class="info-icon">📍</div>
              <div class="info-text">
-                <h3>LinkedIn</h3>
-                <a href="#">Coaxis AI Official Personnel</a>
+                <h3>Singapore (HQ)</h3>
+                <p>12 Marina View, #11-01 Asia Square Tower 2, Singapore 018961</p>
+             </div>
+          </div>
+          
+          <div class="info-item reveal reveal-delay-4">
+             <div class="info-icon">⚡</div>
+             <div class="info-text">
+                <h3>Our Response SLA</h3>
+                <p>Initial Callback: <strong style="color:var(--clr-accent);">2-4 Hours</strong></p>
+                <p>Diagnostic Scoping: <strong style="color:var(--clr-accent);">24-48 Hours</strong></p>
              </div>
           </div>
         </div>
@@ -161,31 +184,68 @@
         <div class="form-container reveal reveal-delay-1">
            <form id="contact-form">
               <div class="form-group reveal">
-                 <label>Your Name</label>
-                 <input type="text" class="form-input" placeholder="Enter your full name" required>
+                 <label>Full Name</label>
+                 <input type="text" class="form-input" placeholder="e.g. Alexander Pierce" required>
               </div>
               <div class="form-group reveal reveal-delay-1">
                  <label>Corporate Email</label>
-                 <input type="email" class="form-input" placeholder="name@company.com" required>
+                 <input type="email" class="form-input" placeholder="e.g. alex@enterprise.com" required>
               </div>
               <div class="form-group reveal reveal-delay-2">
-                 <label>Industry</label>
-                 <select class="form-input">
-                    <option>Finance & Banking</option>
-                    <option>Supply Chain & Logistics</option>
-                    <option>Healthcare</option>
-                    <option>Other</option>
-                 </select>
+                 <label>Organization Name</label>
+                 <input type="text" class="form-input" placeholder="e.g. Global Logistics Inc." required>
               </div>
               <div class="form-group reveal reveal-delay-3">
-                 <label>How can we help?</label>
-                 <textarea class="form-input" rows="5" placeholder="Tell us about your operational bottlenecks..."></textarea>
+                 <label>Primary Objective</label>
+                 <select class="form-input">
+                    <option>Data Readiness Assessment</option>
+                    <option>Agentic Workflow Deployment</option>
+                    <option>Legacy ERP Integration</option>
+                    <option>Private LLM Infrastructure</option>
+                    <option>Technical Advisory</option>
+                 </select>
               </div>
-              <button type="submit" class="btn-submit reveal reveal-delay-4">Deploy Request ➟</button>
+              <div class="form-group reveal reveal-delay-4">
+                 <label>Contextual Details</label>
+                 <textarea class="form-input" rows="5" placeholder="What specific operational bottlenecks are you looking to dissolve?"></textarea>
+              </div>
+              <button type="submit" class="btn-submit reveal reveal-delay-5">Engage Discovery ➟</button>
            </form>
         </div>
 
       </div>
+    </section>
+
+    <!-- ══ JOURNEY STEPS ══ -->
+    <section class="journey-sec section">
+       <div class="container reveal">
+          <div style="text-align: center; margin-bottom: 60px;">
+             <span class="sec-label">The Onboarding</span>
+             <h2 style="font-size: 3rem; color: #fff;">Your Journey with Coaxis</h2>
+          </div>
+          <div class="journey-grid">
+             <div class="journey-card reveal">
+                <span class="journey-num">01</span>
+                <h4>Discovery</h4>
+                <p>Technical deep-dive with founders to assess data feasibility.</p>
+             </div>
+             <div class="journey-card reveal reveal-delay-1">
+                <span class="journey-num">02</span>
+                <h4>Diagnostic</h4>
+                <p>2-week intensive scoping of a high-value pilot project.</p>
+             </div>
+             <div class="journey-card reveal reveal-delay-2">
+                <span class="journey-num">03</span>
+                <h4>Deployment</h4>
+                <p>Building the secure foundation and your first Agentic swarm.</p>
+             </div>
+             <div class="journey-card reveal reveal-delay-3">
+                <span class="journey-num">04</span>
+                <h4>Orchestration</h4>
+                <p>Full-scale operational takeover by autonomous systems.</p>
+             </div>
+          </div>
+       </div>
     </section>
 
     <!-- ══ FOOTER ══ -->
