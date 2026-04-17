@@ -5,146 +5,170 @@
 'use strict';
 
 /* ══════════════════════════════════════════
-   1. INTRO VIDEO OVERLAY LOGIC
+   1. MEGA INTRO OVERLAY — SMOOTH 60FPS
 ══════════════════════════════════════════ */
 let introSceneActive = false;
-let introRenderer, introScene, introCamera, particleSystem;
+let introRenderer, introScene, introCamera;
+let introIntervalId = null;
+
+function destroyIntro3D() {
+  introSceneActive = false;
+  if (introRenderer) {
+    introRenderer.dispose();
+    const el = document.getElementById('intro-3d-target');
+    if (el) el.innerHTML = '';
+    introRenderer = null;
+  }
+  if (introIntervalId) { clearInterval(introIntervalId); introIntervalId = null; }
+}
 
 function initIntro3D() {
   const container = document.getElementById('intro-3d-target');
-  if (!container) return;
+  if (!container || introSceneActive) return;
 
   introScene = new THREE.Scene();
   introCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  introCamera.position.z = 0; // Starting inside the tunnel
+
   introRenderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+  introRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   introRenderer.setSize(window.innerWidth, window.innerHeight);
   container.appendChild(introRenderer.domElement);
 
-  // Massive Particle Swarm (Neural Vortex)
-  const particlesCount = 50000;
-  const positions = new Float32Array(particlesCount * 3);
-  const colors = new Float32Array(particlesCount * 3);
-  
-  for (let i = 0; i < particlesCount; i++) {
-    const rx = (Math.random() - 0.5) * 10;
-    const ry = (Math.random() - 0.5) * 10;
-    const rz = (Math.random() - 0.5) * 10;
-    positions[i * 3] = rx;
-    positions[i * 3 + 1] = ry;
-    positions[i * 3 + 2] = rz;
-    
-    colors[i * 3] = 0.17; // 2BBFB0 color components
-    colors[i * 3 + 1] = 0.75;
-    colors[i * 3 + 2] = 0.69;
+  /* --- 1. NEURAL TUNNEL (Hundreds of High-Energy Splines) --- */
+  const tunnelGroup = new THREE.Group();
+  introScene.add(tunnelGroup);
+
+  const curveCount = 60;
+  const tubeRadius = 15;
+  const tubeLength = 400;
+
+  for (let i = 0; i < curveCount; i++) {
+    const points = [];
+    for (let j = 0; j < 6; j++) {
+      points.push(new THREE.Vector3(
+        (Math.random() - 0.5) * 40,
+        (Math.random() - 0.5) * 40,
+        j * (tubeLength / 5) - tubeLength / 2
+      ));
+    }
+    const curve = new THREE.CatmullRomCurve3(points);
+    const tubeGeo = new THREE.TubeGeometry(curve, 32, 0.05, 8, false);
+    const tubeMat = new THREE.MeshBasicMaterial({ 
+      color: i % 2 === 0 ? 0x2BBFB0 : 0x7DD9D0,
+      transparent: true,
+      opacity: 0.3 + Math.random() * 0.4,
+      blending: THREE.AdditiveBlending
+    });
+    const tube = new THREE.Mesh(tubeGeo, tubeMat);
+    tunnelGroup.add(tube);
   }
-  
-  const geometry = new THREE.BufferGeometry();
-  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-  geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-  
-  const material = new THREE.PointsMaterial({
-    size: 0.015,
-    vertexColors: true,
+
+  /* --- 2. FLOATING DATA PARTICLES (Stars/Dust) --- */
+  const partCount = 4000;
+  const partGeo = new THREE.BufferGeometry();
+  const partPos = new Float32Array(partCount * 3);
+  for (let i = 0; i < partCount; i++) {
+    partPos[i * 3] = (Math.random() - 0.5) * 100;
+    partPos[i * 3 + 1] = (Math.random() - 0.5) * 100;
+    partPos[i * 3 + 2] = (Math.random() - 0.5) * tubeLength;
+  }
+  partGeo.setAttribute('position', new THREE.BufferAttribute(partPos, 3));
+  const partMat = new THREE.PointsMaterial({
+    size: 0.1,
+    color: 0xffffff,
     transparent: true,
     opacity: 0.8,
     blending: THREE.AdditiveBlending
   });
+  const stars = new THREE.Points(partGeo, partMat);
+  introScene.add(stars);
+
+  /* --- 3. CORE GLOW PULSE --- */
+  const light = new THREE.PointLight(0x2BBFB0, 10, 200);
+  introScene.add(light);
+
+  /* --- 4. ANIMATION LOOP (HYPER-JUMP FEEL) --- */
+  const clock = new THREE.Clock();
   
-  particleSystem = new THREE.Points(geometry, material);
-  introScene.add(particleSystem);
-
-  introCamera.position.z = 2; // Close up for 4K detail
-
   function animate() {
     if (!introSceneActive) return;
     requestAnimationFrame(animate);
     
-    particleSystem.rotation.y += 0.002;
-    particleSystem.rotation.z += 0.001;
+    const elapsed = clock.getElapsedTime();
     
-    // Pulse and distort for "Powerful" feeling
-    const time = Date.now() * 0.001;
-    const sizes = geometry.attributes.position.array;
-    for(let i=0; i<particlesCount; i++) {
-        const x = sizes[i*3];
-        const y = sizes[i*3+1];
-        // Subtle drift
-        sizes[i*3+2] += Math.sin(time + x) * 0.001;
-    }
-    geometry.attributes.position.needsUpdate = true;
+    // Move tunnel forward (Infinite Loop feel)
+    tunnelGroup.children.forEach(tube => {
+      tube.rotation.z += 0.001;
+    });
+    
+    // Fly the camera through the tunnel
+    introCamera.position.z = (elapsed * 50) % tubeLength - (tubeLength / 2);
+    introCamera.rotation.z = elapsed * 0.1; // Rotate while flying
+    
+    // Shake camera slightly for "power" feel
+    introCamera.position.x = Math.sin(elapsed * 4) * 0.5;
+    introCamera.position.y = Math.cos(elapsed * 4) * 0.5;
+
+    light.position.copy(introCamera.position);
     
     introRenderer.render(introScene, introCamera);
   }
   
   introSceneActive = true;
   animate();
-  
-  // Start System Console Simulation
-  startIntroConsole();
 }
 
+/* --- Console Typewriter (visible, fixed) --- */
 function startIntroConsole() {
-    const logs = [
-        "INITIALIZING NEURAL CORE...",
-        "LINKING AGENTIC BACKBONE...",
-        "SYNTHESIZING DATA FABRIC (4K)...",
-        "ORCHESTRATING MULTI-AGENT SWARMS...",
-        "STATUS: AUTONOMOUS EXECUTION READY.",
-        "COAXIS AI: SYSTEMS INTEGRATED."
-    ];
-    const desc = document.querySelector('.intro-desc');
-    if(!desc) return;
-    desc.textContent = "";
-    let i = 0;
-    const interval = setInterval(() => {
-        if(i >= logs.length || !introSceneActive) {
-            clearInterval(interval);
-            return;
-        }
-        const p = document.createElement('div');
-        p.style.fontFamily = "var(--font-mono)";
-        p.style.fontSize = "0.9rem";
-        p.style.color = "var(--clr-accent)";
-        p.style.opacity = "0.7";
-        p.textContent = "> " + logs[i];
-        desc.appendChild(p);
-        i++;
-    }, 1200);
+  const logs = [
+    "INITIALIZING NEURAL CORE...",
+    "LINKING AGENTIC BACKBONE...",
+    "SYNTHESIZING DATA FABRIC...",
+    "ORCHESTRATING MULTI-AGENT SWARMS...",
+    "STATUS: AUTONOMOUS EXECUTION READY.",
+    "COAXIS AI — SYSTEMS INTEGRATED ✓"
+  ];
+  const console_el = document.getElementById('intro-console');
+  if (!console_el) return;
+  console_el.innerHTML = '';
+  let i = 0;
+  introIntervalId = setInterval(() => {
+    if (i >= logs.length || !introSceneActive) { clearInterval(introIntervalId); return; }
+    const line = document.createElement('div');
+    line.className = 'console-line';
+    line.textContent = '> ' + logs[i];
+    if (i === logs.length - 1) line.classList.add('console-final');
+    console_el.appendChild(line);
+    console_el.scrollTop = console_el.scrollHeight;
+    i++;
+  }, 900);
 }
 
 function toggleIntro(show) {
   const overlay = document.getElementById('intro-overlay');
   if (!overlay) return;
   if (show) {
-    overlay.style.display = 'flex';
-    setTimeout(() => {
-      overlay.classList.add('active');
-      if (!introSceneActive) initIntro3D();
-    }, 50);
+    destroyIntro3D();
+    overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
+    setTimeout(() => { initIntro3D(); startIntroConsole(); }, 300);
   } else {
     overlay.classList.remove('active');
-    setTimeout(() => {
-      overlay.style.display = 'none';
-      document.body.style.overflow = '';
-      // Cleanup if needed, or just keep it for next time
-    }, 800);
+    document.body.style.overflow = '';
+    setTimeout(() => destroyIntro3D(), 700);
   }
 }
 
-(function initIntro() {
-  document.querySelectorAll('.logo').forEach(logo => {
-    logo.addEventListener('click', (e) => {
-      e.preventDefault();
-      toggleIntro(true);
-    });
+(function initIntroEvents() {
+  document.querySelectorAll('a.logo').forEach(logo => {
+    logo.addEventListener('click', (e) => { e.preventDefault(); toggleIntro(true); });
   });
-  
   const closeBtn = document.getElementById('intro-close');
-  if (closeBtn) {
-    closeBtn.addEventListener('click', () => toggleIntro(false));
-  }
+  if (closeBtn) closeBtn.addEventListener('click', () => toggleIntro(false));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') toggleIntro(false); });
 })();
+
 
 const lerp = (a, b, t) => a + (b - a) * t;
 

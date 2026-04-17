@@ -15,23 +15,35 @@
   <!-- Single performant Three.js background canvas -->
   <canvas id="three-canvas"></canvas>
 
-  <!-- ══ INTRO OVERLAY (POWERFULL 3D) ══ -->
+  <!-- ══ INTRO OVERLAY (POWERFULL 4K EXPERIENCE) ══ -->
   <div class="intro-overlay" id="intro-overlay">
-    <div class="intro-scanline"></div>
+    
+    <!-- Realistic 4K Neural Background -->
+    <img src="./images/intro_bg.png" class="intro-video-bg" alt="Coaxis AI Neural Vortex">
+    
+    <!-- Digital Glitch & Noise Layers -->
     <div class="intro-glitch-layer"></div>
+    
+    <!-- Real-time Procedural 3D Neural Tunnel Layer (60FPS) -->
     <div id="intro-3d-target" class="intro-3d-target"></div>
+    
+    <div class="intro-scanline"></div>
     <div class="intro-hud">
       <div class="hud-corner hud-tl"></div>
       <div class="hud-corner hud-tr"></div>
       <div class="hud-corner hud-bl"></div>
       <div class="hud-corner hud-br"></div>
     </div>
-    <img src="./images/intro_bg.png" class="intro-video-bg">
-    <button class="intro-close" id="intro-close">EXIT ARCHITECTURE</button>
+
+    <button class="intro-close" id="intro-close">✕ CLEAR ARCHITECTURE</button>
+
     <div class="intro-content">
-      <span class="intro-subtitle">Autonomous Enterprise Systems</span>
+      <span class="intro-subtitle" style="display: block; font-family: var(--font-mono); font-size: 0.9rem; color: var(--clr-accent); text-transform: uppercase; letter-spacing: 6px; margin-bottom: 20px;">Autonomous Intelligence Systems</span>
       <h2 class="intro-title">COAXIS AI</h2>
-      <p class="intro-desc">Agentic backbone of the future. Solving complex productivity gaps through neural orchestration and high-fidelity workflow automation.</p>
+      <p class="intro-tagline">Orchestrating the Agentic Backbone of the Future.</p>
+      
+      <!-- High-Glow System Console -->
+      <div id="intro-console" class="intro-console"></div>
     </div>
   </div>
 

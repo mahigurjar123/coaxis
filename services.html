@@ -59,8 +59,8 @@
     .feature-list { display: flex; flex-direction: column; gap: 20px; margin-top: 30px;}
     .feature-item { display: flex; align-items: flex-start; gap: 20px; background: rgba(255,255,255,0.02); padding: 20px; border-radius: var(--radius-sm); border-left: 3px solid var(--clr-accent); transition: transform 0.3s; }
     .feature-item:hover { transform: translateX(10px); background: rgba(43,191,176,0.05); }
-    .feature-icon { background: rgba(43,191,176,0.1); padding: 12px; border-radius: 12px; }
-    .feature-icon svg { width: 24px; height: 24px; stroke: var(--clr-accent); stroke-width: 2; }
+    .feature-icon { background: rgba(255,255,255,0.02); padding: 12px; border-radius: 12px; box-shadow: inset 0 0 15px rgba(43,191,176,0.1); }
+    .feature-icon img { width: 32px; height: 32px; object-fit: contain; filter: drop-shadow(0 0 5px rgba(43,191,176,0.5)); border-radius: 4px; }
     .feature-text h4 { color: var(--clr-text); font-size: 1.1rem; margin-bottom: 5px; }
     .feature-text p { color: var(--clr-muted); font-size: 0.95rem; line-height: 1.6; margin: 0; }
     
@@ -70,8 +70,8 @@
     .approach-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent, rgba(43,191,176,0.05)); opacity: 0; transition: opacity 0.4s; }
     .approach-card:hover { transform: translateY(-10px); border-color: rgba(43,191,176,0.3); }
     .approach-card:hover::after { opacity: 1; }
-    .approach-card .icon-box { margin: 0 auto 20px; width: 70px; height: 70px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.03); border-radius: 50%; box-shadow: inset 0 0 20px rgba(43,191,176,0.1); }
-    .approach-card .icon-box svg { width: 30px; height: 30px; stroke: var(--clr-accent); stroke-width: 1.5; }
+    .approach-card .icon-box { margin: 0 auto 20px; width: 70px; height: 70px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.03); border-radius: 50%; box-shadow: inset 0 0 30px rgba(43,191,176,0.15); }
+    .approach-card .icon-box img { width: 38px; height: 38px; object-fit: contain; border-radius: 8px; }
     .approach-card h3 { font-size: 1.3rem; margin-bottom: 15px; color: var(--clr-accent); }
     .approach-card p { font-size: 0.95rem; color: var(--clr-muted); line-height: 1.7; }
 
@@ -165,28 +165,23 @@
           <div class="svc-orb-ring"></div>
           <div class="svc-orb-ring"></div>
           <div class="svc-orb-ring"></div>
-          <div class="svc-orb-center">
-            <svg class="svc-orb-svg" viewBox="0 0 120 120" fill="none" style="width: 55%; height: 55%;">
-              <circle cx="60" cy="60" r="28" stroke="rgba(43,191,176,0.6)" stroke-width="1.5" fill="none"/>
-              <circle cx="60" cy="60" r="18" stroke="rgba(43,191,176,0.4)" stroke-width="1" fill="rgba(43,191,176,0.05)"/>
-              <line x1="60" y1="32" x2="80" y2="40" stroke="rgba(43,191,176,0.3)" stroke-width="1"/><line x1="88" y1="60" x2="80" y2="40" stroke="rgba(43,191,176,0.3)" stroke-width="1"/><line x1="88" y1="60" x2="80" y2="80" stroke="rgba(43,191,176,0.3)" stroke-width="1"/><line x1="60" y1="88" x2="80" y2="80" stroke="rgba(43,191,176,0.3)" stroke-width="1"/><line x1="60" y1="88" x2="40" y2="80" stroke="rgba(43,191,176,0.3)" stroke-width="1"/><line x1="32" y1="60" x2="40" y2="80" stroke="rgba(43,191,176,0.3)" stroke-width="1"/><line x1="32" y1="60" x2="40" y2="40" stroke="rgba(43,191,176,0.3)" stroke-width="1"/><line x1="60" y1="32" x2="40" y2="40" stroke="rgba(43,191,176,0.3)" stroke-width="1"/>
-              <circle cx="60" cy="60" r="5" fill="#2BBFB0" opacity="0.9"/><circle cx="60" cy="60" r="2" fill="white"/>
-            </svg>
+          <div class="svc-orb-center" style="overflow: hidden; padding: 0;">
+            <img src="./images/svc_hero.png" alt="AI Neural Core" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.9;">
           </div>
           <div class="svc-node">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h10" stroke="#2BBFB0" stroke-width="2" stroke-linecap="round"/></svg>
+            <img src="./images/icon_data.png" alt="Data" style="width:32px; height:32px; border-radius:4px;">
             <span>Data<br>Readiness</span>
           </div>
           <div class="svc-node">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L20 7v10l-8 5-8-5V7z" stroke="#2BBFB0" stroke-width="1.5"/><circle cx="12" cy="12" r="3" fill="#2BBFB0"/></svg>
+            <img src="./images/icon_ai.png" alt="AI Agents" style="width:32px; height:32px; border-radius:4px;">
             <span>AI<br>Agents</span>
           </div>
           <div class="svc-node">
-            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="#2BBFB0" stroke-width="1.5"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="#2BBFB0" stroke-width="1.5"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="#2BBFB0" stroke-width="1.5"/><path d="M17.5 14v7M14 17.5h7" stroke="#2BBFB0" stroke-width="1.5"/></svg>
+            <img src="./images/sol_process.png" alt="Workflows" style="width:32px; height:32px; border-radius:4px;">
             <span>Work-<br>flows</span>
           </div>
           <div class="svc-node">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4.5 8-11.8V5l-8-3-8 3v5.2C4 17.5 12 22 12 22z" stroke="#2BBFB0" stroke-width="1.5"/><path d="M9 12l2 2 4-4" stroke="#2BBFB0" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <img src="./images/sol_services.png" alt="Gov" style="width:32px; height:32px; border-radius:4px;">
             <span>Secure<br>Govern.</span>
           </div>
         </div>
@@ -202,17 +197,17 @@
         
         <div class="approach-grid">
           <div class="approach-card reveal">
-            <div class="icon-box"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+            <div class="icon-box"><img src="./images/icon_data.png" alt="Build"></div>
             <h3>Build Approach</h3>
             <p>Requires hiring expensive, specialized AI talent and maintaining complex AgentOps infrastructure. Extremely high up-front costs and slow delivery loops.</p>
           </div>
           <div class="approach-card reveal reveal-delay-1">
-            <div class="icon-box"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+            <div class="icon-box"><img src="./images/icon_ai.png" alt="Buy"></div>
             <h3>Buy Approach</h3>
             <p>Off-the-shelf tools promise quick fixes but fail at the last mile. 95% of generic AI deployments lack the deep, secure integration required for enterprise data.</p>
           </div>
           <div class="approach-card reveal reveal-delay-2" style="border-color: var(--clr-accent); background: rgba(43,191,176,0.05);">
-            <div class="icon-box" style="background: var(--clr-accent);"><svg viewBox="0 0 24 24" fill="none" class="stroke-dark" stroke="#000"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M8.5 7a4 4 0 100-8 4 4 0 000 8zm13 14v-2a4 4 0 00-3-3.87m-4-12a4 4 0 110 8 4 4 0 010-8z"/></svg></div>
+            <div class="icon-box" style="background: rgba(43,191,176,0.15); box-shadow: inset 0 0 40px rgba(43,191,176,0.4);"><img src="./images/sol_partners.png" alt="Partner"></div>
             <h3 style="color: #fff;">Partner with Coaxis</h3>
             <p>The strategic "Borrow" layer. We bring specialized frameworks, domain expertise, and a best-of-breed technology stack to deliver ROI without the overhead.</p>
           </div>
@@ -229,28 +224,8 @@
           <!-- Left: 3D Visual Box -->
           <div class="svc-icon-display reveal">
             <div class="glass-3d-card">
-              <div class="glass-inner-layer">
-                <!-- 3D Database SVG -->
-                <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <!-- Bottom DB -->
-                  <ellipse cx="100" cy="150" rx="60" ry="25" stroke="#2BBFB0" stroke-width="2" fill="rgba(43,191,176,0.1)"/>
-                  <path d="M40 150 V110 C40 123.8 66.8 135 100 135 C133.1 135 160 123.8 160 110 V150 C160 163.8 133.1 175 100 175 C66.8 175 40 163.8 40 150 Z" fill="rgba(43,191,176,0.05)" stroke="#2BBFB0" stroke-width="2"/>
-                  <!-- Middle DB -->
-                  <ellipse cx="100" cy="110" rx="60" ry="25" stroke="#2BBFB0" stroke-width="2" fill="rgba(43,191,176,0.1)"/>
-                  <path d="M40 110 V70 C40 83.8 66.8 95 100 95 C133.1 95 160 83.8 160 70 V110 C160 123.8 133.1 135 100 135 C66.8 135 40 123.8 40 110 Z" fill="rgba(43,191,176,0.05)" stroke="#2BBFB0" stroke-width="2"/>
-                  <!-- Top DB -->
-                  <ellipse cx="100" cy="70" rx="60" ry="25" stroke="#2BBFB0" stroke-width="2" fill="rgba(43,191,176,0.2)"/>
-                  <!-- Flow Lines -->
-                  <path d="M100 150 V70" stroke="rgba(43,191,176,0.5)" stroke-width="2" stroke-dasharray="4 4">
-                     <animate attributeName="stroke-dashoffset" values="20;0" dur="1s" repeatCount="indefinite"/>
-                  </path>
-                  <circle cx="100" cy="70" r="6" fill="#7DD9D0">
-                     <animate attributeName="r" values="4;8;4" dur="2s" repeatCount="indefinite"/>
-                  </circle>
-                  <path d="M100 20 L80 40 H120 Z" fill="rgba(43,191,176,0.6)">
-                     <animateMotion dur="2s" repeatCount="indefinite" path="M0 50 V0"/>
-                  </path>
-                </svg>
+              <div class="glass-inner-layer" style="display: flex; align-items: center; justify-content: center;">
+                <img src="./images/sol_services.png" alt="Data Readiness" style="width: 80%; border-radius: 50%; filter: drop-shadow(0 0 30px rgba(43,191,176,0.5));">
               </div>
             </div>
           </div>
@@ -263,21 +238,21 @@
             
             <div class="feature-list">
               <div class="feature-item">
-                <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><circle cx="12" cy="12" r="2"/></svg></div>
+                <div class="feature-icon"><img src="./images/icon_data.png" alt="Ingestion"></div>
                 <div class="feature-text">
                   <h4>Data Ingestion &amp; Quality</h4>
                   <p>Streamline structured and unstructured pipelines. We employ auto-metadata enrichment and anomaly detection before data ever reaches your AI models.</p>
                 </div>
               </div>
               <div class="feature-item">
-                <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg></div>
+                <div class="feature-icon"><img src="./images/icon_ai.png" alt="Explanations"></div>
                 <div class="feature-text">
                   <h4>Context-Aware Agentic Explanations</h4>
                   <p>Equip models with enterprise-specific semantic layers so they can explain trends, forecast variations, and highlight risks in plain language.</p>
                 </div>
               </div>
               <div class="feature-item">
-                <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4.5 8-11.8V5l-8-3-8 3v5.2C4 17.5 12 22 12 22z"/></svg></div>
+                <div class="feature-icon"><img src="./images/sol_services.png" alt="Governance"></div>
                 <div class="feature-text">
                   <h4>Trusted Governance &amp; Security</h4>
                   <p>Integrate role-based access controls, redaction pipelines, and audit logs. Ensures LLMs only query what they have explicit permission to see.</p>
@@ -302,21 +277,21 @@
             
             <div class="feature-list">
               <div class="feature-item">
-                <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M9 17H5a2 2 0 01-2-2V5a2 2 0 012-2h4m6 14h4a2 2 0 002-2V5a2 2 0 00-2-2h-4m-6 9l3 3 3-3M12 3v13"/></svg></div>
+                <div class="feature-icon"><img src="./images/sol_process.png" alt="Discovery"></div>
                 <div class="feature-text">
                   <h4>Workflow Discovery &amp; ROI Mapping</h4>
                   <p>We deploy diagnostic agents to monitor existing operations, map end-to-end bottlenecks, and prioritize high-value tasks tailored for automation.</p>
                 </div>
               </div>
               <div class="feature-item">
-                <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke-linecap="round"/><path d="M5.64 5.64l2.12 2.12M16.24 16.24l2.12 2.12M5.64 18.36l2.12-2.12M16.24 7.76l2.12-2.12"/></svg></div>
+                <div class="feature-icon"><img src="./images/sol_partners.png" alt="Swarms"></div>
                 <div class="feature-text">
                   <h4>Multi-Agent Orchestration</h4>
                   <p>Implement swarms of specialized AI agents working together securely, using strict system prompts to maintain guardrails without human supervision.</p>
                 </div>
               </div>
               <div class="feature-item">
-                <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" stroke-linecap="round"/></svg></div>
+                <div class="feature-icon"><img src="./images/sol_services.png" alt="APIs"></div>
                 <div class="feature-text">
                   <h4>System Connectors &amp; Legacy APIs</h4>
                   <p>Seamlessly weave modern LLM controllers with aging infrastructure via robust API gateways, middleware, and traditional RPA wrappers where necessary.</p>
@@ -328,34 +303,8 @@
           <!-- 3D Visual Box -->
           <div class="svc-icon-display reveal reveal-delay-1">
             <div class="glass-3d-card">
-              <div class="glass-inner-layer">
-                <!-- 3D Workflow Nodes SVG -->
-                <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <!-- Nodes -->
-                  <polygon points="100,30 140,50 100,70 60,50" fill="rgba(125,217,208,0.2)" stroke="#7DD9D0" stroke-width="2"/>
-                  <polygon points="60,50 100,70 100,110 60,90" fill="rgba(125,217,208,0.1)" stroke="#7DD9D0" stroke-width="1"/>
-                  <polygon points="140,50 100,70 100,110 140,90" fill="rgba(125,217,208,0.05)" stroke="#7DD9D0" stroke-width="1"/>
-                  
-                  <polygon points="50,110 90,130 50,150 10,130" fill="rgba(43,191,176,0.2)" stroke="#2BBFB0" stroke-width="2"/>
-                  <polygon points="10,130 50,150 50,190 10,170" fill="rgba(43,191,176,0.1)" stroke="#2BBFB0" stroke-width="1"/>
-                  <polygon points="90,130 50,150 50,190 90,170" fill="rgba(43,191,176,0.05)" stroke="#2BBFB0" stroke-width="1"/>
-
-                  <polygon points="150,110 190,130 150,150 110,130" fill="rgba(43,191,176,0.2)" stroke="#2BBFB0" stroke-width="2"/>
-                  <polygon points="110,130 150,150 150,190 110,170" fill="rgba(43,191,176,0.1)" stroke="#2BBFB0" stroke-width="1"/>
-                  <polygon points="190,130 150,150 150,190 190,170" fill="rgba(43,191,176,0.05)" stroke="#2BBFB0" stroke-width="1"/>
-
-                  <!-- Connecting Paths -->
-                  <path d="M100,110 L50,130" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-dasharray="4 4">
-                     <animate attributeName="stroke-dashoffset" values="20;0" dur="1.5s" repeatCount="indefinite"/>
-                  </path>
-                  <path d="M100,110 L150,130" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-dasharray="4 4">
-                     <animate attributeName="stroke-dashoffset" values="20;0" dur="1.5s" repeatCount="indefinite"/>
-                  </path>
-                  <!-- Pulses -->
-                  <circle cx="100" cy="50" r="4" fill="#fff"><animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite"/></circle>
-                  <circle cx="50" cy="130" r="4" fill="#2BBFB0"><animate attributeName="opacity" values="0;1;0" dur="2s" begin="0.5s" repeatCount="indefinite"/></circle>
-                  <circle cx="150" cy="130" r="4" fill="#2BBFB0"><animate attributeName="opacity" values="0;1;0" dur="2s" begin="1s" repeatCount="indefinite"/></circle>
-                </svg>
+              <div class="glass-inner-layer" style="display: flex; align-items: center; justify-content: center;">
+                <img src="./images/sol_process.png" alt="Workflow Automation" style="width: 80%; border-radius: var(--radius-lg); filter: drop-shadow(0 0 30px rgba(43,191,176,0.5)); transform: scale(1.1) rotateZ(-10deg);">
               </div>
             </div>
           </div>

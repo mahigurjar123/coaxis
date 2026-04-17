@@ -59,8 +59,31 @@
     }
     .sol-card-btn:hover { border-color: var(--clr-accent); gap: 18px; }
 
-    .sol-card-visual { position: relative; width: 100%; height: 400px; display: flex; align-items: center; justify-content: center; }
-    .mini-3d { width: 180px; height: 180px; background: rgba(43,191,176,0.1); border: 1px solid var(--clr-accent); transform: rotateX(45deg) rotateZ(45deg); animation: float 4s infinite ease-in-out alternate; }
+    .sol-card-visual { 
+      position: relative; 
+      width: 100%; 
+      height: 400px; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      perspective: 1000px;
+    }
+
+    .sol-card-visual img {
+      transition: all 0.6s var(--ease-out);
+      animation: solFloat 6s infinite ease-in-out alternate;
+    }
+
+    .sol-card:hover .sol-card-visual img {
+      transform: scale(1.1) rotateY(-5deg) translateZ(50px);
+      box-shadow: 0 0 60px rgba(43,191,176,0.6);
+      filter: brightness(1.2) contrast(1.1);
+    }
+
+    @keyframes solFloat {
+      0% { transform: translateY(0) rotate(0); }
+      100% { transform: translateY(-15px) rotate(2deg); }
+    }
 
     /* ── NEW SECTIONS ── */
     .industry-focus { padding: 120px 0; background: rgba(43,191,176,0.02); }
@@ -145,14 +168,7 @@
         </div>
         
         <div class="sol-visual-container">
-          <div class="matrix-cube">
-            <div class="cube-face front"><div class="matrix-dot"></div></div>
-            <div class="cube-face back"><div class="matrix-dot"></div></div>
-            <div class="cube-face right"><div class="matrix-dot"></div></div>
-            <div class="cube-face left"><div class="matrix-dot"></div></div>
-            <div class="cube-face top"><div class="matrix-dot"></div></div>
-            <div class="cube-face bottom"><div class="matrix-dot"></div></div>
-          </div>
+          <img src="./images/solutions_hero.png" alt="Solutions AI Architecture" style="width: 100%; border-radius: var(--radius-xl); box-shadow: 0 0 50px rgba(43,191,176,0.2), inset 0 0 20px rgba(43,191,176,0.5); object-fit: cover;">
         </div>
       </div>
     </section>
@@ -171,7 +187,7 @@
             <a href="services.html" class="sol-card-btn">Deep Dive into Services <span>→</span></a>
           </div>
           <div class="sol-card-visual">
-            <div class="mini-3d" style="border-radius: 50%;"></div>
+            <img src="./images/sol_services.png" alt="Bespoke Services" style="width: 250px; height: 250px; object-fit: cover; border-radius: 50%; box-shadow: 0 0 40px rgba(43,191,176,0.3); border: 2px solid rgba(43,191,176,0.5);">
           </div>
         </div>
 
@@ -185,7 +201,7 @@
             <a href="partners.html" class="sol-card-btn">Explore Our Alliances <span>→</span></a>
           </div>
           <div class="sol-card-visual">
-             <div class="mini-3d" style="transform: rotateX(60deg) rotateY(30deg);"></div>
+            <img src="./images/sol_partners.png" alt="Enterprise Partnerships" style="width: 280px; height: 280px; object-fit: cover; border-radius: 20px; box-shadow: 0 0 40px rgba(43,191,176,0.3); border: 2px solid rgba(43,191,176,0.5);">
           </div>
         </div>
 
@@ -199,7 +215,7 @@
             <a href="process.html" class="sol-card-btn">Learn the Roadmap <span>→</span></a>
           </div>
           <div class="sol-card-visual">
-            <div class="mini-3d" style="transform: rotateX(-45deg) rotateZ(10deg); border-radius: 10px;"></div>
+            <img src="./images/sol_process.png" alt="The Execution Model" style="width: 280px; height: 280px; object-fit: cover; border-radius: 20px; box-shadow: 0 0 40px rgba(43,191,176,0.3); border: 2px solid rgba(43,191,176,0.5); transform: perspective(800px) rotateY(-15deg);">
           </div>
         </div>
 

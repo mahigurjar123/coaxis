@@ -126,8 +126,8 @@
              <div class="satellite-node" style="top: auto; left: 0; bottom: 50%; transform: translateY(50%);">LLMs</div>
              <div class="satellite-node" style="top: auto; right: -30px; left: auto; bottom: 50%; transform: translateY(50%);">RPA</div>
            </div>
-           <div class="sun-node">
-             <span style="font-family: var(--font-mono); color: var(--clr-accent); font-size: 1.2rem; font-weight: 800; text-align: center; line-height: 1;">COAXIS<br><span style="font-size: 0.6rem; color: #fff;">CORE</span></span>
+           <div class="sun-node" style="overflow: hidden;">
+             <img src="./images/sol_partners.png" alt="Coaxis Core" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(1.2);">
            </div>
         </div>
       </div>
@@ -152,7 +152,7 @@
           <!-- Emergence -->
           <div class="eco-card reveal">
             <h3 style="display:flex; align-items:center; gap: 15px;">
-              <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="var(--clr-accent)" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+              <img src="./images/icon_ai.png" alt="AI Icon" style="width: 38px; height: 38px; object-fit: contain; filter: drop-shadow(0 0 8px rgba(43,191,176,0.5)); border-radius: 6px;">
               Emergence AI (USA)
             </h3>
             <p>Our primary strategic partner for advanced enterprise Agentic AI. Emergence specializes in developing autonomous systems capable of executing multi-step cognitive tasks across disparate platforms.</p>
@@ -166,7 +166,7 @@
           <!-- Workflow Automation Firms -->
           <div class="eco-card reveal reveal-delay-1">
             <h3 style="display:flex; align-items:center; gap: 15px;">
-              <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="var(--clr-accent)" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              <img src="./images/icon_data.png" alt="Workflow Icon" style="width: 38px; height: 38px; object-fit: contain; filter: drop-shadow(0 0 8px rgba(43,191,176,0.5)); border-radius: 6px;">
               Orchestration Engines
             </h3>
             <p>We partner with top-tier Robotic Process Automation (RPA) and integration platform providers (n8n, UiPath) to execute the decisions formulated by AI brain architectures globally.</p>
@@ -189,21 +189,9 @@
               </div>
             </div>
             
-            <!-- Deep 3D Hexagon Graphic -->
-            <div style="perspective: 800px; width: 100%; height: 250px; position: relative;">
-               <div style="width: 200px; height: 200px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotateX(60deg) rotateZ(30deg); transform-style: preserve-3d; animation: float3d 8s infinite alternate;">
-                 <svg viewBox="0 0 100 100" fill="none" style="width:100%; height:100%;">
-                    <polygon points="50,5 95,25 95,75 50,95 5,75 5,25" stroke="var(--clr-accent)" stroke-width="2" fill="rgba(43,191,176,0.1)"/>
-                    <polygon points="50,15 85,32 85,68 50,85 15,68 15,32" stroke="rgba(255,255,255,0.4)" stroke-width="1" fill="none" stroke-dasharray="4 4"/>
-                    <circle cx="50" cy="50" r="10" fill="var(--clr-accent)"/>
-                    <line x1="50" y1="50" x2="50" y2="5" stroke="var(--clr-accent)" stroke-width="1"/>
-                    <line x1="50" y1="50" x2="95" y2="75" stroke="var(--clr-accent)" stroke-width="1"/>
-                    <line x1="50" y1="50" x2="5" y2="75" stroke="var(--clr-accent)" stroke-width="1"/>
-                 </svg>
-                 <!-- Floating sub hexes -->
-                 <div style="position: absolute; top: -40px; left: 50%; transform: translateZ(50px) translateX(-50%); width: 40px; height: 40px;">
-                    <svg viewBox="0 0 100 100" fill="none"><polygon points="50,5 95,25 95,75 50,95 5,75 5,25" stroke="var(--clr-accent)" stroke-width="4" fill="rgba(5,8,15,0.8)"/></svg>
-                 </div>
+            <div style="perspective: 800px; width: 100%; height: 250px; position: relative; display: flex; align-items: center; justify-content: center;">
+               <div style="width: 220px; height: 220px; animation: float3d 8s infinite alternate; transform-style: preserve-3d; transition: all 0.5s;">
+                 <img src="./images/solutions_hero.png" alt="Data Layer" style="width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-lg); box-shadow: 0 0 40px rgba(43,191,176,0.5);">
                </div>
             </div>
             
