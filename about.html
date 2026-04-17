@@ -44,6 +44,18 @@
     .team-card ul li { margin-bottom: 10px; color: #fff; font-size: 0.95rem; display: flex; align-items: center; gap: 10px; }
     .team-card ul li::before { content: '■'; color: var(--clr-accent); font-size: 0.6rem; }
 
+    /* ── VALUES SECTION ── */
+    .values-sec { padding: 120px 0; }
+    .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 60px; }
+    .value-card { 
+      background: rgba(5,8,15,0.8); border: 1px solid rgba(255,255,255,0.05); padding: 50px; border-radius: var(--radius-lg); 
+      text-align: center; transition: 0.4s; position: relative; overflow: hidden;
+    }
+    .value-card:hover { border-color: var(--clr-accent); transform: scale(1.05); }
+    .value-card .v-icon { font-size: 3rem; margin-bottom: 25px; color: var(--clr-accent); display: block; }
+    .value-card h3 { font-size: 1.6rem; color: #fff; margin-bottom: 15px; }
+    .value-card p { color: var(--clr-muted); line-height: 1.7; font-size: 1rem; }
+
     /* Background Typography */
     .bg-type { position: absolute; font-size: 20vw; font-weight: 900; color: rgba(255,255,255,0.01); line-height: 0.8; top: 10%; right: -5%; z-index: -1; white-space: nowrap; user-select: none; pointer-events: none; }
     
@@ -52,9 +64,18 @@
     .origin-content { max-width: 800px; margin: 0 auto; text-align: center; position: relative; z-index: 2; }
     .origin-content p { font-size: 1.2rem; color: var(--clr-muted); line-height: 1.9; margin-bottom: 30px; }
 
+    /* Culture Section */
+    .culture-sec { padding: 120px 0; }
+    .culture-header { text-align: center; margin-bottom: 80px; }
+    .culture-split { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: center; }
+    .culture-img-box { position: relative; border-radius: var(--radius-xl); overflow: hidden; border: 1px solid var(--clr-accent); aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; background: rgba(43,191,176,0.05); }
+    .culture-img-box::after { content: 'COAXIS CULTURE'; font-weight: 900; font-size: 2rem; color: var(--clr-accent); opacity: 0.2; letter-spacing: 10px; }
+
     @media (max-width: 900px) {
       .abt-hero .container { grid-template-columns: 1fr; gap: 40px; }
       .team-grid { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: 1fr; }
+      .culture-split { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -69,7 +90,7 @@
       <nav class="nav">
         <a href="index.html" class="nav-btn">Home</a>
         <div class="nav-item">
-          <span class="nav-btn">Solutions <span style="font-size: 10px; opacity: 0.5;">▼</span></span>
+          <a href="solutions.html" class="nav-btn">Solutions <span style="font-size: 10px; opacity: 0.5;">▼</span></a>
           <div class="dropdown-menu">
             <a href="services.html" class="dropdown-link">Services</a>
             <a href="partners.html" class="dropdown-link">Partners</a>
@@ -77,7 +98,7 @@
           </div>
         </div>
         <div class="nav-item">
-          <span class="nav-btn">Insights <span style="font-size: 10px; opacity: 0.5;">▼</span></span>
+          <a href="insights.html" class="nav-btn">Insights <span style="font-size: 10px; opacity: 0.5;">▼</span></a>
           <div class="dropdown-menu">
             <a href="news.html" class="dropdown-link">News</a>
             <a href="blogs.html" class="dropdown-link">Blogs</a>
@@ -116,6 +137,34 @@
       </div>
     </section>
 
+    <!-- ══ VALUES SECTION ══ -->
+    <section class="values-sec section">
+      <div class="container">
+        <div class="culture-header reveal">
+          <span class="sec-label">Our DNA</span>
+          <h2 style="font-size: 3rem; color: #fff;">The Principles That Drive Us</h2>
+          <p style="max-width: 700px; margin: 20px auto 0; color: var(--clr-muted); line-height: 1.7;">Beyond technology, we are defined by a commitment to absolute transparency, relentless innovation, and a focus on human outcomes.</p>
+        </div>
+        <div class="values-grid">
+          <div class="value-card reveal">
+            <div class="v-icon">✦</div>
+            <h3>Radical Transparency</h3>
+            <p>We don't hide behind jargon. We provide clear, honest assessments of what AI can and cannot do for your specific business case.</p>
+          </div>
+          <div class="value-card reveal reveal-delay-1">
+            <div class="v-icon">⌬</div>
+            <h3>Ethical Integrity</h3>
+            <p>Security and data privacy are not optional. We build every system with robust guardrails to protect your intellectual property and user trust.</p>
+          </div>
+          <div class="value-card reveal reveal-delay-2">
+            <div class="v-icon">⚡</div>
+            <h3>Relentless Innovation</h3>
+            <p>The AI landscape moves daily. Our team lives on the cutting edge to ensure you're always using tools that represent the current state-of-the-art.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ══ ORIGIN & MISSION ══ -->
     <section class="origin-sec">
       <div class="glow-blob" style="right:-200px; top:50%; transform:translateY(-50%);"></div>
@@ -124,6 +173,23 @@
          <h2 style="font-size: 3rem; margin-bottom: 30px; color: #fff;">Converting Technology into Performance.</h2>
          <p>The business world does not lack visionary AI models; it lacks execution. When massive technological shifts occur, enterprises often freeze entirely or invest heavily in fragmented tools that fail to integrate. Coaxis AI was founded by industry veterans specifically to solve the "execution gap."</p>
          <p>We believe that AI should not be a siloed experiment living on a dashboard. It must be woven directly into the operational workflows that determine your bottom line. We exist to hold technology accountable to ROI.</p>
+      </div>
+    </section>
+
+    <!-- ══ CULTURE & VISION ══ -->
+    <section class="culture-sec section">
+      <div class="container culture-split">
+        <div class="culture-left reveal">
+          <span class="sec-label">Why We Exist</span>
+          <h2 style="font-size: 2.5rem; margin-bottom: 30px; color: #fff;">An Environment for Breakthroughs.</h2>
+          <p style="color: var(--clr-muted); line-height: 1.8; margin-bottom: 20px;">At Coaxis, we don't just hire engineers; we hire "architects of change." Our culture is built around decentralized decision-making, rapid prototyping, and a shared obsession with solving seemingly impossible bottlenecks.</p>
+          <p style="color: var(--clr-muted); line-height: 1.8;">We foster an ecosystem where the world's most talented AI researchers collaborate directly with C-suite executives to translate deep-tech capabilities into real-world revenue growth.</p>
+        </div>
+        <div class="culture-right reveal reveal-delay-1">
+          <div class="culture-img-box">
+             <!-- Interactive visual placeholder or actual team photo concept -->
+          </div>
+        </div>
       </div>
     </section>
 
@@ -139,7 +205,7 @@
            <div class="team-card reveal">
               <h4>Rahul Budhraja</h4>
               <span class="tag">Data & Strategy</span>
-              <p>With over 30 years of deep corporate experience spanning Nielsen, Genpact, and Analytic Edge, Rahul has spearheaded global analytics consulting operations for CXOs across continents. His expertise lies in aligning massive data operations with overarching corporate strategy.</p>
+              <p>With over 30 years of deep corporate experience spanning Nielsen, Genpact, and Analytic Edge. His expertise lies in aligning massive data operations with overarching corporate strategy.</p>
               <ul>
                  <li>Ex-Nielsen Global Analytics Leader</li>
                  <li>Pioneered data frameworks for Fortune 500s</li>
@@ -151,7 +217,7 @@
            <div class="team-card reveal reveal-delay-1">
               <h4>Vinay Mathur</h4>
               <span class="tag">Transformation</span>
-              <p>A seasoned C-suite executive with 30+ years navigating complex environments. Having held CFO, CEO, and MD roles at global giants like PepsiCo, Heineken, and Suntory Garuda, Vinay ensures that all AI integrations are fiercely aligned with pure operational growth and structural overhaul.</p>
+              <p>Having held CFO, CEO, and MD roles at global giants like PepsiCo, Heineken, and Suntory Garuda, Vinay ensures that all AI integrations are fiercely aligned with pure operational growth.</p>
               <ul>
                  <li>Ex-CEO/CFO PepsiCo & Heineken Divisions</li>
                  <li>Corporate structural transformation specialist</li>
@@ -163,7 +229,7 @@
            <div class="team-card reveal">
               <h4>Jishnu Bhattacharya</h4>
               <span class="tag">Data Science & ML</span>
-              <p>An applied machine learning leader with over 25 years of engineering experience. With foundational roots at Tata, Dun & Bradstreet, and ICICI, Jishnu is the architect behind deploying complex, predictive machine learning models securely within legacy financial infrastructures.</p>
+              <p>An applied machine learning leader with over 25 years of engineering experience. foundation roots at Tata, Dun & Bradstreet, and ICICI.</p>
               <ul>
                  <li>Ex-Dun & Bradstreet Analytics Lead</li>
                  <li>Applied ML architecture and security</li>
@@ -175,9 +241,9 @@
            <div class="team-card reveal reveal-delay-1">
               <h4>Abirami Kamatchi</h4>
               <span class="tag">AI Engineering</span>
-              <p>At the bleeding edge of autonomous tech, Abirami brings 8+ years of crucial, modern experience building scalable ML platforms and production-grade decision systems. She directly architects the agentic swarms that power Coaxis's deployment layer.</p>
+              <p>Directly architects the agentic swarms that power Coaxis's deployment layer. Expert in modern LLM orchestration and cloud-native workflow architecture.</p>
               <ul>
-                 <li>Expert in modern LLM orchestration (n8n, LangChain)</li>
+                 <li>Expert in modern LLM orchestration</li>
                  <li>Deployment of production-grade agentic swarms</li>
                  <li>Cloud-native workflow architecture</li>
               </ul>
@@ -185,6 +251,17 @@
         </div>
 
       </div>
+    </section>
+
+    <!-- ══ GLOBAL FOOTPRINT ══ -->
+    <section class="section">
+       <div class="container" style="text-align: center;">
+          <h2 style="font-size: 2.5rem; color: #fff; margin-bottom: 20px;">Global Reach</h2>
+          <p style="color: var(--clr-muted); line-height: 1.8; max-width: 600px; margin: 0 auto 60px;">Headquartered in Singapore, with deep operational roots in India, we provide round-the-clock support and deployment capabilities for enterprises globally.</p>
+          <div style="height: 200px; border: 1px dashed rgba(43,191,176,0.2); border-radius: 20px; display: flex; align-items: center; justify-content: center; color: var(--clr-accent); font-weight: 800; font-size: 1.5rem;">
+             SINGAPORE | MUMBAI | BENGALURU | LONDON | NYC
+          </div>
+       </div>
     </section>
 
     <!-- ══ FOOTER ══ -->

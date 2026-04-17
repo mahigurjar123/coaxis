@@ -8,8 +8,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     /* ── CONTACT PAGE SPECIFIC ── */
-    .con-hero { min-height: 100vh; display: flex; align-items: center; padding-top: 100px; padding-bottom: 60px; position: relative; overflow: hidden; }
-    .con-hero .container { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .con-hero { min-height: 80vh; display: flex; align-items: center; padding-top: 100px; padding-bottom: 60px; position: relative; overflow: hidden; }
+    .con-hero .container { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: center; }
     .con-hero h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 900; margin-bottom: 30px; letter-spacing: -1px; }
 
     /* ── 3D PORTAL VISUAL ── */
@@ -23,39 +23,49 @@
     @keyframes pSpinX { to { transform: rotateX(60deg) rotateY(30deg); } }
     @keyframes pPulse { 0% { transform: scale(1) translateZ(0); } 100% { transform: scale(1.05) translateZ(50px); box-shadow: 0 0 100px var(--clr-accent), inset 0 0 60px var(--clr-accent); } }
 
-    /* ── LAYOUT ── */
-    .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; padding: 120px 0; border-top: 1px solid rgba(43,191,176,0.1); }
+    /* ── CONTACT FORM SECTION ── */
+    .contact-form-sec { padding: 80px 0 120px; }
+    .cf-wrapper { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; }
     
-    .start-steps { display: flex; flex-direction: column; gap: 40px; }
-    .step-box { padding: 40px; background: rgba(255,255,255,0.02); border: 1px solid rgba(43,191,176,0.1); border-radius: var(--radius-lg); position: relative; overflow: hidden; transform-style: preserve-3d; transition: 0.4s; }
-    .step-box:hover { border-color: var(--clr-accent); transform: translateX(10px) rotateY(-2deg); background: rgba(43,191,176,0.03); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
-    .step-box .num { position: absolute; font-size: 5rem; font-family: var(--font-mono); font-weight: 900; color: rgba(43,191,176,0.05); top: -10px; right: 10px; line-height: 1; }
-    .step-box h3 { font-size: 1.5rem; color: #fff; margin-bottom: 15px; }
-    .step-box p { color: var(--clr-muted); line-height: 1.7; font-size: 1.05rem; }
+    .cf-info { display: flex; flex-direction: column; gap: 40px; }
+    .info-item { display: flex; align-items: flex-start; gap: 20px; }
+    .info-icon { width: 60px; height: 60px; border-radius: 50%; background: rgba(43,191,176,0.1); border: 1px solid var(--clr-accent); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--clr-accent); transition: 0.3s; }
+    .info-item:hover .info-icon { transform: rotateY(360deg); box-shadow: 0 0 20px var(--clr-accent); }
+    .info-text h3 { font-size: 1.4rem; color: #fff; margin-bottom: 5px; }
+    .info-text p, .info-text a { color: var(--clr-muted); text-decoration: none; font-size: 1.1rem; line-height: 1.6; }
+    .info-text a:hover { color: var(--clr-accent); }
 
-    .action-panel { background: rgba(5,8,15,0.8); border: 1px solid var(--clr-accent); border-radius: var(--radius-xl); padding: 60px; box-shadow: 0 0 40px rgba(43,191,176,0.1); display: flex; flex-direction: column; justify-content: center; position: sticky; top: 120px; }
-    .action-panel h2 { font-size: 2.2rem; color: #fff; margin-bottom: 20px; }
-    .action-panel p { color: var(--clr-muted); font-size: 1.1rem; line-height: 1.8; margin-bottom: 40px; }
-    
-    .contact-method { display: flex; align-items: center; gap: 20px; padding: 25px; background: rgba(43,191,176,0.05); border: 1px solid rgba(43,191,176,0.2); border-radius: var(--radius-md); text-decoration: none; transition: 0.3s; margin-bottom: 20px; }
-    .contact-method:hover { background: rgba(43,191,176,0.15); transform: translateY(-5px); border-color: var(--clr-accent); }
-    .cm-icon { width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; background: rgba(5,8,15,0.9); border-radius: 50%; border: 1px solid var(--clr-accent); }
-    .cm-icon svg { width: 24px; height: 24px; stroke: var(--clr-accent); }
-    .cm-text h4 { color: #fff; font-size: 1.2rem; margin-bottom: 5px; }
-    .cm-text span { color: var(--clr-muted); font-size: 0.95rem; font-family: var(--font-mono); }
+    /* Animated Form */
+    .form-container { 
+      background: rgba(255,255,255,0.02); border: 1px solid rgba(43,191,176,0.1); 
+      border-radius: var(--radius-xl); padding: 50px; position: relative; overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.5); backdrop-filter: blur(20px);
+    }
+    .form-container::before {
+      content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+      background: radial-gradient(circle, rgba(43,191,176,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
 
-    /* Why Us / Differentiator */
-    .why-us-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; padding-bottom: 150px; }
-    .wu-card { background: transparent; padding: 30px; border-left: 2px solid var(--clr-accent); }
-    .wu-card h4 { font-size: 1.4rem; color: #fff; margin-bottom: 15px; }
-    .wu-card p { color: var(--clr-muted); line-height: 1.7; font-size: 1rem; }
+    .form-group { margin-bottom: 25px; position: relative; }
+    .form-group label { display: block; color: var(--clr-muted); margin-bottom: 10px; font-weight: 700; transform: translateY(0); transition: 0.3s; }
+    .form-input { 
+      width: 100%; padding: 15px 20px; background: rgba(5,8,15,0.6); border: 1px solid rgba(255,255,255,0.1); 
+      border-radius: var(--radius-md); color: #fff; font-size: 1rem; transition: 0.3s;
+    }
+    .form-input:focus { outline: none; border-color: var(--clr-accent); background: rgba(5,8,15,0.9); box-shadow: 0 0 15px rgba(43,191,176,0.2); }
+    .form-input:focus + label { color: var(--clr-accent); }
+
+    .btn-submit { 
+      width: 100%; padding: 18px; background: var(--clr-accent); color: #05080f; 
+      border: none; border-radius: var(--radius-md); font-weight: 800; font-size: 1rem;
+      cursor: pointer; transition: 0.4s; text-transform: uppercase; letter-spacing: 2px;
+    }
+    .btn-submit:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(43,191,176,0.4); filter: brightness(1.1); }
 
     @media (max-width: 900px) {
-      .con-hero .container { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-      .con-visual { max-width: 300px; height: 300px; }
-      .contact-wrapper { grid-template-columns: 1fr; }
-      .action-panel { position: relative; top: 0; }
-      .why-us-grid { grid-template-columns: 1fr; }
+      .con-hero .container { grid-template-columns: 1fr; text-align: center; }
+      .cf-wrapper { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -70,7 +80,7 @@
       <nav class="nav">
         <a href="index.html" class="nav-btn">Home</a>
         <div class="nav-item">
-          <span class="nav-btn">Solutions <span style="font-size: 10px; opacity: 0.5;">▼</span></span>
+          <a href="solutions.html" class="nav-btn">Solutions <span style="font-size: 10px; opacity: 0.5;">▼</span></a>
           <div class="dropdown-menu">
             <a href="services.html" class="dropdown-link">Services</a>
             <a href="partners.html" class="dropdown-link">Partners</a>
@@ -78,7 +88,7 @@
           </div>
         </div>
         <div class="nav-item">
-          <span class="nav-btn">Insights <span style="font-size: 10px; opacity: 0.5;">▼</span></span>
+          <a href="insights.html" class="nav-btn">Insights <span style="font-size: 10px; opacity: 0.5;">▼</span></a>
           <div class="dropdown-menu">
             <a href="news.html" class="dropdown-link">News</a>
             <a href="blogs.html" class="dropdown-link">Blogs</a>
@@ -95,13 +105,11 @@
     <section class="con-hero">
       <div class="glow-blob" style="left:50%; top:50%; transform:translate(-50%,-50%);"></div>
       <div class="container reveal">
-        <!-- Text -->
         <div class="con-hero-left">
           <span class="hero-badge" style="margin-bottom: 24px; display: inline-flex;"><span></span>Next Steps</span>
-          <h1><span class="accent">Own</span> the Outcome.</h1>
-          <p style="font-size: 1.15rem; color: var(--clr-muted); line-height: 1.8; max-width: 500px;">A transparent, low-risk path to getting started. Move your business from fragmented manual processes to autonomous, highly secure workflows.</p>
+          <h1><span class="accent">Initiate</span> the Future.</h1>
+          <p style="font-size: 1.25rem; color: var(--clr-muted); line-height: 1.8; max-width: 500px;">Begin your journey from fragmented manual processes to autonomous, highly secure AI-driven workflows.</p>
         </div>
-        <!-- 3D Portal Visual -->
         <div class="con-visual">
           <div class="portal-ring pr-1"></div>
           <div class="portal-ring pr-2"></div>
@@ -112,80 +120,72 @@
       </div>
     </section>
 
-    <!-- ══ CONTACT WRAPPER ══ -->
-    <section class="section section--center">
-      <div class="container contact-wrapper">
+    <!-- ══ CONTACT SECTION ══ -->
+    <section class="contact-form-sec section">
+      <div class="container cf-wrapper">
         
-        <!-- Left: Process Steps -->
-        <div class="start-steps">
-          <h2 style="font-size: 2rem; color: #fff; margin-bottom: 20px;">How We Start</h2>
-          <p style="color: var(--clr-muted); margin-bottom: 40px; font-size: 1.1rem; line-height: 1.7;">Entering the AI space requires careful planning. We ensure that our capabilities flawlessly match your operational bottlenecks before writing a single line of code.</p>
-
-          <div class="step-box reveal">
-            <span class="num">01</span>
-            <h3>The 30-Minute Discovery</h3>
-            <p>Connect with our leadership team for a zero-pressure conversation. We listen to your operational pain points and discuss whether an Agentic AI solution is the correct technological fit for your sector.</p>
+        <!-- Info Column -->
+        <div class="cf-info">
+          <div class="reveal">
+            <h2 style="font-size: 2.8rem; color: #fff; margin-bottom: 30px;">Get in Touch</h2>
+            <p style="color: var(--clr-muted); line-height: 1.8; font-size: 1.15rem; margin-bottom: 40px;">Whether you're curious about Agentic AI or ready to deploy, we respond within 12 hours.</p>
           </div>
 
-          <div class="step-box reveal reveal-delay-1">
-            <span class="num">02</span>
-            <h3>Data Architecture Scoping</h3>
-            <p>If we proceed, our engineers conduct a rapid evaluation of your existing datasets, APIs, and legacy systems to ensure "Data Readiness" is achievable within realistic budgetary confines.</p>
+          <div class="info-item reveal reveal-delay-1">
+             <div class="info-icon">✉</div>
+             <div class="info-text">
+                <h3>Direct Emails</h3>
+                <a href="mailto:rahul.budhraja@coaxis.ai">rahul.budhraja@coaxis.ai</a><br>
+                <a href="mailto:vinay.mathur@coaxis.ai">vinay.mathur@coaxis.ai</a>
+             </div>
           </div>
 
-          <div class="step-box reveal reveal-delay-2">
-            <span class="num">03</span>
-            <h3>Diagnostic Proposal</h3>
-            <p>We deliver a concrete roadmap outlining the 4-6 week Diagnostic Phase, identifying exactly which workflow will act as the first Proof of Concept (POC) with measurable ROI targets.</p>
+          <div class="info-item reveal reveal-delay-2">
+             <div class="info-icon">📍</div>
+             <div class="info-text">
+                <h3>Global HQ</h3>
+                <p>12 Marina View, #11-01 <br> Asia Square Tower 2, Singapore 018961</p>
+             </div>
+          </div>
+
+          <div class="info-item reveal reveal-delay-3">
+             <div class="info-icon">🔗</div>
+             <div class="info-text">
+                <h3>LinkedIn</h3>
+                <a href="#">Coaxis AI Official Personnel</a>
+             </div>
           </div>
         </div>
 
-        <!-- Right: Action / Contact Panel -->
-        <div style="position: relative;">
-          <div class="action-panel reveal reveal-delay-1">
-            <h2>Ready to transform?</h2>
-            <p>Reach out directly to our founders. We believe in high-level strategic alignment from day one, skipping the typical sales bureaucracy.</p>
-            
-            <a href="mailto:rahul.budhraja@coaxis.ai" class="contact-method">
-               <div class="cm-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-               <div class="cm-text">
-                  <h4>Email Rahul Budhraja</h4>
-                  <span>Data &amp; Strategy Leader</span>
-               </div>
-            </a>
-
-            <a href="mailto:vinay.mathur@coaxis.ai" class="contact-method">
-               <div class="cm-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-               <div class="cm-text">
-                  <h4>Email Vinay Mathur</h4>
-                  <span>Transformation Specialist</span>
-               </div>
-            </a>
-          </div>
+        <!-- Form Column -->
+        <div class="form-container reveal reveal-delay-1">
+           <form id="contact-form">
+              <div class="form-group reveal">
+                 <label>Your Name</label>
+                 <input type="text" class="form-input" placeholder="Enter your full name" required>
+              </div>
+              <div class="form-group reveal reveal-delay-1">
+                 <label>Corporate Email</label>
+                 <input type="email" class="form-input" placeholder="name@company.com" required>
+              </div>
+              <div class="form-group reveal reveal-delay-2">
+                 <label>Industry</label>
+                 <select class="form-input">
+                    <option>Finance & Banking</option>
+                    <option>Supply Chain & Logistics</option>
+                    <option>Healthcare</option>
+                    <option>Other</option>
+                 </select>
+              </div>
+              <div class="form-group reveal reveal-delay-3">
+                 <label>How can we help?</label>
+                 <textarea class="form-input" rows="5" placeholder="Tell us about your operational bottlenecks..."></textarea>
+              </div>
+              <button type="submit" class="btn-submit reveal reveal-delay-4">Deploy Request ➟</button>
+           </form>
         </div>
 
       </div>
-    </section>
-
-    <!-- ══ WHY COAXIS ══ -->
-    <section class="section section--center">
-       <div class="container">
-          <h2 style="font-size: 2.2rem; color: #fff; margin-bottom: 60px; text-align: center;">The Coaxis Difference</h2>
-          <div class="why-us-grid">
-             <div class="wu-card reveal">
-                <h4>ROI Accountable</h4>
-                <p>We don't sell hype or token-generating chatbots. Every implementation we deploy is measured strictly against processing time reductions, error eliminations, and bottom-line revenue growth.</p>
-             </div>
-             <div class="wu-card reveal reveal-delay-1">
-                <h4>Provider Agnostic</h4>
-                <p>We leverage open-source models, hyper-scalar infrastructure (AWS/Azure), and best-in-breed partners. Your operational architecture will never be permanently locked to a single vendor's ecosystem.</p>
-             </div>
-             <div class="wu-card reveal reveal-delay-2">
-                <h4>Human-Centric Guardrails</h4>
-                <p>Enterprise data is critically sensitive. We design "Human-in-the-Loop" (HITL) checkpoints into our agent workflows, ensuring an AI NEVER executes a high-risk action without explicit human authorization.</p>
-             </div>
-          </div>
-       </div>
     </section>
 
     <!-- ══ FOOTER ══ -->

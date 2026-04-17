@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solutions | Coaxis AI</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ── SOLUTIONS PAGE SPECIFIC ── */
+    .sol-hero { min-height: 100vh; display: flex; align-items: center; padding-top: 100px; padding-bottom: 60px; position: relative; overflow: hidden; }
+    .sol-hero .container { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    
+    /* ── 3D SOLUTION MATRIX VISUAL ── */
+    .sol-visual-container { position: relative; width: 100%; aspect-ratio: 1; max-width: 500px; margin: 0 auto; perspective: 1000px; }
+    .matrix-cube { 
+      position: absolute; width: 220px; height: 220px; top: 50%; left: 50%; 
+      margin-top: -110px; margin-left: -110px; transform-style: preserve-3d;
+      animation: matrixSpin 25s infinite linear;
+    }
+    .cube-face {
+      position: absolute; width: 220px; height: 220px; 
+      background: rgba(43,191,176,0.05); border: 1px solid rgba(43,191,176,0.3);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: inset 0 0 30px rgba(43,191,176,0.1);
+    }
+    .cube-face.front  { transform: translateZ(110px); }
+    .cube-face.back   { transform: rotateY(180deg) translateZ(110px); }
+    .cube-face.right  { transform: rotateY(90deg) translateZ(110px); }
+    .cube-face.left   { transform: rotateY(-90deg) translateZ(110px); }
+    .cube-face.top    { transform: rotateX(90deg) translateZ(110px); }
+    .cube-face.bottom { transform: rotateX(-90deg) translateZ(110px); }
+
+    .matrix-dot { width: 10px; height: 10px; background: var(--clr-accent); border-radius: 50%; box-shadow: 0 0 15px var(--clr-accent); }
+
+    @keyframes matrixSpin {
+      0% { transform: rotateX(0) rotateY(0) rotateZ(0); }
+      100% { transform: rotateX(360deg) rotateY(720deg) rotateZ(360deg); }
+    }
+
+    /* ── SECTION SUMMARIES ── */
+    .sol-summary-sec { padding: 120px 0; }
+    .sol-card { 
+      background: rgba(255,255,255,0.02); border: 1px solid rgba(43,191,176,0.1); 
+      border-radius: var(--radius-xl); padding: 60px; margin-bottom: 60px;
+      display: grid; grid-template-columns: 1.5fr 1fr; gap: 60px; align-items: center;
+      transition: all 0.5s var(--ease-out); transform-style: preserve-3d;
+    }
+    .sol-card:hover { border-color: var(--clr-accent); transform: translateY(-10px) rotateX(1deg); background: rgba(43,191,176,0.03); }
+    .sol-card:nth-child(even) { grid-template-columns: 1fr 1.5fr; }
+    .sol-card:nth-child(even) .sol-card-text { order: 2; }
+    .sol-card:nth-child(even) .sol-card-visual { order: 1; }
+
+    .sol-card-text h2 { font-size: 2.8rem; margin-bottom: 25px; }
+    .sol-card-text p { color: var(--clr-muted); font-size: 1.15rem; line-height: 1.8; margin-bottom: 30px; }
+    .sol-card-btn { 
+      display: inline-flex; align-items: center; gap: 12px; color: var(--clr-accent); 
+      font-weight: 700; text-decoration: none; font-size: 1.1rem; border-bottom: 1px solid transparent; transition: 0.3s;
+    }
+    .sol-card-btn:hover { border-color: var(--clr-accent); gap: 18px; }
+
+    .sol-card-visual { position: relative; width: 100%; height: 300px; display: flex; align-items: center; justify-content: center; }
+    .mini-3d { width: 150px; height: 150px; background: rgba(43,191,176,0.1); border: 1px solid var(--clr-accent); transform: rotateX(45deg) rotateZ(45deg); animation: float 4s infinite ease-in-out alternate; }
+
+    @media (max-width: 900px) {
+      .sol-hero .container { grid-template-columns: 1fr; text-align: center; }
+      .sol-card { grid-template-columns: 1fr !important; padding: 40px; text-align: center; }
+      .sol-card-text { order: 1 !important; }
+      .sol-card-visual { order: 2 !important; height: 200px; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="three-canvas"></canvas>
+  <div class="page" style="gap: 0;">
+
+    <header class="header" id="header">
+      <a href="index.html" class="logo"><div class="logo-wrapper"><img src="./images/coaxis_logo.png" class="brand-logo-img"><div class="logo-glow"></div></div></a>
+      <nav class="nav">
+        <a href="index.html" class="nav-btn">Home</a>
+        <div class="nav-item">
+          <a href="solutions.html" class="nav-btn active">Solutions <span style="font-size: 10px; opacity: 0.5;">▼</span></a>
+          <div class="dropdown-menu">
+            <a href="services.html" class="dropdown-link">Services</a>
+            <a href="partners.html" class="dropdown-link">Partners</a>
+            <a href="process.html" class="dropdown-link">Process</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="insights.html" class="nav-btn">Insights <span style="font-size: 10px; opacity: 0.5;">▼</span></a>
+          <div class="dropdown-menu">
+            <a href="news.html" class="dropdown-link">News</a>
+            <a href="blogs.html" class="dropdown-link">Blogs</a>
+            <a href="case-studies.html" class="dropdown-link">Case Studies</a>
+          </div>
+        </div>
+        <a href="about.html" class="nav-btn">About Us</a>
+        <a href="contact.html" class="nav-btn">Contact</a>
+        <a href="contact.html" class="nav-cta">Let's Build</a>
+      </nav>
+    </header>
+
+    <!-- ══ HERO ══ -->
+    <section class="sol-hero">
+      <div class="container reveal">
+        <div class="sol-hero-left">
+          <span class="hero-badge" style="margin-bottom: 24px;"><span></span>Integrated Ecosystem</span>
+          <h1>Engineered for <span class="accent">Impact</span>.</h1>
+          <p style="font-size: 1.2rem; color: var(--clr-muted); line-height: 1.8; max-width: 550px;">Coaxis provides a comprehensive suite of AI-driven solutions designed to bridge the gap between technology and tangible business performance.</p>
+        </div>
+        
+        <div class="sol-visual-container">
+          <div class="matrix-cube">
+            <div class="cube-face front"><div class="matrix-dot"></div></div>
+            <div class="cube-face back"><div class="matrix-dot"></div></div>
+            <div class="cube-face right"><div class="matrix-dot"></div></div>
+            <div class="cube-face left"><div class="matrix-dot"></div></div>
+            <div class="cube-face top"><div class="matrix-dot"></div></div>
+            <div class="cube-face bottom"><div class="matrix-dot"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SOLUTIONS SUMMARY ══ -->
+    <section class="sol-summary-sec section">
+      <div class="container">
+        
+        <!-- Services Summary -->
+        <div class="sol-card reveal">
+          <div class="sol-card-text">
+            <span class="sec-label">Our Capability</span>
+            <h2>Tailored Services</h2>
+            <p>From Data Readiness Assessments to the deployment of complex Agentic Orchestration layers, our services are built to scale. we don't just provide tools; we provide the architectural foundation for long-term AI success.</p>
+            <a href="services.html" class="sol-card-btn">Explore Services <span>→</span></a>
+          </div>
+          <div class="sol-card-visual">
+            <div class="mini-3d" style="border-radius: 50%;"></div>
+          </div>
+        </div>
+
+        <!-- Partners Summary -->
+        <div class="sol-card reveal">
+          <div class="sol-card-text">
+            <span class="sec-label">Our Network</span>
+            <h2>Strategic Partnerships</h2>
+            <p>We collaborate with industry leaders like AWS, Snowflake, and LangChain to ensure your AI infrastructure is resilient, secure, and powered by the most advanced technologies available on the market.</p>
+            <a href="partners.html" class="sol-card-btn">View Partners <span>→</span></a>
+          </div>
+          <div class="sol-card-visual">
+             <div class="mini-3d" style="transform: rotateX(60deg) rotateY(30deg);"></div>
+          </div>
+        </div>
+
+        <!-- Process Summary -->
+        <div class="sol-card reveal">
+          <div class="sol-card-text">
+            <span class="sec-label">Our Methodology</span>
+            <h2>The Diagnostic Process</h2>
+            <p>Our unique 3-phase execution model—Foundation, Integration, and Orchestration—ensures a low-risk, high-impact transition into autonomous business operations.</p>
+            <a href="process.html" class="sol-card-btn">Learn Our Process <span>→</span></a>
+          </div>
+          <div class="sol-card-visual">
+            <div class="mini-3d" style="transform: rotateX(-45deg) rotateZ(10deg); border-radius: 10px;"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══ FOOTER ══ -->
+    <footer class="footer">
+      <div id="footer-3d-bg"></div>
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo-wrap"><img src="./images/coaxis_logo.png" class="footer-brand-logo"><div class="logo-glow-footer"></div></div>
+          <p class="footer-tagline">Bridging AI's promise and your business reality</p>
+        </div>
+        <div class="footer-col"><h5 class="footer-title">Solutions</h5><ul class="footer-menu"><li><a href="services.html">Services</a></li><li><a href="partners.html">Partners</a></li><li><a href="process.html">Process</a></li></ul></div>
+        <div class="footer-col"><h5 class="footer-title">Insights</h5><ul class="footer-menu"><li><a href="news.html">News</a></li><li><a href="blogs.html">Blogs</a></li><li><a href="case-studies.html">Case Studies</a></li></ul></div>
+        <div class="footer-col"><h5 class="footer-title">Company</h5><ul class="footer-menu"><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      </div>
+      <div class="container footer-bottom"><p class="footer-copy">© 2026 Coaxis AI. All rights reserved.</p></div>
+    </footer>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

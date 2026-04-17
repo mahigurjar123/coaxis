@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insights | Coaxis AI</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ── INSIGHTS PAGE SPECIFIC ── */
+    .ins-hero { min-height: 100vh; display: flex; align-items: center; padding-top: 100px; padding-bottom: 60px; position: relative; overflow: hidden; }
+    .ins-hero .container { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    
+    /* ── 3D WISDOM SPHERE VISUAL ── */
+    .ins-visual-container { position: relative; width: 100%; aspect-ratio: 1; max-width: 500px; margin: 0 auto; perspective: 1000px; }
+    .wisdom-sphere { 
+      position: absolute; width: 300px; height: 300px; top: 50%; left: 50%; 
+      margin-top: -150px; margin-left: -150px; transform-style: preserve-3d;
+      animation: sphereRotate 30s infinite linear;
+    }
+    .sphere-ring {
+      position: absolute; width: 100%; height: 100%; 
+      border: 1px solid rgba(43,191,176,0.3); border-radius: 50%;
+      transform-style: preserve-3d;
+    }
+    .sphere-ring:nth-child(1) { transform: rotateX(45deg); }
+    .sphere-ring:nth-child(2) { transform: rotateY(45deg); border-color: rgba(43,191,176,0.1); }
+    .sphere-ring:nth-child(3) { transform: rotateZ(45deg); border-style: dashed; }
+    .sphere-core {
+      position: absolute; width: 60px; height: 60px; top: 50%; left: 50%;
+      margin: -30px; background: var(--clr-accent); border-radius: 50%;
+      box-shadow: 0 0 50px var(--clr-accent); animation: corePulse 2s infinite alternate;
+    }
+
+    @keyframes sphereRotate { to { transform: rotateX(360deg) rotateY(360deg); } }
+    @keyframes corePulse { from { transform: scale(0.8); opacity: 0.5; } to { transform: scale(1.2); opacity: 1; } }
+
+    /* ── INSIGHT CARDS ── */
+    .ins-grid { padding: 120px 0; }
+    .ins-card { 
+      background: rgba(255,255,255,0.02); border: 1px solid rgba(43,191,176,0.1); 
+      border-radius: var(--radius-xl); padding: 50px; margin-bottom: 40px;
+      display: flex; flex-direction: column; gap: 30px; position: relative; overflow: hidden;
+      transition: all 0.5s var(--ease-out);
+    }
+    .ins-card:hover { border-color: var(--clr-accent); transform: translateY(-10px); background: rgba(43,191,176,0.03); }
+    
+    .ins-card-badge { 
+      background: rgba(43,191,176,0.1); color: var(--clr-accent); 
+      padding: 6px 15px; border-radius: 20px; font-size: 0.85rem; font-weight: 800;
+      text-transform: uppercase; display: inline-block; width: fit-content;
+    }
+    .ins-card h2 { font-size: 2.2rem; margin-top: 10px; }
+    .ins-card p { color: var(--clr-muted); line-height: 1.8; font-size: 1.1rem; }
+    .ins-card-link { color: var(--clr-accent); text-decoration: none; font-weight: 700; display: flex; align-items: center; gap: 8px; margin-top: auto; }
+    .ins-card-link:hover { gap: 12px; }
+
+    /* Animated background text */
+    .ins-bg-text { position: absolute; font-size: 15vw; font-weight: 900; color: rgba(43,191,176,0.02); bottom: -5%; right: -5%; line-height: 1; pointer-events: none; z-index: -1; }
+
+    @media (max-width: 900px) {
+      .ins-hero .container { grid-template-columns: 1fr; text-align: center; }
+      .ins-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="three-canvas"></canvas>
+  <div class="page" style="gap: 0;">
+
+    <header class="header" id="header">
+      <a href="index.html" class="logo"><div class="logo-wrapper"><img src="./images/coaxis_logo.png" class="brand-logo-img"><div class="logo-glow"></div></div></a>
+      <nav class="nav">
+        <a href="index.html" class="nav-btn">Home</a>
+        <div class="nav-item">
+          <a href="solutions.html" class="nav-btn">Solutions <span style="font-size: 10px; opacity: 0.5;">▼</span></a>
+          <div class="dropdown-menu">
+            <a href="services.html" class="dropdown-link">Services</a>
+            <a href="partners.html" class="dropdown-link">Partners</a>
+            <a href="process.html" class="dropdown-link">Process</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="insights.html" class="nav-btn active">Insights <span style="font-size: 10px; opacity: 0.5;">▼</span></a>
+          <div class="dropdown-menu">
+            <a href="news.html" class="dropdown-link">News</a>
+            <a href="blogs.html" class="dropdown-link">Blogs</a>
+            <a href="case-studies.html" class="dropdown-link">Case Studies</a>
+          </div>
+        </div>
+        <a href="about.html" class="nav-btn">About Us</a>
+        <a href="contact.html" class="nav-btn">Contact</a>
+        <a href="contact.html" class="nav-cta">Let's Build</a>
+      </nav>
+    </header>
+
+    <!-- ══ HERO ══ -->
+    <section class="ins-hero">
+      <div class="container reveal">
+        <div class="ins-hero-left">
+          <span class="hero-badge" style="margin-bottom: 24px;"><span></span>Knowledge Hub</span>
+          <h1>Intelligence <span class="accent">Unbound</span>.</h1>
+          <p style="font-size: 1.2rem; color: var(--clr-muted); line-height: 1.8; max-width: 550px;">Access the latest thinking on Agentic AI, industry news, and real-world outcomes that demonstrate how we're reshaping business performance.</p>
+        </div>
+        
+        <div class="ins-visual-container">
+          <div class="wisdom-sphere">
+            <div class="sphere-ring"></div>
+            <div class="sphere-ring"></div>
+            <div class="sphere-ring"></div>
+            <div class="sphere-core"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ INSIGHTS CATEGORIES ══ -->
+    <section class="ins-grid section">
+      <div class="container">
+        
+        <!-- News -->
+        <div class="ins-card reveal">
+          <div class="ins-bg-text">NEWS</div>
+          <span class="ins-card-badge">Industry Updates</span>
+          <h2>Latest Developments</h2>
+          <p>Stay updated on the core shifts in the global AI landscape and how Coaxis is positioning itself within the evolving market of autonomous systems.</p>
+          <a href="news.html" class="ins-card-link">Read Latest News <span>→</span></a>
+        </div>
+
+        <!-- Blogs -->
+        <div class="ins-card reveal reveal-delay-1">
+          <div class="ins-bg-text">BLOGS</div>
+          <span class="ins-card-badge">Thought Leadership</span>
+          <h2>Strategic Perspectives</h2>
+          <p>Deep dives into the "Why" and "How" of Agentic AI. We share our internal frameworks for data readiness and transition architectures.</p>
+          <a href="blogs.html" class="ins-card-link">View Blog Posts <span>→</span></a>
+        </div>
+
+        <!-- Case Studies -->
+        <div class="ins-card reveal reveal-delay-2">
+          <div class="ins-bg-text">CASES</div>
+          <span class="ins-card-badge">Proven Results</span>
+          <h2>Success Roadmaps</h2>
+          <p>Explore the raw ROI of our deployments across Finance and Logistics. We show you the exact metrics of our impact on operational efficiency.</p>
+          <a href="case-studies.html" class="ins-card-link">Browse Case Studies <span>→</span></a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══ FOOTER ══ -->
+    <footer class="footer">
+      <div id="footer-3d-bg"></div>
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo-wrap"><img src="./images/coaxis_logo.png" class="footer-brand-logo"><div class="logo-glow-footer"></div></div>
+          <p class="footer-tagline">Bridging AI's promise and your business reality</p>
+        </div>
+        <div class="footer-col"><h5 class="footer-title">Solutions</h5><ul class="footer-menu"><li><a href="services.html">Services</a></li><li><a href="partners.html">Partners</a></li><li><a href="process.html">Process</a></li></ul></div>
+        <div class="footer-col"><h5 class="footer-title">Insights</h5><ul class="footer-menu"><li><a href="news.html">News</a></li><li><a href="blogs.html">Blogs</a></li><li><a href="case-studies.html">Case Studies</a></li></ul></div>
+        <div class="footer-col"><h5 class="footer-title">Company</h5><ul class="footer-menu"><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      </div>
+      <div class="container footer-bottom"><p class="footer-copy">© 2026 Coaxis AI. All rights reserved.</p></div>
+    </footer>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
