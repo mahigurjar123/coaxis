@@ -907,3 +907,127 @@ button { font-family: inherit; background: none; border: none; cursor: pointer; 
   margin-top: 10px;
   padding-top: 10px;
 }
+
+/* ── PREMIUM CSS 3D ASSETS ── */
+.premium-3d-asset {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+/* 1. Neural Sphere (Rings + Core) */
+.core-sphere {
+  width: 180px;
+  height: 180px;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: floatCore 6s ease-in-out infinite;
+}
+.core-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(43,191,176,0.3);
+  transform-style: preserve-3d;
+  animation: spinRing 12s linear infinite;
+}
+.core-ring:nth-child(2) { inset: 15%; border-color: rgba(43,191,176,0.5); animation-duration: 8s; animation-direction: reverse; transform: rotateX(70deg); }
+.core-ring:nth-child(3) { inset: -15%; border: 1px dashed rgba(43,191,176,0.2); animation-duration: 20s; transform: rotateY(50deg); }
+.core-center {
+  position: absolute;
+  inset: 25%;
+  background: radial-gradient(circle, rgba(43,191,176,0.8), transparent 70%);
+  border-radius: 50%;
+  box-shadow: 0 0 60px rgba(43,191,176,0.5);
+  animation: pulseCore 3s infinite alternate;
+}
+
+/* 2. Isometric Data Stack */
+.data-stack {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  transform-style: preserve-3d;
+  transform: rotateX(60deg) rotateZ(45deg);
+  animation: stackFloat 8s ease-in-out infinite;
+}
+.data-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(43,191,176,0.1);
+  border: 1px solid rgba(43,191,176,0.6);
+  border-radius: 12px;
+  box-shadow: inset 0 0 20px rgba(43,191,176,0.2), 0 10px 20px rgba(0,0,0,0.5);
+  transform-style: preserve-3d;
+  animation: layerPulse 4s infinite alternate;
+}
+.data-layer:nth-child(1) { transform: translateZ(0); animation-delay: 0s; }
+.data-layer:nth-child(2) { transform: translateZ(50px); animation-delay: 0.5s; background: rgba(43,191,176,0.05); }
+.data-layer:nth-child(3) { transform: translateZ(100px); animation-delay: 1s; background: rgba(43,191,176,0.02); }
+
+/* 3. Tesseract / Wireframe Cube */
+.tesseract {
+  width: 140px; height: 140px;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: spinTesseract 20s linear infinite;
+}
+.tess-face {
+  position: absolute;
+  width: 100%; height: 100%;
+  background: rgba(43,191,176,0.02);
+  border: 1px solid rgba(43,191,176,0.4);
+  box-shadow: inset 0 0 30px rgba(43,191,176,0.1);
+  display: flex; align-items: center; justify-content: center;
+  transform-style: preserve-3d;
+}
+.tess-face::after { content:''; position: absolute; top:35%; left:35%; width: 30%; height: 30%; border: 1px dashed rgba(43,191,176,0.6); animation: spinRing 5s linear infinite reverse;}
+.tess-face.front  { transform: translateZ(70px); }
+.tess-face.back   { transform: rotateY(180deg) translateZ(70px); }
+.tess-face.left   { transform: rotateY(-90deg) translateZ(70px); }
+.tess-face.right  { transform: rotateY(90deg) translateZ(70px); }
+.tess-face.top    { transform: rotateX(90deg) translateZ(70px); }
+.tess-face.bottom { transform: rotateX(-90deg) translateZ(70px); }
+
+/* 4. Abstract Process Nodes */
+.process-nodes {
+  width: 100%; height: 200px;
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 800px;
+}
+.p-node {
+  position: absolute;
+  width: 16px; height: 16px;
+  background: var(--clr-accent);
+  border-radius: 50%;
+  box-shadow: 0 0 30px var(--clr-accent);
+  animation: nodeFloat 4s infinite alternate ease-in-out;
+}
+.p-node.n1 { top: 20%; left: 20%; animation-delay: 0s; transform: translateZ(20px); }
+.p-node.n2 { top: 70%; left: 40%; animation-delay: 1s; transform: translateZ(60px); }
+.p-node.n3 { top: 30%; right: 20%; animation-delay: 2s; transform: translateZ(-30px); }
+.p-line {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--clr-accent), transparent);
+  animation: signalPulse 2s infinite linear;
+}
+.p-line.l1 { top: 45%; left: 25%; width: 40%; transform: rotate(45deg); }
+.p-line.l2 { top: 50%; right: 30%; width: 30%; transform: rotate(-20deg); }
+
+/* Animations */
+@keyframes floatCore { 0%, 100% { transform: translateY(0) rotateX(10deg); } 50% { transform: translateY(-20px) rotateX(15deg); } }
+@keyframes spinRing { 0% { transform: rotateZ(0deg); } 100% { transform: rotateZ(360deg); } }
+@keyframes pulseCore { 0% { opacity: 0.6; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1.1); } }
+@keyframes stackFloat { 0%, 100% { transform: rotateX(60deg) rotateZ(45deg) translateY(0); } 50% { transform: rotateX(60deg) rotateZ(45deg) translateY(-20px); } }
+@keyframes spinTesseract { 0% { transform: rotateX(0deg) rotateY(0deg); } 100% { transform: rotateX(360deg) rotateY(360deg); } }
+@keyframes nodeFloat { 0% { transform: translateY(0); } 100% { transform: translateY(-15px); } }
+@keyframes signalPulse { 0% { opacity: 0.1; } 50% { opacity: 1; } 100% { opacity: 0.1; } }
+@keyframes layerPulse { 0% { box-shadow: inset 0 0 10px rgba(43,191,176,0.1); } 100% { box-shadow: inset 0 0 40px rgba(43,191,176,0.6); } }

@@ -44,11 +44,12 @@
     .svc-icon-display { position: relative; width: 100%; aspect-ratio: 1 / 1; max-width: 500px; margin: 0 auto; perspective: 1200px; }
 
     /* 3D Glass Card Container */
-    .glass-3d-card { width: 100%; height: 100%; border-radius: var(--radius-xl); background: rgba(255,255,255,0.02); border: 1px solid rgba(43,191,176,0.15); display: flex; align-items: center; justify-content: center; transform-style: preserve-3d; animation: float3d 8s ease-in-out infinite alternate; box-shadow: inset 0 0 50px rgba(43,191,176,0.05), 0 30px 60px rgba(0,0,0,0.5); }
+    .glass-3d-card { width: 100%; height: 450px; border-radius: var(--radius-xl); background: rgba(255,255,255,0.02); border: 1px solid rgba(43,191,176,0.15); display: flex; align-items: center; justify-content: center; transform-style: preserve-3d; animation: float3d 8s ease-in-out infinite alternate; box-shadow: inset 0 0 50px rgba(43,191,176,0.05), 0 30px 60px rgba(0,0,0,0.5); overflow: hidden; position: relative; }
     @keyframes float3d { 0% { transform: rotateY(-5deg) rotateX(5deg) translateY(0); } 100% { transform: rotateY(5deg) rotateX(-5deg) translateY(-20px); } }
     
-    .glass-inner-layer { position: absolute; transform: translateZ(40px); }
-    .glass-inner-layer svg { width: 300px; height: 300px; filter: drop-shadow(0 0 15px rgba(43,191,176,0.4)); }
+    .glass-inner-layer { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; transform: translateZ(40px); }
+    .glass-inner-layer img { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; transition: transform 0.8s ease; }
+    .glass-3d-card:hover .glass-inner-layer img { transform: scale(1.05); opacity: 1; }
 
     .glow-blob { position: absolute; width: 400px; height: 400px; background: radial-gradient(circle, rgba(43,191,176,0.15), transparent 70%); border-radius: 50%; filter: blur(40px); z-index: -1; }
 
@@ -71,7 +72,8 @@
     .approach-card:hover { transform: translateY(-10px); border-color: rgba(43,191,176,0.3); }
     .approach-card:hover::after { opacity: 1; }
     .approach-card .icon-box { margin: 0 auto 20px; width: 70px; height: 70px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.03); border-radius: 50%; box-shadow: inset 0 0 30px rgba(43,191,176,0.15); }
-    .approach-card .icon-box img { width: 38px; height: 38px; object-fit: contain; border-radius: 8px; }
+    .approach-card .icon-box img, .approach-card .icon-box svg { width: 38px; height: 38px; object-fit: contain; border-radius: 8px; animation: iconFloat 2.5s ease-in-out infinite alternate; }
+    @keyframes iconFloat { 0% { transform: translateY(0px) scale(0.95); filter: drop-shadow(0 0 2px rgba(43,191,176,0.3)); } 100% { transform: translateY(-3px) scale(1.05); filter: drop-shadow(0 0 12px rgba(43,191,176,0.9)); } }
     .approach-card h3 { font-size: 1.3rem; margin-bottom: 15px; color: var(--clr-accent); }
     .approach-card p { font-size: 0.95rem; color: var(--clr-muted); line-height: 1.7; }
 
@@ -166,22 +168,22 @@
           <div class="svc-orb-ring"></div>
           <div class="svc-orb-ring"></div>
           <div class="svc-orb-center" style="overflow: hidden; padding: 0;">
-            <img src="./images/svc_hero.png" alt="AI Neural Core" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.9;">
+            <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=800&auto=format&fit=crop" alt="AI Neural Core" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.9;">
           </div>
           <div class="svc-node">
-            <img src="./images/icon_data.png" alt="Data" style="width:32px; height:32px; border-radius:4px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--clr-accent)" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
             <span>Data<br>Readiness</span>
           </div>
           <div class="svc-node">
-            <img src="./images/icon_ai.png" alt="AI Agents" style="width:32px; height:32px; border-radius:4px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--clr-accent)" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10H12V2z"></path><path d="M12 12 2.1 7.1"></path><path d="M12 12l9.9 4.9"></path></svg>
             <span>AI<br>Agents</span>
           </div>
           <div class="svc-node">
-            <img src="./images/sol_process.png" alt="Workflows" style="width:32px; height:32px; border-radius:4px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--clr-accent)" stroke-width="2"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><path d="M13 6h3a2 2 0 0 1 2 2v7"></path><line x1="6" y1="9" x2="6" y2="21"></line></svg>
             <span>Work-<br>flows</span>
           </div>
           <div class="svc-node">
-            <img src="./images/sol_services.png" alt="Gov" style="width:32px; height:32px; border-radius:4px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--clr-accent)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
             <span>Secure<br>Govern.</span>
           </div>
         </div>
@@ -197,17 +199,17 @@
         
         <div class="approach-grid">
           <div class="approach-card reveal">
-            <div class="icon-box"><img src="./images/icon_data.png" alt="Build"></div>
+            <div class="icon-box"><svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="var(--clr-accent)" stroke-width="1.5"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg></div>
             <h3>Build Approach</h3>
             <p>Requires hiring expensive, specialized AI talent and maintaining complex AgentOps infrastructure. Extremely high up-front costs and slow delivery loops.</p>
           </div>
           <div class="approach-card reveal reveal-delay-1">
-            <div class="icon-box"><img src="./images/icon_ai.png" alt="Buy"></div>
+            <div class="icon-box"><svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="var(--clr-accent)" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></div>
             <h3>Buy Approach</h3>
             <p>Off-the-shelf tools promise quick fixes but fail at the last mile. 95% of generic AI deployments lack the deep, secure integration required for enterprise data.</p>
           </div>
           <div class="approach-card reveal reveal-delay-2" style="border-color: var(--clr-accent); background: rgba(43,191,176,0.05);">
-            <div class="icon-box" style="background: rgba(43,191,176,0.15); box-shadow: inset 0 0 40px rgba(43,191,176,0.4);"><img src="./images/sol_partners.png" alt="Partner"></div>
+            <div class="icon-box" style="background: rgba(43,191,176,0.15); box-shadow: inset 0 0 40px rgba(43,191,176,0.4);"><svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="#fff" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div>
             <h3 style="color: #fff;">Partner with Coaxis</h3>
             <p>The strategic "Borrow" layer. We bring specialized frameworks, domain expertise, and a best-of-breed technology stack to deliver ROI without the overhead.</p>
           </div>
@@ -224,8 +226,8 @@
           <!-- Left: 3D Visual Box -->
           <div class="svc-icon-display reveal">
             <div class="glass-3d-card">
-              <div class="glass-inner-layer" style="display: flex; align-items: center; justify-content: center;">
-                <img src="./images/sol_services.png" alt="Data Readiness" style="width: 80%; border-radius: 50%; filter: drop-shadow(0 0 30px rgba(43,191,176,0.5));">
+              <div class="glass-inner-layer">
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop" alt="Data Readiness">
               </div>
             </div>
           </div>
@@ -238,21 +240,21 @@
             
             <div class="feature-list">
               <div class="feature-item">
-                <div class="feature-icon"><img src="./images/icon_data.png" alt="Ingestion"></div>
+                <div class="feature-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="var(--clr-accent)" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg></div>
                 <div class="feature-text">
                   <h4>Data Ingestion &amp; Quality</h4>
                   <p>Streamline structured and unstructured pipelines. We employ auto-metadata enrichment and anomaly detection before data ever reaches your AI models.</p>
                 </div>
               </div>
               <div class="feature-item">
-                <div class="feature-icon"><img src="./images/icon_ai.png" alt="Explanations"></div>
+                <div class="feature-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="var(--clr-accent)" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></div>
                 <div class="feature-text">
                   <h4>Context-Aware Agentic Explanations</h4>
                   <p>Equip models with enterprise-specific semantic layers so they can explain trends, forecast variations, and highlight risks in plain language.</p>
                 </div>
               </div>
               <div class="feature-item">
-                <div class="feature-icon"><img src="./images/sol_services.png" alt="Governance"></div>
+                <div class="feature-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="var(--clr-accent)" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div>
                 <div class="feature-text">
                   <h4>Trusted Governance &amp; Security</h4>
                   <p>Integrate role-based access controls, redaction pipelines, and audit logs. Ensures LLMs only query what they have explicit permission to see.</p>
@@ -277,21 +279,21 @@
             
             <div class="feature-list">
               <div class="feature-item">
-                <div class="feature-icon"><img src="./images/sol_process.png" alt="Discovery"></div>
+                <div class="feature-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="var(--clr-accent)" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
                 <div class="feature-text">
                   <h4>Workflow Discovery &amp; ROI Mapping</h4>
                   <p>We deploy diagnostic agents to monitor existing operations, map end-to-end bottlenecks, and prioritize high-value tasks tailored for automation.</p>
                 </div>
               </div>
               <div class="feature-item">
-                <div class="feature-icon"><img src="./images/sol_partners.png" alt="Swarms"></div>
+                <div class="feature-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="var(--clr-accent)" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg></div>
                 <div class="feature-text">
                   <h4>Multi-Agent Orchestration</h4>
                   <p>Implement swarms of specialized AI agents working together securely, using strict system prompts to maintain guardrails without human supervision.</p>
                 </div>
               </div>
               <div class="feature-item">
-                <div class="feature-icon"><img src="./images/sol_services.png" alt="APIs"></div>
+                <div class="feature-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="var(--clr-accent)" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg></div>
                 <div class="feature-text">
                   <h4>System Connectors &amp; Legacy APIs</h4>
                   <p>Seamlessly weave modern LLM controllers with aging infrastructure via robust API gateways, middleware, and traditional RPA wrappers where necessary.</p>
@@ -303,8 +305,8 @@
           <!-- 3D Visual Box -->
           <div class="svc-icon-display reveal reveal-delay-1">
             <div class="glass-3d-card">
-              <div class="glass-inner-layer" style="display: flex; align-items: center; justify-content: center;">
-                <img src="./images/sol_process.png" alt="Workflow Automation" style="width: 80%; border-radius: var(--radius-lg); filter: drop-shadow(0 0 30px rgba(43,191,176,0.5)); transform: scale(1.1) rotateZ(-10deg);">
+              <div class="glass-inner-layer">
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop" alt="Workflow Automation">
               </div>
             </div>
           </div>
@@ -322,37 +324,53 @@
         <div class="approach-grid" style="margin-top: 60px;">
           <!-- n8n / LangChain -->
           <div class="approach-card reveal">
-            <div class="icon-box"><svg viewBox="0 0 32 32" fill="none"><path d="M8 16h16M16 8l8 8-8 8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="16" r="4"/></svg></div>
+            <div class="icon-box" style="gap: 10px;">
+              <svg class="working-icon" fill="#ffffff" style="width: 24px;" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21.4737 5.6842c-1.1772 0-2.1663.8051-2.4468 1.8947h-2.8955c-1.235 0-2.289.893-2.492 2.111l-.1038.623a1.263 1.263 0 0 1-1.246 1.0555H11.289c-.2805-1.0896-1.2696-1.8947-2.4468-1.8947s-2.1663.8051-2.4467 1.8947H4.973c-.2805-1.0896-1.2696-1.8947-2.4468-1.8947C1.1311 9.4737 0 10.6047 0 12s1.131 2.5263 2.5263 2.5263c1.1772 0 2.1663-.8051 2.4468-1.8947h1.4223c.2804 1.0896 1.2696 1.8947 2.4467 1.8947 1.1772 0 2.1663-.8051 2.4468-1.8947h1.0008a1.263 1.263 0 0 1 1.2459 1.0555l.1038.623c.203 1.218 1.257 2.111 2.492 2.111h.3692c.2804 1.0895 1.2696 1.8947 2.4468 1.8947 1.3952 0 2.5263-1.131 2.5263-2.5263s-1.131-2.5263-2.5263-2.5263c-1.1772 0-2.1664.805-2.4468 1.8947h-.3692a1.263 1.263 0 0 1-1.246-1.0555l-.1037-.623A2.52 2.52 0 0 0 13.9607 12a2.52 2.52 0 0 0 .821-1.4794l.1038-.623a1.263 1.263 0 0 1 1.2459-1.0555h2.8955c.2805 1.0896 1.2696 1.8947 2.4468 1.8947 1.3952 0 2.5263-1.131 2.5263-2.5263s-1.131-2.5263-2.5263-2.5263m0 1.2632a1.263 1.263 0 0 1 1.2631 1.2631 1.263 1.263 0 0 1-1.2631 1.2632 1.263 1.263 0 0 1-1.2632-1.2632 1.263 1.263 0 0 1 1.2632-1.2631M2.5263 10.7368A1.263 1.263 0 0 1 3.7895 12a1.263 1.263 0 0 1-1.2632 1.2632A1.263 1.263 0 0 1 1.2632 12a1.263 1.263 0 0 1 1.2631-1.2632m6.3158 0A1.263 1.263 0 0 1 10.1053 12a1.263 1.263 0 0 1-1.2632 1.2632A1.263 1.263 0 0 1 7.579 12a1.263 1.263 0 0 1 1.2632-1.2632m10.1053 3.7895a1.263 1.263 0 0 1 1.2631 1.2632 1.263 1.263 0 0 1-1.2631 1.2631 1.263 1.263 0 0 1-1.2632-1.2631 1.263 1.263 0 0 1 1.2632-1.2632"/></svg>
+              <svg class="working-icon" fill="#ffffff" style="width: 24px;" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7.53 15.975a7.53 7.53 0 0 0 2.206-5.325A7.54 7.54 0 0 0 7.53 5.325L2.205 0A7.54 7.54 0 0 0 0 5.325a7.54 7.54 0 0 0 2.205 5.325zm11.144.493a7.54 7.54 0 0 0-5.325-2.206 7.54 7.54 0 0 0-5.325 2.206l5.325 5.325a7.54 7.54 0 0 0 5.325 2.205A7.54 7.54 0 0 0 24 21.793zM2.219 21.78a7.54 7.54 0 0 0 5.325 2.205v-7.53H.014a7.54 7.54 0 0 0 2.205 5.325M20.73 8.595a7.53 7.53 0 0 0-5.327-2.206 7.53 7.53 0 0 0-5.325 2.207l5.325 5.325z"/></svg>
+            </div>
             <h3>n8n / LangChain</h3>
             <p>AI-assisted workflow automation and logic orchestration without heavy coding. Ideal for rapid, scalable agentic pipelines across diverse APIs.</p>
           </div>
           <!-- UiPath -->
           <div class="approach-card reveal reveal-delay-1">
-            <div class="icon-box"><svg viewBox="0 0 32 32" fill="none"><rect x="4" y="4" width="11" height="11" rx="2"/><rect x="17" y="4" width="11" height="11" rx="2"/><rect x="4" y="17" width="11" height="11" rx="2"/><circle cx="22.5" cy="22.5" r="4.5"/><path d="M21 22.5h3M22.5 21v3" stroke-linecap="round"/></svg></div>
+            <div class="icon-box">
+              <svg class="working-icon" fill="#ffffff" style="width: 32px;" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 7.882v8.235h8.235V7.882H0Zm.852.852h6.53v6.53H.852v-6.53Zm22.268.695c-.514 0-.886.345-.886.873 0 .511.36.878.886.878.518 0 .88-.359.88-.878 0-.521-.359-.873-.88-.873Zm-17.023.055a.501.501 0 0 0-.522.522c0 .302.22.509.522.509.302 0 .522-.206.522-.509a.501.501 0 0 0-.522-.522Zm17.023.102c.437 0 .716.278.716.716 0 .426-.274.712-.716.712-.426 0-.719-.271-.719-.712 0-.44.278-.716.719-.716Zm-.347.213v.988h.197v-.318h.14l.176.318h.22l-.186-.347a.32.32 0 0 0 .206-.311c0-.203-.159-.33-.374-.33h-.379Zm-3.74.002v4.468h.853v-1.774c0-.571.302-.914.804-.914s.763.33.763.838v1.85h.852v-1.946c0-.88-.619-1.45-1.409-1.45-.509 0-.818.192-1.01.515V9.801h-.853Zm3.937.157h.157c.115 0 .193.064.193.171 0 .118-.078.181-.193.181h-.157v-.352Zm-21.375.049v2.495c0 1.141.625 1.808 1.684 1.808 1.079 0 1.718-.681 1.718-1.808v-2.495h-.852v2.495c0 .646-.275 1.004-.846 1.004-.591 0-.852-.378-.852-1.004v-2.495h-.852Zm7.547 0v4.262h.852v-1.375h.77c.928 0 1.533-.543 1.533-1.457 0-.88-.591-1.43-1.533-1.43H9.142Zm7.809 0v.914h-.399v.722h.399v1.45c0 .791.35 1.176 1.161 1.176h.447v-.729h-.337c-.33 0-.419-.144-.419-.44v-1.457h.749v-.722h-.749v-.914h-.852Zm-6.957.687h.681c.488 0 .756.276.756.743 0 .502-.268.776-.756.776h-.681v-1.519Zm4.138.186c-.921 0-1.546.728-1.546 1.718 0 .997.639 1.712 1.546 1.712.537 0 .887-.193 1.086-.516v.475h.853v-3.348h-.853v.523c-.206-.344-.563-.564-1.086-.564Zm-8.461.041v3.348h.852v-3.348h-.852Zm8.661.701c.543 0 .886.399.886.976 0 .585-.364.963-.886.963-.578 0-.88-.406-.88-.963 0-.598.337-.976.88-.976Z"/></svg>
+            </div>
             <h3>UiPath</h3>
             <p>Enterprise-grade RPA for structured, repeatable tasks. Essential for bridging the gap to legacy systems lacking proper API coverage securely.</p>
           </div>
           <!-- Temporal -->
           <div class="approach-card reveal reveal-delay-2">
-            <div class="icon-box"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="11"/><path d="M16 8v8l5 3" stroke-linecap="round"/></svg></div>
+            <div class="icon-box">
+              <svg class="working-icon" fill="#ffffff" style="width: 32px;" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.206 7.794C15.64 3.546 14.204 0 12 0 9.796 0 8.361 3.546 7.794 7.794 3.546 8.36 0 9.796 0 12c0 2.204 3.546 3.639 7.794 4.206C8.36 20.453 9.796 24 12 24c2.204 0 3.639-3.546 4.206-7.794C20.454 15.64 24 14.204 24 12c0-2.204-3.547-3.64-7.794-4.206Zm-8.55 7.174c-4.069-.587-6.44-1.932-6.44-2.969 0-1.036 2.372-2.381 6.44-2.969-.09.98-.137 1.98-.137 2.97 0 .99.047 1.99.137 2.968zM12 1.215c1.036 0 2.381 2.372 2.969 6.44a32.718 32.718 0 0 0-5.938 0c.587-4.068 1.932-6.44 2.969-6.44Zm4.344 13.753c-.2.03-1.022.126-1.23.146-.02.209-.117 1.03-.145 1.23-.588 4.068-1.933 6.44-2.97 6.44-1.036 0-2.38-2.372-2.968-6.44-.03-.2-.126-1.022-.147-1.23a31.833 31.833 0 0 1 0-6.23 31.813 31.813 0 0 1 7.46.146c4.068.587 6.442 1.933 6.442 2.969-.001 1.036-2.374 2.382-6.442 2.97z"/></svg>
+            </div>
             <h3>Temporal</h3>
             <p>Open-source workflow orchestration engine for complex, long-running pipelines, guaranteeing durability for AI processes at scale.</p>
           </div>
           <!-- Azure / AWS -->
           <div class="approach-card reveal">
-            <div class="icon-box"><svg viewBox="0 0 32 32" fill="none"><path d="M16 4 L28 10 L28 22 L16 28 L4 22 L4 10 Z" stroke-linejoin="round"/><path d="M16 4 L16 16 M4 10 L16 16 M28 10 L16 16" stroke-linejoin="round"/></svg></div>
+            <div class="icon-box" style="gap: 15px;">
+              <svg viewBox="0 0 24 24" fill="#ffffff" style="width:24px"><path d="M5.483 21.3H24L14.025 4.013l-3.038 8.347 5.836 6.93h-4.225l-2.668-3.08-4.444 5.084zM13.435 2.7 11.238 8.7 0 21.3h5.275l8.16-18.6z"/></svg>
+              <svg viewBox="0 0 24 24" fill="#ffffff" style="width:28px"><path d="M11.59 13.58a1.64 1.64 0 0 1-.77 1.34 3.73 3.73 0 0 1-2.1.53c-1.35 0-2.31-.88-2.31-2.1 0-1.28.91-2 2.65-2.22l1.7-.22v-.37c0-.85-.41-1.39-1.38-1.39-.81 0-1.42.33-1.63 1l-.95-.53c.36-1.13 1.37-1.66 2.68-1.66 1.74 0 2.45 1.05 2.45 2.45v3.31c0 .4.07.64.24.64a.43.43 0 0 0 .28-.14v1.39a1.62 1.62 0 0 1-.86-.03zM10.43 11l-1.31.2c-.88.13-1.35.48-1.35 1.15 0 .61.46.99 1.15.99.71 0 1.25-.37 1.45-1.04a1.86 1.86 0 0 0 .06-.52V11zm2.46-3.83h1.08l1.55 4.3 1.34-4.3h1.16l1.35 4.29 1.45-4.29h1.07l-1.92 5.56h-1.12l-1.4-4.32-1.37 4.32h-1.15l-1.99-5.56zm10.14 7.64c-.45-.48-1.57-.49-1.57-.49l-.04-1.12s.93 0 1.28-.27c.4-.31.39-.85.12-1.19-.24-.31-.76-.32-.76-.32l.06-1.11s.68-.02 1.07-.38c.31-.29.35-.7.13-.98s-.7-.34-.7-.34l.1-1.09s1.42.06 2.01 1.01c.42.66.19 1.57-.3 1.95v.03c.53.25 1.05.97.77 1.8-.29.84-1.21 1.25-2.18 1.5zm-5.71 5.9A15.34 15.34 0 0 1 .45 17.58a.4.4 0 0 1 .09-.72l1.63-.52a.45.45 0 0 1 .47.16 12.98 12.98 0 0 0 13.9 2.54.4.4 0 0 1 .5.16l1.09 1.37c.1.13.06.32-.08.43a15.42 15.42 0 0 1-6.73 1.83l.08.01zm-3.52-1.04c-.16-.08-1.46-1.53-1.63-1.66s-.29-.12-.17.1c.14.28 1.43 2.16 1.58 2.27.16.12.33.09.22-.71zM9.54 20l.54.19c.14.05.13.1.06.18l-1.07 1.21c-.08.1-.14.06-.11-.08l.58-2.61c.04-.15.11-.13.18-.03L10.18 20z"/></svg>
+            </div>
             <h3>Azure / AWS Bedrock</h3>
             <p>Deploying powerful foundation models within virtual private clouds to maintain uncompromising data sovereignty and security.</p>
           </div>
           <!-- Custom LLMs -->
           <div class="approach-card reveal reveal-delay-1">
-            <div class="icon-box"><svg viewBox="0 0 32 32" fill="none"><path d="M12 8 L8 12 L12 16 M20 16 L24 20 L20 24" stroke-linecap="round"/><path d="M18 6 L14 26" stroke-linecap="round"/></svg></div>
+            <div class="icon-box" style="gap: 10px;">
+              <svg class="working-icon" fill="#ffffff" style="width: 24px;" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z"/></svg>
+              <svg class="working-icon" fill="#ffffff" style="width: 24px;" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.025 1.13c-5.77 0-10.449 4.647-10.449 10.378 0 1.112.178 2.181.503 3.185.064-.222.203-.444.416-.577a.96.96 0 0 1 .524-.15c.293 0 .584.124.84.284.278.173.48.408.71.694.226.282.458.611.684.951v-.014c.017-.324.106-.622.264-.874s.403-.487.762-.543c.3-.047.596.06.787.203s.31.313.4.467c.15.257.212.468.233.542.01.026.653 1.552 1.657 2.54.616.605 1.01 1.223 1.082 1.912.055.537-.096 1.059-.38 1.572.637.121 1.294.187 1.967.187.657 0 1.298-.063 1.921-.178-.287-.517-.44-1.041-.384-1.581.07-.69.465-1.307 1.081-1.913 1.004-.987 1.647-2.513 1.657-2.539.021-.074.083-.285.233-.542.09-.154.208-.323.4-.467a1.08 1.08 0 0 1 .787-.203c.359.056.604.29.762.543s.247.55.265.874v.015c.225-.34.457-.67.683-.952.23-.286.432-.52.71-.694.257-.16.547-.284.84-.285a.97.97 0 0 1 .524.151c.228.143.373.388.43.625l.006.04a10.3 10.3 0 0 0 .534-3.273c0-5.731-4.678-10.378-10.449-10.378M8.327 6.583a1.5 1.5 0 0 1 .713.174 1.487 1.487 0 0 1 .617 2.013c-.183.343-.762-.214-1.102-.094-.38.134-.532.914-.917.71a1.487 1.487 0 0 1 .69-2.803m7.486 0a1.487 1.487 0 0 1 .689 2.803c-.385.204-.536-.576-.916-.71-.34-.12-.92.437-1.103.094a1.487 1.487 0 0 1 .617-2.013 1.5 1.5 0 0 1 .713-.174m-10.68 1.55a.96.96 0 1 1 0 1.921.96.96 0 0 1 0-1.92m13.838 0a.96.96 0 1 1 0 1.92.96.96 0 0 1 0-1.92M8.489 11.458c.588.01 1.965 1.157 3.572 1.164 1.607-.007 2.984-1.155 3.572-1.164.196-.003.305.12.305.454 0 .886-.424 2.328-1.563 3.202-.22-.756-1.396-1.366-1.63-1.32q-.011.001-.02.006l-.044.026-.01.008-.03.024q-.018.017-.035.036l-.032.04a1 1 0 0 0-.058.09l-.014.025q-.049.088-.11.19a1 1 0 0 1-.083.116 1.2 1.2 0 0 1-.173.18q-.035.029-.075.058a1.3 1.3 0 0 1-.251-.243 1 1 0 0 1-.076-.107c-.124-.193-.177-.363-.337-.444-.034-.016-.104-.008-.2.022q-.094.03-.216.087-.06.028-.125.063l-.13.074q-.067.04-.136.086a3 3 0 0 0-.135.096 3 3 0 0 0-.26.219 2 2 0 0 0-.12.121 2 2 0 0 0-.106.128l-.002.002a2 2 0 0 0-.09.132l-.001.001a1.2 1.2 0 0 0-.105.212q-.013.036-.024.073c-1.139-.875-1.563-2.317-1.563-3.203 0-.334.109-.457.305-.454m.836 10.354c.824-1.19.766-2.082-.365-3.194-1.13-1.112-1.789-2.738-1.789-2.738s-.246-.945-.806-.858-.97 1.499.202 2.362c1.173.864-.233 1.45-.685.64-.45-.812-1.683-2.896-2.322-3.295s-1.089-.175-.938.647 2.822 2.813 2.562 3.244-1.176-.506-1.176-.506-2.866-2.567-3.49-1.898.473 1.23 2.037 2.16c1.564.932 1.686 1.178 1.464 1.53s-3.675-2.511-4-1.297c-.323 1.214 3.524 1.567 3.287 2.405-.238.839-2.71-1.587-3.216-.642-.506.946 3.49 2.056 3.522 2.064 1.29.33 4.568 1.028 5.713-.624m5.349 0c-.824-1.19-.766-2.082.365-3.194 1.13-1.112 1.789-2.738 1.789-2.738s.246-.945.806-.858.97 1.499-.202 2.362c-1.173.864.233 1.45.685.64.451-.812 1.683-2.896 2.322-3.295s1.089-.175.938.647-2.822 2.813-2.562 3.244 1.176-.506 1.176-.506 2.866-2.567 3.49-1.898-.473 1.23-2.037 2.16c-1.564.932-1.686 1.178-1.464 1.53s3.675-2.511 4-1.297c.323 1.214-3.524 1.567-3.287 2.405.238.839 2.71-1.587 3.216-.642.506.946-3.49 2.056-3.522 2.064-1.29.33-4.568 1.028-5.713-.624"/></svg>
+            </div>
             <h3>Open Source LLMs</h3>
             <p>Fine-tuning bespoke, smaller open-weight models (Llama 3, Mistral) for specific vertical tasks to dramatically lower inference costs.</p>
           </div>
           <!-- Snowflake -->
           <div class="approach-card reveal reveal-delay-2">
-            <div class="icon-box"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="6"/><path d="M16 4 V10 M16 22 V28 M6 10 L10 13 M22 19 L26 22 M6 22 L10 19 M22 13 L26 10" stroke-linecap="round"/></svg></div>
+            <div class="icon-box" style="gap: 10px;">
+              <svg class="working-icon" fill="#ffffff" style="width: 24px;" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M.95 14.184L12 20.403l9.919-5.55v2.21L12 22.662l-10.484-5.96-.565.308v.77L12 24l11.05-6.218v-4.317l-.515-.309L12 19.118l-9.867-5.653v-2.21L12 16.805l11.05-6.218V6.32l-.515-.308L12 11.974 2.647 6.681 12 1.388l7.76 4.368.668-.411v-.566L12 0 .95 6.27v.72L12 13.207l9.919-5.55v2.26L12 15.52 1.516 9.56l-.565.308Z"/></svg>
+              <svg class="working-icon" fill="#ffffff" style="width: 24px;" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 3.459c0 .646-.418 1.18-1.141 1.18-.723 0-1.142-.534-1.142-1.18 0-.647.419-1.18 1.142-1.18.723 0 1.141.533 1.141 1.18zm-.228 0c0-.533-.38-.951-.913-.951s-.913.38-.913.95c0 .533.38.952.913.952.57 0 .913-.419.913-.951zm-1.37-.533h.495c.266 0 .456.152.456.38 0 .153-.076.229-.19.305l.19.266v.038h-.266l-.19-.266h-.229v.266h-.266zm.495.228h-.229v.267h.229c.114 0 .152-.038.152-.114.038-.077-.038-.153-.152-.153zM7.602 12.4c.038-.151.076-.304.076-.456 0-.114-.038-.228-.038-.342-.114-.343-.304-.647-.646-.838l-4.87-2.777c-.685-.38-1.56-.152-1.94.533-.381.685-.153 1.56.532 1.94l2.701 1.56-2.701 1.56c-.685.38-.913 1.256-.533 1.94.38.685 1.256.914 1.94.533l4.832-2.777c.343-.267.571-.533.647-.876zm1.332 2.626c-.266-.038-.57.038-.837.19l-4.832 2.777c-.685.38-.913 1.256-.532 1.94.38.686 1.255.914 1.94.533l2.701-1.56v3.12c0 .8.647 1.408 1.446 1.408.799 0 1.407-.647 1.407-1.408v-5.592c0-.761-.57-1.37-1.293-1.408zm4.946-6.088c.266.038.57-.038.837-.19l4.832-2.777c.685-.38.913-1.256.532-1.94-.38-.686-1.255-.914-1.94-.533l-2.701 1.56V1.975c0-.799-.647-1.408-1.446-1.408-.799 0-1.446.609-1.446 1.408V7.53c0 .76.609 1.37 1.332 1.407zM3.265 5.97l4.832 2.777c.266.152.533.19.837.19.723-.038 1.331-.684 1.331-1.407V1.975c0-.799-.646-1.408-1.407-1.408-.799 0-1.446.647-1.446 1.408v3.12l-2.701-1.56c-.685-.38-1.56-.152-1.94.533-.419.646-.19 1.521.494 1.902zm9.093 6.011a.412.412 0 00-.114-.266l-.57-.571a.346.346 0 00-.267-.114.412.412 0 00-.266.114l-.571.57a.411.411 0 00-.114.267c0 .076.038.19.114.267l.57.57a.345.345 0 00.267.114c.076 0 .19-.038.266-.114l.571-.57a.412.412 0 00.114-.267zm1.598.533L11.94 14.53c-.039.038-.153.114-.229.114h-.608a.411.411 0 01-.267-.114L8.82 12.514a.408.408 0 01-.076-.229v-.608c0-.076.038-.19.114-.267l2.016-2.016a.41.41 0 01.267-.114h.608a.41.41 0 01.267.114l2.016 2.016a.347.347 0 01.114.267v.608c-.076.077-.114.19-.19.229zm5.593 5.44l-4.832-2.777c-.266-.152-.57-.19-.837-.152-.723.038-1.332.684-1.332 1.408v5.554c0 .8.647 1.408 1.408 1.408.799 0 1.446-.647 1.446-1.408v-3.12l2.7 1.56c.686.38 1.561.152 1.941-.533.419-.646.19-1.521-.494-1.94zm2.549-7.533l-2.701 1.56 2.7 1.56c.686.38.914 1.256.533 1.94-.38.685-1.255.913-1.94.533l-4.832-2.778a1.644 1.644 0 01-.647-.798c-.037-.153-.076-.305-.076-.457 0-.114.039-.228.039-.342.114-.343.342-.647.646-.837l4.832-2.778c.685-.38 1.56-.152 1.94.533.457.609.19 1.484-.494 1.864"/></svg>
+            </div>
             <h3>Modern Data Stack</h3>
             <p>Integrating Databricks, Snowflake, and vector databases (Pinecone, Weaviate) to give your agents lightning-fast retrieval memory.</p>
           </div>
