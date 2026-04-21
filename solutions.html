@@ -1,116 +1,671 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Solutions | Coaxis AI</title>
+  <title>Solutions | Coaxis AI — Integrated AI Ecosystem</title>
+  <meta name="description"
+    content="Coaxis AI Solutions: Data Readiness, AI Agents, Workflow Automation, and Strategic Partnerships for enterprise productivity and revenue growth.">
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&family=DM+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
   <style>
-    /* ── SOLUTIONS PAGE SPECIFIC ── */
-    .sol-hero { min-height: 100vh; display: flex; align-items: center; padding-top: 100px; padding-bottom: 60px; position: relative; overflow: hidden; }
-    .sol-hero .container { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-    
-    /* ── 3D SOLUTION MATRIX VISUAL ── */
-    .sol-visual-container { position: relative; width: 100%; aspect-ratio: 1; max-width: 500px; margin: 0 auto; perspective: 1000px; }
-    .matrix-cube { 
-      position: absolute; width: 220px; height: 220px; top: 50%; left: 50%; 
-      margin-top: -110px; margin-left: -110px; transform-style: preserve-3d;
-      animation: matrixSpin 25s infinite linear;
-    }
-    .cube-face {
-      position: absolute; width: 220px; height: 220px; 
-      background: rgba(43,191,176,0.05); border: 1px solid rgba(43,191,176,0.3);
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: inset 0 0 30px rgba(43,191,176,0.1);
-    }
-    .cube-face.front  { transform: translateZ(110px); }
-    .cube-face.back   { transform: rotateY(180deg) translateZ(110px); }
-    .cube-face.right  { transform: rotateY(90deg) translateZ(110px); }
-    .cube-face.left   { transform: rotateY(-90deg) translateZ(110px); }
-    .cube-face.top    { transform: rotateX(90deg) translateZ(110px); }
-    .cube-face.bottom { transform: rotateX(-90deg) translateZ(110px); }
-
-    .matrix-dot { width: 10px; height: 10px; background: var(--clr-accent); border-radius: 50%; box-shadow: 0 0 15px var(--clr-accent); }
-
-    @keyframes matrixSpin {
-      0% { transform: rotateX(0) rotateY(0) rotateZ(0); }
-      100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+    /* ── SOLUTIONS PAGE ENHANCED ── */
+    .sol-hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 100px;
+      padding-bottom: 60px;
+      position: relative;
+      overflow: hidden;
     }
 
-    /* ── SECTION SUMMARIES ── */
-    .sol-summary-sec { padding: 120px 0; }
-    .sol-card { 
-      background: rgba(255,255,255,0.02); border: 1px solid rgba(43,191,176,0.1); 
-      border-radius: var(--radius-xl); padding: 80px; margin-bottom: 80px;
-      display: grid; grid-template-columns: 1.5fr 1fr; gap: 80px; align-items: center;
-      transition: all 0.5s var(--ease-out); transform-style: preserve-3d;
-    }
-    .sol-card:hover { border-color: var(--clr-accent); transform: translateY(-10px) rotateX(1deg); background: rgba(43,191,176,0.03); }
-    .sol-card:nth-child(even) { grid-template-columns: 1fr 1.5fr; }
-    .sol-card:nth-child(even) .sol-card-text { order: 2; }
-    .sol-card:nth-child(even) .sol-card-visual { order: 1; }
-
-    .sol-card-text h2 { font-size: 3.5rem; margin-bottom: 25px; line-height: 1.1; font-weight: 900; }
-    .sol-card-text p { color: var(--clr-muted); font-size: 1.2rem; line-height: 1.9; margin-bottom: 30px; }
-    .sol-card-btn { 
-      display: inline-flex; align-items: center; gap: 12px; color: var(--clr-accent); 
-      font-weight: 700; text-decoration: none; font-size: 1.2rem; border-bottom: 1px solid transparent; transition: 0.3s;
-    }
-    .sol-card-btn:hover { border-color: var(--clr-accent); gap: 18px; }
-
-    .sol-card-visual { 
-      position: relative; 
-      width: 100%; 
-      height: 400px; 
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      perspective: 1000px;
+    .sol-hero .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
     }
 
-    .sol-card-visual img {
-      transition: all 0.6s var(--ease-out);
-      animation: solFloat 6s infinite ease-in-out alternate;
+    /* ── ANIMATED 3D NETWORK VISUAL ── */
+    .sol-network {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1;
+      max-width: 520px;
+      margin: 0 auto;
     }
 
-    .sol-card:hover .sol-card-visual img {
-      transform: scale(1.1) rotateY(-5deg) translateZ(50px);
-      box-shadow: 0 0 60px rgba(43,191,176,0.6);
-      filter: brightness(1.2) contrast(1.1);
+    .network-svg {
+      width: 100%;
+      height: 100%;
     }
 
-    @keyframes solFloat {
-      0% { transform: translateY(0) rotate(0); }
-      100% { transform: translateY(-15px) rotate(2deg); }
+    .net-node {
+      animation: nodeGlow 3s ease-in-out infinite alternate;
     }
 
-    /* ── NEW SECTIONS ── */
-    .industry-focus { padding: 120px 0; background: rgba(43,191,176,0.02); }
-    .industry-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 60px; }
-    .ind-card { padding: 40px; background: rgba(5,8,15,0.8); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); transition: 0.4s; }
-    .ind-card:hover { border-color: var(--clr-accent); transform: translateY(-10px); }
-    .ind-card h3 { font-size: 1.8rem; margin-bottom: 20px; color: var(--clr-accent); }
-    .ind-card p { line-height: 1.7; color: var(--clr-muted); font-size: 1.05rem; }
+    .net-pulse {
+      animation: pulse-ring 2s ease-out infinite;
+    }
 
-    .arch-sec { padding: 120px 0; text-align: center; }
-    .arch-box { max-width: 900px; margin: 60px auto; padding: 60px; background: rgba(255,255,255,0.01); border: 1px dashed var(--clr-accent); border-radius: var(--radius-xl); }
-    .arch-step { margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(43,191,176,0.1); }
-    .arch-step:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-    .arch-step h4 { font-size: 1.5rem; margin-bottom: 15px; font-family: var(--font-mono); color: #fff; }
+    @keyframes nodeGlow {
+      0% {
+        filter: drop-shadow(0 0 4px #2BBFB0);
+      }
+
+      100% {
+        filter: drop-shadow(0 0 18px #2BBFB0);
+      }
+    }
+
+    @keyframes pulse-ring {
+      0% {
+        r: 12;
+        opacity: 1;
+      }
+
+      100% {
+        r: 28;
+        opacity: 0;
+      }
+    }
+
+    .data-flow {
+      stroke-dasharray: 8 4;
+      animation: flowDash 2s linear infinite;
+    }
+
+    .data-flow-r {
+      stroke-dasharray: 8 4;
+      animation: flowDashR 2s linear infinite;
+    }
+
+    @keyframes flowDash {
+      to {
+        stroke-dashoffset: -24;
+      }
+    }
+
+    @keyframes flowDashR {
+      to {
+        stroke-dashoffset: 24;
+      }
+    }
+
+    .net-label {
+      font-size: 10px;
+      font-family: 'DM Mono', monospace;
+      fill: rgba(255, 255, 255, 0.8);
+      text-anchor: middle;
+    }
+
+    .float-badge {
+      animation: floatY 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatY {
+      0% {
+        transform: translateY(0);
+      }
+
+      100% {
+        transform: translateY(-12px);
+      }
+    }
+
+    /* ── SOL SUMMARY SECTIONS ── */
+    .sol-summary-sec {
+      padding: 120px 0;
+      background: linear-gradient(180deg, transparent, rgba(43, 191, 176, 0.02), transparent);
+    }
+
+    .sol-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(43, 191, 176, 0.15);
+      border-radius: 40px;
+      padding: 60px;
+      margin-bottom: 100px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 60px;
+      align-items: center;
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .sol-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at center, rgba(43, 191, 176, 0.08) 0%, transparent 50%);
+      opacity: 0;
+      transition: 0.8s;
+      pointer-events: none;
+    }
+
+    .sol-card:hover {
+      border-color: rgba(43, 191, 176, 0.5);
+      transform: translateY(-12px) scale(1.02);
+      background: rgba(43, 191, 176, 0.04);
+      box-shadow: 0 50px 100px rgba(0, 0, 0, 0.6), 0 0 30px rgba(43, 191, 176, 0.1);
+    }
+
+    .sol-card:hover::before {
+      opacity: 1;
+      transform: translate(10%, 10%);
+    }
+
+    .sol-card:nth-child(even) {
+      grid-template-columns: 1fr 1.2fr;
+    }
+
+    .sol-card-text h2 {
+      font-size: clamp(2.4rem, 4vw, 3.2rem);
+      margin-bottom: 24px;
+      line-height: 1.1;
+      font-weight: 900;
+      color: #fff;
+      text-wrap: balance;
+    }
+
+    .sol-card-text p {
+      color: var(--clr-muted);
+      font-size: 1.15rem;
+      line-height: 1.8;
+      margin-bottom: 30px;
+    }
+
+    .sol-card-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: #fff;
+      background: rgba(43, 191, 176, 0.1);
+      border: 1px solid rgba(43, 191, 176, 0.3);
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: 0.4s;
+    }
+
+    .sol-card-btn:hover {
+      background: var(--clr-accent);
+      color: #05080f;
+      gap: 18px;
+      box-shadow: 0 0 20px rgba(43, 191, 176, 0.4);
+    }
+
+    .sol-card-visual {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 30px;
+      border: 1px dashed rgba(43, 191, 176, 0.1);
+    }
+
+    /* Feature List inside sol-card */
+    .sol-feat-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin: 30px 0;
+    }
+
+    .sol-feat {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .sol-feat-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(43, 191, 176, 0.2), rgba(43, 191, 176, 0.05));
+      border: 1px solid rgba(43, 191, 176, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .sol-feat-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--clr-accent);
+    }
+
+    .sol-feat span {
+      line-height: 1.5;
+    }
+
+    /* ── OPPORTUNITY SECTION ── */
+    .opportunity-sec {
+      padding: 100px 0;
+      background: rgba(43, 191, 176, 0.015);
+      border-top: 1px solid rgba(43, 191, 176, 0.08);
+      border-bottom: 1px solid rgba(43, 191, 176, 0.08);
+    }
+
+    .opp-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-top: 60px;
+    }
+
+    .opp-stat {
+      text-align: center;
+      padding: 50px 30px;
+      background: rgba(5, 8, 15, 0.8);
+      border: 1px solid rgba(43, 191, 176, 0.12);
+      border-radius: var(--radius-xl);
+      position: relative;
+      overflow: hidden;
+      transition: 0.4s;
+    }
+
+    .opp-stat::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--clr-accent), transparent);
+    }
+
+    .opp-stat:hover {
+      border-color: var(--clr-accent);
+      transform: translateY(-8px);
+    }
+
+    .opp-stat .stat-val {
+      font-size: 4rem;
+      font-weight: 900;
+      color: var(--clr-accent);
+      font-family: var(--font-mono);
+      line-height: 1;
+      display: block;
+      margin-bottom: 15px;
+    }
+
+    .opp-stat p {
+      color: var(--clr-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .opp-stat .stat-source {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.3);
+      margin-top: 10px;
+      font-family: var(--font-mono);
+    }
+
+    /* ── DILEMMA SECTION ── */
+    .dilemma-sec {
+      padding: 120px 0;
+    }
+
+    .dilemma-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 60px;
+    }
+
+    .dilemma-card {
+      padding: 45px;
+      background: rgba(5, 8, 15, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-xl);
+      text-align: center;
+      transition: 0.4s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dilemma-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent, rgba(43, 191, 176, 0.04));
+      opacity: 0;
+      transition: 0.4s;
+    }
+
+    .dilemma-card:hover {
+      border-color: rgba(43, 191, 176, 0.25);
+      transform: translateY(-10px);
+    }
+
+    .dilemma-card:hover::after {
+      opacity: 1;
+    }
+
+    .dilemma-card.featured {
+      border-color: var(--clr-accent);
+      background: rgba(43, 191, 176, 0.04);
+    }
+
+    .dilemma-card.featured::after {
+      opacity: 1;
+      background: linear-gradient(180deg, rgba(43, 191, 176, 0.06), transparent);
+    }
+
+    .d-icon {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 25px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(43, 191, 176, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .featured .d-icon {
+      background: rgba(43, 191, 176, 0.15);
+      border-color: var(--clr-accent);
+      box-shadow: 0 0 30px rgba(43, 191, 176, 0.3);
+    }
+
+    .dilemma-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      color: var(--clr-accent);
+    }
+
+    .featured h3 {
+      color: #fff;
+    }
+
+    .dilemma-card p {
+      color: var(--clr-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* ── INDUSTRY SECTION ── */
+    .industry-sec {
+      padding: 120px 0;
+    }
+
+    .industry-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 35px;
+      margin-top: 60px;
+    }
+
+    .ind-card {
+      padding: 45px;
+      background: rgba(5, 8, 15, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-lg);
+      transition: 0.4s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ind-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--clr-accent), transparent);
+      opacity: 0;
+      transition: 0.4s;
+    }
+
+    .ind-card:hover {
+      border-color: rgba(43, 191, 176, 0.3);
+      transform: translateY(-10px);
+      background: rgba(43, 191, 176, 0.03);
+    }
+
+    .ind-card:hover::before {
+      opacity: 1;
+    }
+
+    .ind-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: var(--radius-md);
+      background: rgba(43, 191, 176, 0.08);
+      border: 1px solid rgba(43, 191, 176, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 25px;
+    }
+
+    .ind-icon svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .ind-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: #fff;
+    }
+
+    .ind-card p {
+      color: var(--clr-muted);
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    /* ── ARCHITECTURE SECTION ── */
+    .arch-sec {
+      padding: 120px 0;
+      background: rgba(5, 8, 15, 0.6);
+      border-top: 1px solid rgba(43, 191, 176, 0.08);
+    }
+
+    .arch-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 60px;
+      max-width: 800px;
+      margin-inline: auto;
+    }
+
+    .arch-step {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 30px;
+      padding: 40px 0;
+      border-bottom: 1px solid rgba(43, 191, 176, 0.08);
+      align-items: flex-start;
+      transition: 0.3s;
+    }
+
+    .arch-step:last-child {
+      border-bottom: none;
+    }
+
+    .arch-step:hover {
+      background: rgba(43, 191, 176, 0.02);
+      border-radius: var(--radius-md);
+      padding-left: 20px;
+    }
+
+    .arch-num {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      border: 2px solid var(--clr-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-weight: 900;
+      color: var(--clr-accent);
+      font-size: 1.1rem;
+      box-shadow: 0 0 20px rgba(43, 191, 176, 0.2);
+      flex-shrink: 0;
+    }
+
+    .arch-step h4 {
+      font-size: 1.3rem;
+      color: #fff;
+      font-family: var(--font-mono);
+      margin-bottom: 10px;
+    }
+
+    .arch-step p {
+      color: var(--clr-muted);
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    .arch-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .arch-tag {
+      background: rgba(43, 191, 176, 0.08);
+      color: var(--clr-accent);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-family: var(--font-mono);
+      border: 1px solid rgba(43, 191, 176, 0.15);
+    }
+
+    /* ── SME SECTION ── */
+    .sme-sec {
+      padding: 120px 0;
+    }
+
+    .sme-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .sme-compare {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .sme-row {
+      display: grid;
+      grid-template-columns: 1fr 80px 80px;
+      gap: 15px;
+      align-items: center;
+      padding: 18px 20px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 12px;
+      transition: 0.3s;
+    }
+
+    .sme-row:hover {
+      border-color: rgba(43, 191, 176, 0.2);
+      background: rgba(43, 191, 176, 0.02);
+    }
+
+    .sme-row.header {
+      background: transparent;
+      border: none;
+      padding: 0 20px;
+    }
+
+    .sme-cat {
+      font-size: 0.95rem;
+      color: var(--clr-text);
+    }
+
+    .sme-val {
+      text-align: center;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .sme-val.low {
+      color: #ff6b6b;
+    }
+
+    .sme-val.high {
+      color: var(--clr-accent);
+    }
+
+    .sme-val.col-hdr {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
 
     @media (max-width: 900px) {
-      .sol-hero .container { grid-template-columns: 1fr; text-align: center; }
-      .sol-card { grid-template-columns: 1fr !important; padding: 40px; text-align: center; }
-      .sol-card-text { order: 1 !important; }
-      .sol-card-visual { order: 2 !important; height: 300px; }
-      .industry-grid { grid-template-columns: 1fr; }
+      .sol-hero .container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .sol-card {
+        grid-template-columns: 1fr !important;
+        padding: 40px;
+        text-align: center;
+      }
+
+      .sol-card-text {
+        order: 1 !important;
+      }
+
+      .sol-card-visual {
+        order: 2 !important;
+        height: 260px;
+      }
+
+      .opp-stats,
+      .dilemma-grid,
+      .industry-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sme-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
+
 <body>
   <canvas id="three-canvas"></canvas>
-  <!-- ══ INTRO OVERLAY (POWERFULL 3D) ══ -->
+  <!-- ══ INTRO OVERLAY ══ -->
   <div class="intro-overlay" id="intro-overlay">
     <div class="intro-scanline"></div>
     <div class="intro-glitch-layer"></div>
@@ -126,24 +681,35 @@
     <div class="intro-content">
       <span class="intro-subtitle">Autonomous Enterprise Systems</span>
       <h2 class="intro-title">COAXIS AI</h2>
-      <p class="intro-desc">Agentic backbone of the future. Solving complex productivity gaps through neural orchestration and high-fidelity workflow automation.</p>
+      <p class="intro-desc">Agentic backbone of the future. Solving complex productivity gaps through neural
+        orchestration and high-fidelity workflow automation.</p>
     </div>
   </div>
 
   <div class="page" style="gap: 0;">
 
+    <!-- ══ HEADER ══ -->
     <header class="header" id="header">
-      <a href="javascript:void(0)" class="logo"><div class="logo-wrapper"><img src="./images/coaxis_logo.png" class="brand-logo-img"><div class="logo-glow"></div></div></a>
+      <a href="javascript:void(0)" class="logo">
+        <div class="logo-wrapper">
+          <img src="./images/coaxis_logo.png" class="brand-logo-img" alt="Coaxis Logo">
+          <div class="logo-glow"></div>
+        </div>
+      </a>
+
       <nav class="nav">
         <a href="index.html" class="nav-btn">Home</a>
+
         <div class="nav-item">
-          <a href="solutions.html" class="nav-btn active">Solutions <span style="font-size: 10px; opacity: 0.5;">▼</span></a>
+          <a href="solutions.html" class="nav-btn active">Solutions <span
+              style="font-size: 10px; opacity: 0.5;">▼</span></a>
           <div class="dropdown-menu">
             <a href="services.html" class="dropdown-link">Services</a>
             <a href="partners.html" class="dropdown-link">Partners</a>
             <a href="process.html" class="dropdown-link">Process</a>
           </div>
         </div>
+
         <div class="nav-item">
           <a href="insights.html" class="nav-btn">Insights <span style="font-size: 10px; opacity: 0.5;">▼</span></a>
           <div class="dropdown-menu">
@@ -152,6 +718,7 @@
             <a href="case-studies.html" class="dropdown-link">Case Studies</a>
           </div>
         </div>
+
         <a href="about.html" class="nav-btn">About Us</a>
         <a href="contact.html" class="nav-btn">Contact</a>
         <a href="contact.html" class="nav-cta">Let's Build</a>
@@ -160,15 +727,217 @@
 
     <!-- ══ HERO ══ -->
     <section class="sol-hero">
+      <div class="glow-blob" style="left:-100px;top:20%;"></div>
       <div class="container reveal">
         <div class="sol-hero-left">
-          <span class="hero-badge" style="margin-bottom: 24px;"><span></span>Integrated Ecosystem</span>
-          <h1 style="font-size: clamp(3rem, 8vw, 5rem); line-height: 0.9;">Architecting <span class="accent">Flow</span>.</h1>
-          <p style="font-size: 1.3rem; color: var(--clr-muted); line-height: 1.8; max-width: 600px; margin-top: 30px;">Coaxis provides an expansive architecture for the next era of enterprise operations. We don't just solve problems; we rebuild the logic of productivity through autonomous agentic swarms.</p>
+          <span class="hero-badge" style="margin-bottom:24px;"><span></span>Integrated AI Ecosystem</span>
+          <h1 style="font-size:clamp(3rem,8vw,5rem);line-height:0.9;">Architecting <span
+              class="accent">Flow</span>.<br>Delivering <span class="accent">ROI</span>.</h1>
+          <p style="font-size:1.25rem;color:var(--clr-muted);line-height:1.8;max-width:580px;margin-top:30px;">Coaxis AI
+            is a trusted AI Systems Integrator — the strategic "Borrow" layer that converts your AI investments into
+            sustained productivity gains and measurable revenue growth. Bridging AI's promise and your business reality.
+          </p>
+          <div style="display:flex;gap:30px;margin-top:40px;flex-wrap:wrap;">
+            <div style="border-left:3px solid var(--clr-accent);padding-left:20px;">
+              <span
+                style="font-family:var(--font-mono);font-size:2rem;font-weight:900;color:#fff;display:block;">$3T+</span>
+              <span
+                style="font-size:0.8rem;color:var(--clr-muted);text-transform:uppercase;letter-spacing:1px;">Productivity
+                Opportunity</span>
+            </div>
+            <div style="border-left:3px solid var(--clr-accent);padding-left:20px;">
+              <span
+                style="font-family:var(--font-mono);font-size:2rem;font-weight:900;color:#fff;display:block;">42%</span>
+              <span
+                style="font-size:0.8rem;color:var(--clr-muted);text-transform:uppercase;letter-spacing:1px;">Enterprise
+                AI Adoption</span>
+            </div>
+            <div style="border-left:3px solid var(--clr-accent);padding-left:20px;">
+              <span
+                style="font-family:var(--font-mono);font-size:2rem;font-weight:900;color:#fff;display:block;">57%</span>
+              <span style="font-size:0.8rem;color:var(--clr-muted);text-transform:uppercase;letter-spacing:1px;">Favor
+                Build+Buy Blend</span>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;margin-top:40px;">
+            <a href="services.html" class="cta-btn">Explore Services →</a>
+            <a href="process.html"
+              style="display:inline-flex;align-items:center;gap:10px;color:var(--clr-accent);font-weight:700;text-decoration:none;padding:16px 28px;border:1px solid rgba(43,191,176,0.3);border-radius:var(--radius-md);transition:0.3s;">View
+              Process</a>
+          </div>
         </div>
-        
-        <div class="sol-visual-container">
-          <img src="./images/solutions_hero.png" alt="Solutions AI Architecture" style="width: 100%; border-radius: var(--radius-xl); box-shadow: 0 0 50px rgba(43,191,176,0.2), inset 0 0 20px rgba(43,191,176,0.5); object-fit: cover;">
+
+        <!-- Animated Network Visual -->
+        <div class="sol-network">
+          <svg class="network-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="rgba(43,191,176,0.12)" />
+                <stop offset="100%" stop-color="rgba(5,8,15,0)" />
+              </radialGradient>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+                <feMerge>
+                  <feMergeNode in="coloredBlur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+            <circle cx="250" cy="250" r="240" fill="url(#bgGrad)" />
+
+            <!-- Connection lines with improved visibility -->
+            <g stroke="#2BBFB0" stroke-width="1.5" opacity="0.4">
+              <line class="data-flow" x1="250" y1="250" x2="100" y2="100" />
+              <line class="data-flow-r" x1="250" y1="250" x2="400" y2="100" />
+              <line class="data-flow" x1="250" y1="250" x2="70" y2="280" />
+              <line class="data-flow-r" x1="250" y1="250" x2="430" y2="280" />
+              <line class="data-flow" x1="250" y1="250" x2="160" y2="420" />
+              <line class="data-flow-r" x1="250" y1="250" x2="340" y2="420" />
+              <line class="data-flow" x1="250" y1="250" x2="250" y2="50" />
+            </g>
+
+            <!-- Center Node: COAXIS AI Core -->
+            <g filter="url(#glow)" class="net-node">
+              <circle cx="250" cy="250" r="42" fill="rgba(43,191,176,0.2)" stroke="#2BBFB0" stroke-width="2.5" />
+              <circle class="net-pulse" cx="250" cy="250" r="20" fill="none" stroke="#2BBFB0" stroke-width="2"
+                opacity="0.8" />
+              <circle cx="250" cy="250" r="18" fill="rgba(43,191,176,0.4)" />
+              <text x="250" y="252" class="net-label" font-size="11" fill="#fff" font-weight="900"
+                style="letter-spacing: 1px;">COAXIS</text>
+              <text x="250" y="264" class="net-label" font-size="8" fill="rgba(43,191,176,1)" font-weight="700">AI
+                Core</text>
+            </g>
+
+            <!-- Satellite Nodes (Badges resized and spaced) -->
+
+            <!-- DATA Readiness -->
+            <g class="float-badge" style="animation-delay:0s;">
+              <rect x="50" y="70" width="100" height="60" rx="12" fill="rgba(5,8,15,0.95)" stroke="#2BBFB0"
+                stroke-width="1.5" />
+              <svg x="65" y="85" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2BBFB0"
+                stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="17 8 12 3 7 8" />
+                <line x1="12" y1="3" x2="12" y2="15" />
+              </svg>
+              <text x="100" y="112" class="net-label" fill="#2BBFB0" font-size="10" font-weight="800">DATA</text>
+              <text x="100" y="123" class="net-label" fill="#fff" font-size="8" opacity="0.8">Readiness</text>
+            </g>
+
+            <!-- AI Agents -->
+            <g class="float-badge" style="animation-delay:0.8s;">
+              <rect x="350" y="70" width="100" height="60" rx="12" fill="rgba(5,8,15,0.95)" stroke="#2BBFB0"
+                stroke-width="1.5" />
+              <svg x="365" y="85" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2BBFB0"
+                stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 8v4l3 3" />
+              </svg>
+              <text x="400" y="112" class="net-label" fill="#2BBFB0" font-size="10" font-weight="800">AI</text>
+              <text x="400" y="123" class="net-label" fill="#fff" font-size="8" opacity="0.8">Agents</text>
+            </g>
+
+            <!-- WORKFLOW Automation -->
+            <g class="float-badge" style="animation-delay:0.4s;">
+              <rect x="15" y="250" width="110" height="60" rx="12" fill="rgba(5,8,15,0.95)" stroke="#2BBFB0"
+                stroke-width="1.5" />
+              <svg x="30" y="265" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2BBFB0"
+                stroke-width="2">
+                <circle cx="18" cy="18" r="3" />
+                <circle cx="6" cy="6" r="3" />
+                <path d="M13 6h3a2 2 0 0 1 2 2v7" />
+                <line x1="6" y1="9" x2="6" y2="21" />
+              </svg>
+              <text x="70" y="292" class="net-label" fill="#2BBFB0" font-size="10" font-weight="800">WORKFLOW</text>
+              <text x="70" y="303" class="net-label" fill="#fff" font-size="8" opacity="0.8">Automation</text>
+            </g>
+
+            <!-- SECURE Governance -->
+            <g class="float-badge" style="animation-delay:1.2s;">
+              <rect x="375" y="250" width="110" height="60" rx="12" fill="rgba(5,8,15,0.95)" stroke="#2BBFB0"
+                stroke-width="1.5" />
+              <svg x="390" y="265" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2BBFB0"
+                stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+              <text x="430" y="292" class="net-label" fill="#2BBFB0" font-size="10" font-weight="800">SECURE</text>
+              <text x="430" y="303" class="net-label" fill="#fff" font-size="8" opacity="0.8">Govern.</text>
+            </g>
+
+            <!-- PARTNERS Ecosystem -->
+            <g class="float-badge" style="animation-delay:0.6s;">
+              <rect x="100" y="390" width="110" height="60" rx="12" fill="rgba(5,8,15,0.95)" stroke="#2BBFB0"
+                stroke-width="1.5" />
+              <svg x="115" y="405" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2BBFB0"
+                stroke-width="2">
+                <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                <polyline points="2 17 12 22 22 17" />
+                <polyline points="2 12 12 17 22 12" />
+              </svg>
+              <text x="155" y="432" class="net-label" fill="#2BBFB0" font-size="10" font-weight="800">PARTNERS</text>
+              <text x="155" y="443" class="net-label" fill="#fff" font-size="8" opacity="0.8">Ecosystem</text>
+            </g>
+
+            <!-- ROI Outcomes -->
+            <g class="float-badge" style="animation-delay:1s;">
+              <rect x="290" y="390" width="110" height="60" rx="12" fill="rgba(5,8,15,0.95)" stroke="#2BBFB0"
+                stroke-width="1.5" />
+              <svg x="305" y="405" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2BBFB0"
+                stroke-width="2">
+                <line x1="18" y1="20" x2="18" y2="10" />
+                <line x1="12" y1="20" x2="12" y2="4" />
+                <line x1="6" y1="20" x2="6" y2="14" />
+              </svg>
+              <text x="345" y="432" class="net-label" fill="#2BBFB0" font-size="10" font-weight="800">ROI</text>
+              <text x="345" y="443" class="net-label" fill="#fff" font-size="8" opacity="0.8">Outcomes</text>
+            </g>
+
+            <!-- INSIGHTS AI-Driven -->
+            <g class="float-badge" style="animation-delay:0.2s;">
+              <rect x="195" y="10" width="110" height="60" rx="12" fill="rgba(43,191,176,0.1)" stroke="#2BBFB0"
+                stroke-width="2" />
+              <svg x="210" y="25" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2BBFB0"
+                stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <line x1="3" y1="9" x2="21" y2="9" />
+                <line x1="9" y1="21" x2="9" y2="9" />
+              </svg>
+              <text x="250" y="52" class="net-label" fill="#fff" font-size="10" font-weight="900"
+                style="letter-spacing: 1px;">INSIGHTS</text>
+              <text x="250" y="63" class="net-label" fill="#2BBFB0" font-size="8" font-weight="700">AI-Driven</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ MARKET OPPORTUNITY ══ -->
+    <section class="opportunity-sec section">
+      <div class="container">
+        <div style="text-align:center;" class="reveal">
+          <span class="sec-label">Market Context</span>
+          <h2 class="section-title">The Agentic AI Opportunity</h2>
+          <p class="section-sub" style="max-width:700px;margin:0 auto;">Agentic AI is the defining opportunity of this
+            decade. Enterprises that move now with a trusted integration partner will capture early market share and
+            decisive competitive advantage.</p>
+        </div>
+        <div class="opp-stats">
+          <div class="opp-stat reveal">
+            <span class="stat-val">$3T+</span>
+            <p>Productivity opportunity powered by Agentic AI across global enterprises in the next decade.</p>
+            <span class="stat-source">Source: KPMG Study</span>
+          </div>
+          <div class="opp-stat reveal reveal-delay-1">
+            <span class="stat-val">42%</span>
+            <p>Of enterprises have successfully integrated AI agents — up sharply from just 11% in early 2025.</p>
+            <span class="stat-source">Source: KPMG Study</span>
+          </div>
+          <div class="opp-stat reveal reveal-delay-2">
+            <span class="stat-val">57%</span>
+            <p>Of organizations now favor a blend of Build &amp; Buy — coaxis.ai enables this hybrid model perfectly.
+            </p>
+            <span class="stat-source">Source: KPMG Study</span>
+          </div>
         </div>
       </div>
     </section>
@@ -176,96 +945,563 @@
     <!-- ══ SOLUTIONS DEEP DIVE ══ -->
     <section class="sol-summary-sec section">
       <div class="container">
-        
+
         <!-- Services Summary -->
         <div class="sol-card reveal">
           <div class="sol-card-text">
-            <span class="sec-label">Our Capability</span>
-            <h2>Bespoke Services</h2>
-            <p>Our service layer is designed for extreme flexibility. Whether you are at the start of your data journey or ready to deploy production-grade Agentic Orchestration, Coaxis provides the precise engineering talent required.</p>
-            <p>We specialize in Data Readiness Assessments (DRA)—a critical first step that ensures your messy legacy information is structured, cleaned, and primed for LLM ingestion. From there, we build the "Action Layers" that turn information into automated outcomes.</p>
-            <a href="services.html" class="sol-card-btn">Deep Dive into Services <span>→</span></a>
+            <span class="sec-label">Service Line 01</span>
+            <h2>AI Data Readiness<br>&amp; Insights</h2>
+            <p>AI-ready data that can be consumed by both humans and agents for powering faster, deeper insights and
+              verifiable decisions. We transform fragmented, siloed data estates into unified, high-integrity
+              intelligence layers ready for enterprise LLMs.</p>
+            <div class="sol-feat-list">
+              <div class="sol-feat">
+                <div class="sol-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2BBFB0" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="17 8 12 3 7 8" />
+                    <line x1="12" y1="3" x2="12" y2="15" />
+                  </svg></div>
+                <span>Structured &amp; unstructured data ingestion, metadata enrichment &amp; quality monitoring</span>
+              </div>
+              <div class="sol-feat">
+                <div class="sol-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2BBFB0" stroke-width="2">
+                    <path d="M12 20h9" />
+                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+                  </svg></div>
+                <span>Context-aware AI agents explain trends, anomalies and forecasts in plain language</span>
+              </div>
+              <div class="sol-feat">
+                <div class="sol-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2BBFB0" stroke-width="2">
+                    <rect x="3" y="11" width="18" height="11" rx="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                  </svg></div>
+                <span>End-to-end data governance, trusted security &amp; enterprise LLM integration</span>
+              </div>
+            </div>
+            <a href="services.html#data" class="sol-card-btn">Explore Data Services <span>→</span></a>
           </div>
           <div class="sol-card-visual">
-            <img src="./images/sol_services.png" alt="Bespoke Services" style="width: 250px; height: 250px; object-fit: cover; border-radius: 50%; box-shadow: 0 0 40px rgba(43,191,176,0.3); border: 2px solid rgba(43,191,176,0.5);">
+            <svg width="340" height="340" viewBox="0 0 340 340">
+              <defs>
+                <filter id="glow-svg">
+                  <feGaussianBlur stdDeviation="3" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+                <linearGradient id="grad-data" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#2BBFB0" stop-opacity="0.2" />
+                  <stop offset="100%" stop-color="#2BBFB0" stop-opacity="0" />
+                </linearGradient>
+              </defs>
+              <circle cx="170" cy="170" r="150" fill="url(#grad-data)" stroke="rgba(43,191,176,0.1)"
+                stroke-dasharray="10 5" />
+              <!-- Animated Rings -->
+              <circle cx="170" cy="170" r="120" fill="none" stroke="rgba(43,191,176,0.05)" stroke-width="1">
+                <animate attributeName="r" values="120;130;120" dur="4s" repeatCount="indefinite" />
+              </circle>
+
+              <!-- Data Stack -->
+              <g transform="translate(90, 80)">
+                <path d="M0,20 Q80,0 160,20 L160,100 Q80,120 0,100 Z" fill="rgba(5,8,15,0.8)" stroke="#2BBFB0"
+                  stroke-width="1.5" />
+                <path d="M0,45 Q80,25 160,45 L160,100 Q80,120 0,100 Z" opacity="0.6" fill="rgba(43,191,176,0.1)"
+                  stroke="#2BBFB0" stroke-width="1" />
+                <path d="M0,70 Q80,50 160,70 L160,100 Q80,120 0,100 Z" opacity="0.8" fill="rgba(43,191,176,0.15)"
+                  stroke="#2BBFB0" stroke-width="2" filter="url(#glow-svg)" />
+                <text x="80" y="90" text-anchor="middle" fill="#fff" font-size="10" font-family="DM Mono"
+                  font-weight="700">AI-READY CORE</text>
+              </g>
+
+              <!-- Floating Data Particles -->
+              <circle cx="100" cy="220" r="4" fill="#2BBFB0">
+                <animate attributeName="cy" values="220;190;220" dur="2s" repeatCount="indefinite" />
+              </circle>
+              <circle cx="240" cy="220" r="3" fill="#2BBFB0" opacity="0.6">
+                <animate attributeName="cy" values="220;250;220" dur="3s" repeatCount="indefinite" />
+              </circle>
+              <circle cx="170" cy="260" r="5" fill="#2BBFB0" filter="url(#glow-svg)">
+                <animate attributeName="opacity" values="1;0.3;1" dur="1.5s" repeatCount="indefinite" />
+              </circle>
+
+              <text x="170" y="300" text-anchor="middle" fill="var(--clr-muted)" font-size="11"
+                font-family="DM Mono">UNIFIED INTELLIGENCE LAYER</text>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Workflow Automation Summary -->
+        <div class="sol-card reveal">
+          <div class="sol-card-text">
+            <span class="sec-label">Service Line 02</span>
+            <h2>AI Workflow<br>Automation</h2>
+            <p>End-to-end AI automation and agentic orchestration for faster, more consistent and secure execution of
+              workflows at scale. We weave intelligent agents directly into your core operations — connecting AI to your
+              ERP, CRM, and legacy systems.</p>
+            <div class="sol-feat-list">
+              <div class="sol-feat">
+                <div class="sol-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2BBFB0" stroke-width="2">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                  </svg></div>
+                <span>Workflow discovery &amp; ROI mapping — identify high-value automation targets</span>
+              </div>
+              <div class="sol-feat">
+                <div class="sol-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2BBFB0" stroke-width="2">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                    <polyline points="2 17 12 22 22 17" />
+                    <polyline points="2 12 12 17 22 12" />
+                  </svg></div>
+                <span>Secure multi-agent orchestration with built-in governance &amp; human oversight</span>
+              </div>
+              <div class="sol-feat">
+                <div class="sol-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2BBFB0" stroke-width="2">
+                    <rect x="2" y="2" width="20" height="8" rx="2" />
+                    <rect x="2" y="14" width="20" height="8" rx="2" />
+                  </svg></div>
+                <span>System connectors &amp; legacy API integration via RPA, middleware &amp; gateways</span>
+              </div>
+            </div>
+            <a href="services.html#workflow" class="sol-card-btn">Explore Automation <span>→</span></a>
+          </div>
+          <div class="sol-card-visual">
+            <svg width="340" height="340" viewBox="0 0 340 340">
+              <circle cx="170" cy="170" r="140" fill="none" stroke="rgba(43,191,176,0.1)" stroke-width="1" />
+              <!-- Central Hub -->
+              <circle cx="170" cy="170" r="30" fill="rgba(43,191,176,0.15)" stroke="#2BBFB0" stroke-width="2"
+                filter="url(#glow-svg)" />
+              <text x="170" y="174" text-anchor="middle" fill="#fff" font-size="8" font-family="DM Mono"
+                font-weight="700">HUB</text>
+
+              <!-- Revolving Agents -->
+              <g>
+                <animateTransform attributeName="transform" type="rotate" from="0 170 170" to="360 170 170" dur="10s"
+                  repeatCount="indefinite" />
+                <circle cx="260" cy="170" r="18" fill="rgba(5,8,15,0.9)" stroke="#2BBFB0" stroke-width="1.5" />
+                <text x="260" y="173" text-anchor="middle" fill="#2BBFB0" font-size="6" font-family="DM Mono">AGENT
+                  A</text>
+
+                <circle cx="80" cy="170" r="18" fill="rgba(5,8,15,0.9)" stroke="#2BBFB0" stroke-width="1.5" />
+                <text x="80" y="173" text-anchor="middle" fill="#2BBFB0" font-size="6" font-family="DM Mono">AGENT
+                  B</text>
+              </g>
+
+              <g>
+                <animateTransform attributeName="transform" type="rotate" from="360 170 170" to="0 170 170" dur="15s"
+                  repeatCount="indefinite" />
+                <circle cx="170" cy="260" r="18" fill="rgba(5,8,15,0.9)" stroke="#2BBFB0" stroke-width="1.5" />
+                <text x="170" y="263" text-anchor="middle" fill="#2BBFB0" font-size="6" font-family="DM Mono">AGENT
+                  C</text>
+
+                <circle cx="170" cy="80" r="18" fill="rgba(5,8,15,0.9)" stroke="#2BBFB0" stroke-width="1.5" />
+                <text x="170" y="83" text-anchor="middle" fill="#2BBFB0" font-size="6" font-family="DM Mono">AGENT
+                  D</text>
+              </g>
+
+              <!-- Connection Lines -->
+              <g stroke="#2BBFB0" stroke-width="1" opacity="0.3">
+                <line x1="170" y1="170" x2="260" y2="170" stroke-dasharray="4 2">
+                  <animateTransform attributeName="transform" type="rotate" from="0 170 170" to="360 170 170" dur="10s"
+                    repeatCount="indefinite" />
+                </line>
+              </g>
+
+              <text x="170" y="310" text-anchor="middle" fill="var(--clr-muted)" font-size="11"
+                font-family="DM Mono">AGENTIC ORCHESTRATION</text>
+            </svg>
           </div>
         </div>
 
         <!-- Partners Summary -->
         <div class="sol-card reveal">
           <div class="sol-card-text">
-            <span class="sec-label">Our Network</span>
-            <h2>Enterprise Partnerships</h2>
-            <p>An AI solution is only as strong as its foundation. Coaxis maintains high-level strategic partnerships with the world's most trusted data and cloud providers. We ensure your tech stack is future-proof and vendor-agnostic.</p>
-            <p>By leveraging deep integrations with AWS for scale, Snowflake for data warehousing, and NVIDIA for compute optimization, we deliver performance that outpaces standard off-the-shelf software. Our partners are your competitive advantage.</p>
-            <a href="partners.html" class="sol-card-btn">Explore Our Alliances <span>→</span></a>
+            <span class="sec-label">Strategic Network</span>
+            <h2>Best-of-Breed<br>Partnerships</h2>
+            <p>Coaxis is provider-agnostic. We curate a global ecosystem of specialized AI and automation leaders —
+              Emergence AI (USA) for agentic enterprise systems, and specialist orchestration firms for RPA and
+              integration — coordinated under one roof with ROI accountability built in.</p>
+            <div class="sol-feat-list">
+              <div class="sol-feat">
+                <div class="sol-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2BBFB0" stroke-width="2">
+                    <path
+                      d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9" />
+                  </svg></div>
+                <span>Emergence AI (USA) — advanced autonomous systems with enterprise-grade guardrails</span>
+              </div>
+              <div class="sol-feat">
+                <div class="sol-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2BBFB0" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <line x1="3" y1="9" x2="21" y2="9" />
+                    <line x1="9" y1="21" x2="9" y2="9" />
+                  </svg></div>
+                <span>Specialist automation firms — n8n, UiPath, Temporal for cross-system integration</span>
+              </div>
+              <div class="sol-feat">
+                <div class="sol-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2BBFB0" stroke-width="2">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                    <polyline points="2 17 12 22 22 17" />
+                  </svg></div>
+                <span>Provider-agnostic: OpenAI, Anthropic, Gemini, Llama — routing by cost &amp; privacy needs</span>
+              </div>
+            </div>
+            <a href="partners.html" class="sol-card-btn">Explore Alliances <span>→</span></a>
           </div>
           <div class="sol-card-visual">
-            <img src="./images/sol_partners.png" alt="Enterprise Partnerships" style="width: 280px; height: 280px; object-fit: cover; border-radius: 20px; box-shadow: 0 0 40px rgba(43,191,176,0.3); border: 2px solid rgba(43,191,176,0.5);">
+            <svg width="340" height="340" viewBox="0 0 340 340">
+              <!-- Grid Background -->
+              <rect x="50" y="50" width="240" height="240" fill="none" stroke="rgba(43,191,176,0.05)"
+                stroke-width="1" />
+              <path
+                d="M50,110 L290,110 M50,170 L290,170 M50,230 L290,230 M110,50 L110,290 M170,50 L170,290 M230,50 L230,290"
+                fill="none" stroke="rgba(43,191,176,0.03)" stroke-width="1" />
+
+              <!-- Orbital System -->
+              <circle cx="170" cy="170" r="100" fill="none" stroke="rgba(43,191,176,0.1)" stroke-width="1"
+                stroke-dasharray="8 4" />
+              <circle cx="170" cy="170" r="60" fill="none" stroke="rgba(43,191,176,0.15)" stroke-width="1"
+                stroke-dasharray="4 2" />
+
+              <!-- Coaxis Center -->
+              <rect x="150" y="150" width="40" height="40" rx="8" fill="rgba(43,191,176,0.2)" stroke="#2BBFB0"
+                stroke-width="2" filter="url(#glow-svg)" />
+              <text x="170" y="174" text-anchor="middle" fill="#fff" font-size="7" font-family="DM Mono"
+                font-weight="900">COAXIS</text>
+
+              <!-- Revolving Partner Nodes -->
+              <g>
+                <animateTransform attributeName="transform" type="rotate" from="0 170 170" to="360 170 170" dur="25s"
+                  repeatCount="indefinite" />
+                <circle cx="270" cy="170" r="22" fill="rgba(5,8,15,0.9)" stroke="#2BBFB0" stroke-width="1.5" />
+                <text x="270" y="171" text-anchor="middle" fill="#2BBFB0" font-size="6"
+                  font-family="DM Mono">EMERGENCE</text>
+                <text x="270" y="179" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="5"
+                  font-family="DM Mono">USA</text>
+              </g>
+
+              <g>
+                <animateTransform attributeName="transform" type="rotate" from="120 170 170" to="480 170 170" dur="30s"
+                  repeatCount="indefinite" />
+                <circle cx="270" cy="170" r="18" fill="rgba(5,8,15,0.9)" stroke="#2BBFB0" stroke-width="1" />
+                <text x="270" y="174" text-anchor="middle" fill="#2BBFB0" font-size="6"
+                  font-family="DM Mono">UiPath</text>
+              </g>
+
+              <g>
+                <animateTransform attributeName="transform" type="rotate" from="240 170 170" to="600 170 170" dur="35s"
+                  repeatCount="indefinite" />
+                <circle cx="270" cy="170" r="18" fill="rgba(5,8,15,0.9)" stroke="#2BBFB0" stroke-width="1" />
+                <text x="270" y="174" text-anchor="middle" fill="#2BBFB0" font-size="6" font-family="DM Mono">AWS</text>
+              </g>
+
+              <text x="170" y="315" text-anchor="middle" fill="var(--clr-muted)" font-size="11"
+                font-family="DM Mono">GLOBAL TECH ECOSYSTEM</text>
+            </svg>
           </div>
         </div>
 
         <!-- Process Summary -->
         <div class="sol-card reveal">
           <div class="sol-card-text">
-            <span class="sec-label">Our Methodology</span>
-            <h2>The execution Model</h2>
-            <p>Complexity is the enemy of execution. We use a strictly phased methodology—Foundation, Integration, and Orchestration—to migrate enterprise workflows from manual toil to autonomous efficiency.</p>
-            <p>Our process begins with a risk-mitigated diagnostic phase, where we identify a single, high-impact bottleneck to automate. This proof-of-value approach ensures that your AI investments are always anchored to verifiable ROI before you scale across the organization.</p>
-            <a href="process.html" class="sol-card-btn">Learn the Roadmap <span>→</span></a>
+            <span class="sec-label">Delivery Methodology</span>
+            <h2>From Diagnostic<br>to Scale</h2>
+            <p>A clear, low-risk path to enterprise-wide AI transformation with measurable business outcomes. Our phased
+              model — AI Readiness Diagnostic → ROI-Driven POC → Integration &amp; Scale — ensures you only invest
+              further once value is verified at each gate.</p>
+            <div class="sol-feat-list">
+              <div class="sol-feat">
+                <div class="sol-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2BBFB0" stroke-width="2">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                  </svg></div>
+                <span>Phase 1 (4–6 weeks): Executive workshops, data maturity assessment &amp; AI roadmap</span>
+              </div>
+              <div class="sol-feat">
+                <div class="sol-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2BBFB0" stroke-width="2">
+                    <path d="M18 20V10" />
+                    <path d="M12 20V4" />
+                    <path d="M6 20v-6" />
+                  </svg></div>
+                <span>Phase 2 (6–8 weeks): Focused sandbox POC against defined KPIs with go/no-go gate</span>
+              </div>
+              <div class="sol-feat">
+                <div class="sol-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2BBFB0" stroke-width="2">
+                    <path d="M5 12h14" />
+                    <path d="M12 5l7 7-7 7" />
+                  </svg></div>
+                <span>Phase 3 (Ongoing): Full production rollout, change management &amp; continuous monitoring</span>
+              </div>
+            </div>
+            <a href="process.html" class="sol-card-btn">View Delivery Model <span>→</span></a>
           </div>
           <div class="sol-card-visual">
-            <img src="./images/sol_process.png" alt="The Execution Model" style="width: 280px; height: 280px; object-fit: cover; border-radius: 20px; box-shadow: 0 0 40px rgba(43,191,176,0.3); border: 2px solid rgba(43,191,176,0.5); transform: perspective(800px) rotateY(-15deg);">
+            <svg width="340" height="340" viewBox="0 0 340 340">
+              <path d="M170,40 L170,300" stroke="rgba(43,191,176,0.1)" stroke-width="2" stroke-dasharray="10 5" />
+
+              <!-- Timeline Pulse -->
+              <circle cx="170" cy="170" r="150" fill="none" stroke="rgba(43,191,176,0.05)" stroke-width="1">
+                <animate attributeName="opacity" values="0.1;0.5;0.1" dur="2s" repeatCount="indefinite" />
+              </circle>
+
+              <!-- Step 1 -->
+              <g>
+                <circle cx="170" cy="80" r="25" fill="#05080f" stroke="#2BBFB0" stroke-width="2"
+                  filter="url(#glow-svg)" />
+                <text x="170" y="84" text-anchor="middle" fill="#fff" font-size="10" font-family="DM Mono"
+                  font-weight="900">01</text>
+                <line x1="170" y1="105" x2="170" y2="135" stroke="#2BBFB0" stroke-width="1.5" stroke-dasharray="4 2" />
+              </g>
+
+              <!-- Step 2 -->
+              <g>
+                <circle cx="170" cy="170" r="25" fill="#05080f" stroke="#2BBFB0" stroke-width="2"
+                  filter="url(#glow-svg)" />
+                <text x="170" y="174" text-anchor="middle" fill="#fff" font-size="10" font-family="DM Mono"
+                  font-weight="900">02</text>
+                <line x1="170" y1="195" x2="170" y2="225" stroke="#2BBFB0" stroke-width="1.5" stroke-dasharray="4 2" />
+              </g>
+
+              <!-- Step 3 -->
+              <g>
+                <circle cx="170" cy="260" r="30" fill="rgba(43,191,176,0.2)" stroke="#2BBFB0" stroke-width="2.5"
+                  filter="url(#glow-svg)" />
+                <text x="170" y="264" text-anchor="middle" fill="#fff" font-size="12" font-family="DM Mono"
+                  font-weight="900">03</text>
+              </g>
+
+              <!-- Side Labels -->
+              <text x="100" y="80" text-anchor="end" fill="#2BBFB0" font-size="9"
+                font-family="DM Mono">DIAGNOSTIC</text>
+              <text x="240" y="170" text-anchor="start" fill="#2BBFB0" font-size="9"
+                font-family="DM Mono">PROTOTYPE</text>
+              <text x="100" y="260" text-anchor="end" fill="#fff" font-size="10" font-family="DM Mono"
+                font-weight="800">SCALE</text>
+
+              <text x="170" y="320" text-anchor="middle" fill="var(--clr-muted)" font-size="11"
+                font-family="DM Mono">PHASED ROI DELIVERY</text>
+            </svg>
           </div>
         </div>
 
       </div>
     </section>
 
-    <!-- ══ INDUSTRY FOCUS ── NEW ══ -->
-    <section class="industry-focus section">
+    <!-- ══ BUILD / BUY / PARTNER DILEMMA ══ -->
+    <section class="dilemma-sec section" style="background:rgba(255,255,255,0.01);">
       <div class="container">
-        <div style="text-align: center; margin-bottom: 80px;" class="reveal">
-          <span class="sec-label">Sector Impact</span>
-          <h2 style="font-size: 3rem; color: #fff;">Industry-Specific Intelligence</h2>
+        <div style="text-align:center;" class="reveal">
+          <span class="sec-label">Strategic Choice</span>
+          <h2 class="section-title">The Enterprise AI Dilemma</h2>
+          <p class="section-sub" style="max-width:750px;margin:0 auto;">Every enterprise faces a critical choice. Build
+            an internal AI team from scratch, buy off-the-shelf software, or partner with experts who bridge the gap.
+            Coaxis is the strategic "Borrow" layer that makes the blend work.</p>
+        </div>
+        <div class="dilemma-grid">
+          <div class="dilemma-card reveal">
+            <div class="d-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2BBFB0"
+                stroke-width="1.5">
+                <path d="M12 2L2 7l10 5 10-5-10-5" />
+                <path d="M2 17l10 5 10-5" />
+                <path d="M2 12l10 5 10-5" />
+              </svg></div>
+            <h3>Build Approach</h3>
+            <p>Requires hiring expensive AI talent, scalable infrastructure &amp; AgentOps maturity. High up-front
+              investment, long lead times. Best for large enterprises in regulated sectors.</p>
+            <div
+              style="margin-top:20px;padding:12px;background:rgba(255,100,100,0.08);border-radius:8px;font-size:0.85rem;color:rgba(255,100,100,0.8);">
+              ⚠ High cost &amp; slow time-to-value</div>
+          </div>
+          <div class="dilemma-card reveal reveal-delay-1">
+            <div class="d-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2BBFB0"
+                stroke-width="1.5">
+                <path
+                  d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+              </svg></div>
+            <h3>Buy Approach</h3>
+            <p>Rapid deployment with support, but limited customisation &amp; vendor lock-in risk. 95% of off-the-shelf
+              deployments fail at the "last mile" integration problem. (MIT Study)</p>
+            <div
+              style="margin-top:20px;padding:12px;background:rgba(255,165,0,0.08);border-radius:8px;font-size:0.85rem;color:rgba(255,165,0,0.7);">
+              ⚠ 95% last-mile failure rate</div>
+          </div>
+          <div class="dilemma-card featured reveal reveal-delay-2">
+            <div class="d-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff"
+                stroke-width="1.5">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg></div>
+            <h3 style="color:#fff;">Partner with Coaxis</h3>
+            <p>The strategic "Borrow" layer. Blends your domain expertise with our technical capability. Addresses the
+              last-mile problem. Lower up-front cost, shared risk, faster time-to-value.</p>
+            <div
+              style="margin-top:20px;padding:12px;background:rgba(43,191,176,0.15);border-radius:8px;font-size:0.85rem;color:var(--clr-accent);">
+              ✓ Ideal for early-to-mid maturity orgs</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ INDUSTRY FOCUS ══ -->
+    <section class="industry-sec section">
+      <div class="container">
+        <div style="text-align:center;" class="reveal">
+          <span class="sec-label">Sector Intelligence</span>
+          <h2 class="section-title">Industry-Specific Impact</h2>
+          <p class="section-sub" style="max-width:700px;margin:0 auto;">Deep domain expertise allows us to deliver AI
+            solutions that are regulatory-aware, commercially calibrated, and operationally relevant from day one.</p>
         </div>
         <div class="industry-grid">
           <div class="ind-card reveal">
-            <h3>Banking & Finance</h3>
-            <p>Automating KYC, AML, and risk assessment pipelines. We convert days of manual document auditing into seconds of autonomous verification while maintaining absolute MAS compliance and security standards.</p>
+            <div class="ind-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2BBFB0" stroke-width="2">
+                <rect x="2" y="7" width="20" height="14" rx="2" />
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+              </svg></div>
+            <h3>Banking &amp; Finance</h3>
+            <p>Automating KYC, AML, and risk assessment pipelines. Converting days of manual document auditing into
+              under 4 hours of autonomous verification — with full MAS compliance and zero-retention data architecture.
+            </p>
           </div>
           <div class="ind-card reveal reveal-delay-1">
-            <h3>Supply Chain</h3>
-            <p>Dynamic routing and predictive inventory management. Our Agentic swarms monitor global freight anomalies 24/7, providing instant rerouting plans and customs adjustments before a human even sees the notification.</p>
+            <div class="ind-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2BBFB0" stroke-width="2">
+                <path d="M1 3h22" />
+                <path d="M1 9h22" />
+                <path d="M1 15h22" />
+                <path d="M1 21h22" />
+                <path d="M5 3v18" />
+                <path d="M19 3v18" />
+              </svg></div>
+            <h3>Supply Chain &amp; Logistics</h3>
+            <p>Dynamic routing and predictive inventory management. AI agents monitor global freight anomalies 24/7 and
+              autonomously generate rerouting plans, customs adjustments and cost deltas for single-click human
+              approval.</p>
           </div>
           <div class="ind-card reveal reveal-delay-2">
-            <h3>Legal & Compliance</h3>
-            <p>Accelerating contract review and regulatory adherence. We deploy highly secure, private RAG systems that allow your legal teams to query thousands of documents instantly with 100% source-attribution.</p>
+            <div class="ind-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2BBFB0" stroke-width="2">
+                <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                <path d="M12 11h4" />
+                <path d="M12 16h4" />
+                <path d="M8 11h.01" />
+                <path d="M8 16h.01" />
+              </svg></div>
+            <h3>Legal &amp; Compliance</h3>
+            <p>Accelerating contract review and regulatory adherence with private RAG systems. Legal teams can query
+              thousands of documents instantly with full source-attribution — no sensitive data ever leaving the
+              corporate perimeter.</p>
+          </div>
+          <div class="ind-card reveal">
+            <div class="ind-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2BBFB0" stroke-width="2">
+                <path
+                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+              </svg></div>
+            <h3>Healthcare &amp; Life Sciences</h3>
+            <p>Clinical workflow automation and patient data synthesis with privacy controls. AI agents process
+              diagnostic reports, insurance verifications and care pathway coordination while maintaining HIPAA-grade
+              data security.</p>
+          </div>
+          <div class="ind-card reveal reveal-delay-1">
+            <div class="ind-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2BBFB0" stroke-width="2">
+                <circle cx="9" cy="21" r="1" />
+                <circle cx="20" cy="21" r="1" />
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+              </svg></div>
+            <h3>Retail &amp; E-Commerce</h3>
+            <p>Demand forecasting, personalised recommendation engines and autonomous inventory replenishment. AI agents
+              monitor sales patterns and customer intent to generate actionable merchandising decisions in real time.
+            </p>
+          </div>
+          <div class="ind-card reveal reveal-delay-2">
+            <div class="ind-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2BBFB0" stroke-width="2">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+              </svg></div>
+            <h3>SMEs &amp; High-Growth Firms</h3>
+            <p>Smaller enterprises have the most to gain. Without legacy debt and with greater agility, SMEs can adopt
+              AI automation faster and more completely than large corporations. Coaxis is specifically structured to
+              serve this segment with fixed-fee, phased entry.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ══ ARCHITECTURE SECTION ── NEW ══ -->
+    <!-- ══ AI ARCHITECTURE ══ -->
     <section class="arch-sec section">
-       <div class="container reveal">
+      <div class="container reveal">
+        <div style="text-align:center;margin-bottom:70px;">
           <span class="sec-label">The Blueprint</span>
-          <h2 style="font-size: 3rem; color: #fff;">Scalable AI Architecture</h2>
-          <div class="arch-box">
-             <div class="arch-step">
-                <h4>01. DATA READINESS LAYER</h4>
-                <p>Cleaning, structuring, and normalizing unstructured legacy data into a high-performance vector-ready format.</p>
-             </div>
-             <div class="arch-step">
-                <h4>02. AGENTIC CORE</h4>
-                <p>Deploying specialized AI agents equipped with 'Tools' to interact with your ERP, CRM, and external APIs.</p>
-             </div>
-             <div class="arch-step">
-                <h4>03. ORCHESTRATION SWARM</h4>
-                <p>Managing multiple agents working in parallel to solve complex, multi-step business objectives without manual intervention.</p>
-             </div>
+          <h2 style="font-size:3rem;color:#fff;">Scalable AI Architecture</h2>
+          <p style="color:var(--clr-muted);max-width:650px;margin:20px auto 0;font-size:1.1rem;line-height:1.8;">Every
+            Coaxis engagement is built on a rigorous 5-layer architecture that ensures auditability, security, and
+            performance at enterprise scale.</p>
+        </div>
+        <div class="arch-flow">
+          <div class="arch-step">
+            <div class="arch-num">01</div>
+            <div>
+              <h4>Business Goals Alignment</h4>
+              <p>We begin with a rigorous mapping of data strategies to business goals — P&amp;L margin, revenue growth,
+                or capital efficiency. Every AI investment anchored to verifiable outcomes from day one.</p>
+              <div class="arch-tags"><span class="arch-tag">Executive Workshops</span><span class="arch-tag">ROI
+                  Projections</span><span class="arch-tag">Gap Analysis</span></div>
+            </div>
           </div>
-       </div>
+          <div class="arch-step">
+            <div class="arch-num">02</div>
+            <div>
+              <h4>AI Data Readiness Layer</h4>
+              <p>Cleaning, structuring, and normalizing unstructured legacy data — spreadsheets, PDFs, email threads —
+                into a high-performance, vector-ready format that enterprise LLMs can actually consume.</p>
+              <div class="arch-tags"><span class="arch-tag">Data Ingestion</span><span class="arch-tag">Metadata
+                  Enrichment</span><span class="arch-tag">Quality Monitoring</span></div>
+            </div>
+          </div>
+          <div class="arch-step">
+            <div class="arch-num">03</div>
+            <div>
+              <h4>Secure Agentic Core</h4>
+              <p>Deploying specialized AI agents equipped with 'Tools' to interact with your ERP, CRM, and external
+                APIs. Built-in access controls, prompt guardrails, and human-in-the-loop supervision at every step.</p>
+              <div class="arch-tags"><span class="arch-tag">LLM Integration</span><span class="arch-tag">Tool
+                  Routing</span><span class="arch-tag">HITL Governance</span></div>
+            </div>
+          </div>
+          <div class="arch-step">
+            <div class="arch-num">04</div>
+            <div>
+              <h4>Orchestration &amp; Integration</h4>
+              <p>Managing multiple agents working in parallel — connected to legacy systems via APIs, RPA connectors,
+                and middleware — to solve complex multi-step business objectives without manual intervention.</p>
+              <div class="arch-tags"><span class="arch-tag">n8n / LangChain</span><span class="arch-tag">UiPath
+                  RPA</span><span class="arch-tag">Temporal</span><span class="arch-tag">API Gateways</span></div>
+            </div>
+          </div>
+          <div class="arch-step">
+            <div class="arch-num">05</div>
+            <div>
+              <h4>Continuous Optimisation</h4>
+              <p>Ongoing performance monitoring, feedback loops for model improvement, and change management support to
+                ensure your workforce correctly adopts the new AI collaboration paradigm.</p>
+              <div class="arch-tags"><span class="arch-tag">KPI Tracking</span><span class="arch-tag">Audit
+                  Trails</span><span class="arch-tag">Change Management</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ CTA STRIP ══ -->
+    <section class="section" style="padding:100px 0;">
+      <div class="container reveal" style="text-align:center;">
+        <span class="sec-label">Next Steps</span>
+        <h2 style="font-size:3rem;color:#fff;margin-bottom:25px;">A clear, low-risk path to get started</h2>
+        <p style="color:var(--clr-muted);font-size:1.2rem;max-width:650px;margin:0 auto 50px;line-height:1.8;">30-min
+          discovery call → Complimentary AI Readiness scoping session → Fixed-fee Diagnostic proposal with defined
+          deliverables &amp; timeline.</p>
+        <div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap;">
+          <a href="contact.html" class="cta-btn" style="font-size:1.1rem;padding:20px 40px;">Book Discovery Call →</a>
+          <a href="process.html"
+            style="display:inline-flex;align-items:center;gap:10px;color:var(--clr-accent);font-weight:700;text-decoration:none;padding:20px 40px;border:1px solid rgba(43,191,176,0.3);border-radius:var(--radius-md);transition:0.3s;">View
+            Our Process</a>
+        </div>
+      </div>
     </section>
 
     <!-- ══ FOOTER ══ -->
@@ -273,17 +1509,42 @@
       <div id="footer-3d-bg"></div>
       <div class="container footer-grid">
         <div class="footer-brand">
-          <div class="footer-logo-wrap"><img src="./images/coaxis_logo.png" class="footer-brand-logo"><div class="logo-glow-footer"></div></div>
+          <div class="footer-logo-wrap"><img src="./images/coaxis_logo.png" class="footer-brand-logo">
+            <div class="logo-glow-footer"></div>
+          </div>
           <p class="footer-tagline">Bridging AI's promise and your business reality</p>
         </div>
-        <div class="footer-col"><h5 class="footer-title">Solutions</h5><ul class="footer-menu"><li><a href="services.html">Services</a></li><li><a href="partners.html">Partners</a></li><li><a href="process.html">Process</a></li></ul></div>
-        <div class="footer-col"><h5 class="footer-title">Insights</h5><ul class="footer-menu"><li><a href="news.html">News</a></li><li><a href="blogs.html">Blogs</a></li><li><a href="case-studies.html">Case Studies</a></li></ul></div>
-        <div class="footer-col"><h5 class="footer-title">Company</h5><ul class="footer-menu"><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+        <div class="footer-col">
+          <h5 class="footer-title">Solutions</h5>
+          <ul class="footer-menu">
+            <li><a href="services.html">Services</a></li>
+            <li><a href="partners.html">Partners</a></li>
+            <li><a href="process.html">Process</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5 class="footer-title">Insights</h5>
+          <ul class="footer-menu">
+            <li><a href="news.html">News</a></li>
+            <li><a href="blogs.html">Blogs</a></li>
+            <li><a href="case-studies.html">Case Studies</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5 class="footer-title">Company</h5>
+          <ul class="footer-menu">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
       </div>
-      <div class="container footer-bottom"><p class="footer-copy">© 2026 Coaxis AI. All rights reserved.</p></div>
+      <div class="container footer-bottom">
+        <p class="footer-copy">© 2026 Coaxis AI. All rights reserved.</p>
+      </div>
     </footer>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="main.js"></script>
 </body>
+
 </html>
