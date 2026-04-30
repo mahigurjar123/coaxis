@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coaxis AI | AI Systems Integrator</title>
+  <meta name="description" content="Coaxis AI — Bridging the gap between AI's promise and business reality.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" crossorigin href="/assets/index-Lf5t-JUA.css">
+</head>
+<body>
+
+  <!-- Single performant Three.js background canvas -->
+  <canvas id="three-canvas"></canvas>
+
+  <!-- ══ INTRO OVERLAY (POWERFULL 4K EXPERIENCE) ══ -->
+  <div class="intro-overlay" id="intro-overlay">
+    
+    <!-- Realistic 4K Neural Background -->
+    <img src="/assets/intro_bg-ODAuT3kw.png" class="intro-video-bg" alt="Coaxis AI Neural Vortex">
+    
+    <!-- Digital Glitch & Noise Layers -->
+    <div class="intro-glitch-layer"></div>
+    
+    <!-- Real-time Procedural 3D Neural Tunnel Layer (60FPS) -->
+    <div id="intro-3d-target" class="intro-3d-target"></div>
+    
+    <div class="intro-scanline"></div>
+    <div class="intro-hud">
+      <div class="hud-corner hud-tl"></div>
+      <div class="hud-corner hud-tr"></div>
+      <div class="hud-corner hud-bl"></div>
+      <div class="hud-corner hud-br"></div>
+    </div>
+
+    <button class="intro-close" id="intro-close">✕ CLEAR ARCHITECTURE</button>
+
+    <div class="intro-content">
+      <span class="intro-subtitle" style="display: block; font-family: var(--font-mono); font-size: 0.9rem; color: var(--clr-accent); text-transform: uppercase; letter-spacing: 6px; margin-bottom: 20px;">Autonomous Intelligence Systems</span>
+      <h2 class="intro-title">COAXIS AI</h2>
+      <p class="intro-tagline">Orchestrating the Agentic Backbone of the Future.</p>
+      
+      <!-- High-Glow System Console -->
+      <div id="intro-console" class="intro-console"></div>
+    </div>
+  </div>
+
+  <div class="page">
+
+    <!-- ══ HEADER ══ -->
+    <header class="header" id="header">
+      <a href="javascript:void(0)" class="logo">
+        <div class="logo-wrapper">
+          <img src="/assets/coaxis_logo-CRkfgkAI.png" class="brand-logo-img" alt="Coaxis Logo">
+          <div class="logo-glow"></div>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a href="index.html" class="nav-btn active">Home</a>
+        
+        <div class="nav-item">
+          <a href="solutions.html" class="nav-btn">Solutions <span style="font-size: 10px; opacity: 0.5;">▼</span></a>
+          <div class="dropdown-menu">
+            <a href="services.html" class="dropdown-link">Services</a>
+            <a href="partners.html" class="dropdown-link">Partners</a>
+            <a href="process.html" class="dropdown-link">Process</a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a href="insights.html" class="nav-btn">Insights <span style="font-size: 10px; opacity: 0.5;">▼</span></a>
+          <div class="dropdown-menu">
+            <a href="news.html" class="dropdown-link">News</a>
+            <a href="blogs.html" class="dropdown-link">Blogs</a>
+            <a href="case-studies.html" class="dropdown-link">Case Studies</a>
+          </div>
+        </div>
+
+        <a href="about.html" class="nav-btn">About Us</a>
+        <a href="contact.html" class="nav-btn">Contact</a>
+        <a href="contact.html" class="nav-cta">Let's Build</a>
+      </nav>
+    </header>
+
+    <!-- ══ HERO ══ -->
+    <section class="hero" id="home">
+      <div class="container hero-container">
+        <div class="hero-content">
+          <span class="hero-badge"><span></span>AI Systems Integrator</span>
+          <h1 class="hero-title">
+            Bridging the gap between<br>
+            <span class="accent">AI's Promise</span><br>
+            and business reality.
+          </h1>
+          <p class="hero-sub">
+            Driving measurable productivity and revenue outcomes with
+            Agentic AI. We turn technology into performance.
+          </p>
+          <div class="hero-cta-group">
+            <button class="btn-primary" type="button">Our Roadmap →</button>
+            <button class="btn-ghost" type="button">Explore Services</button>
+          </div>
+        </div>
+        <div class="hero-visual reveal" id="hero-visual">
+          <div class="visual-inner">
+            <!-- Dedicated 3D Core Canvas or Three.js target -->
+            <div id="hero-3d-target"></div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-cue">
+        <span class="scroll-cue-text">Scroll</span>
+        <div class="scroll-cue-line"></div>
+      </div>
+    </section>
+
+    <!-- ══ OPPORTUNITY ══ -->
+    <section class="section section--center" id="opportunity">
+      <div class="container">
+        <span class="sec-label reveal">Market Landscape</span>
+        <h2 class="section-title reveal reveal-delay-1">The $3 Trillion AI Moment</h2>
+        <p class="section-sub reveal reveal-delay-2">
+          Agentic AI is redefining enterprise productivity. The window to lead is now.
+        </p>
+        <div class="stats-row">
+          <div class="stat-card reveal reveal-delay-1">
+            <div class="card-visual-fx fx-pulse-rings"></div>
+            <span class="stat-label">Cognitive Value</span>
+            <span class="stat-number" data-count="3" data-suffix="T+">0</span>
+            <p class="stat-desc">Global enterprise revenue unlocked by autonomous agentic systems annually.</p>
+            <span class="stat-glyph">$</span>
+          </div>
+          <div class="stat-card reveal reveal-delay-2">
+            <div class="card-visual-fx fx-scanner"></div>
+            <span class="stat-label">Enterprise Adoption</span>
+            <span class="stat-number" data-count="42" data-suffix="%">0</span>
+            <p class="stat-desc">Of Fortune 500s rely on multi-agent collaboration for core workflows.</p>
+            <span class="stat-glyph">%</span>
+          </div>
+          <div class="stat-card reveal reveal-delay-3">
+            <div class="card-visual-fx fx-grid-wave"></div>
+            <span class="stat-label">Hybrid Strategy</span>
+            <span class="stat-number" data-count="57" data-suffix="%">0</span>
+            <p class="stat-desc">Enterprises favoring a 'Borrow & Build' AI architecture for max ROI.</p>
+            <span class="stat-glyph">→</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ══ MSMEs ══ -->
+    <section class="section section--center" id="msmes">
+      <div class="container">
+        <span class="sec-label reveal">Our Focus</span>
+        <h2 class="section-title reveal reveal-delay-1">SMEs have the Most to Gain from AI</h2>
+        <p class="section-sub reveal reveal-delay-2">
+          Bridging the gap for mid-market businesses to adopt enterprise-grade AI without the enterprise bloat.
+        </p>
+        <div class="sme-grid">
+          <div class="sme-col reveal reveal-delay-1">
+            <h3 class="sme-col-title">Why SMEs Struggle More</h3>
+            <div class="sme-card">
+              <div class="sme-icon">D</div>
+              <div class="sme-card-content">
+                <h4>Fragmented Data</h4>
+                <p>Information lives in spreadsheets, email threads and legacy systems — not integrated platforms.</p>
+                <div class="sme-stats">
+                  <div class="stat-row ent">
+                    <span class="stat-label">Large Enterprise</span>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 62%;"></div></div>
+                    <span class="stat-val">62%</span>
+                  </div>
+                  <div class="stat-row sme">
+                    <span class="stat-label">SME</span>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 14%;"></div></div>
+                    <span class="stat-val">14%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sme-card">
+              <div class="sme-icon">IT</div>
+              <div class="sme-card-content">
+                <h4>No Dedicated IT / AI Team</h4>
+                <p>Large enterprises have dedicated AI teams. SMEs must figure out integration entirely on their own.</p>
+                <div class="sme-stats">
+                  <div class="stat-row ent">
+                    <span class="stat-label">Large Enterprise</span>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 71%;"></div></div>
+                    <span class="stat-val">71%</span>
+                  </div>
+                  <div class="stat-row sme">
+                    <span class="stat-label">SME</span>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 18%;"></div></div>
+                    <span class="stat-val">18%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sme-card">
+              <div class="sme-icon">$</div>
+              <div class="sme-card-content">
+                <h4>Budget Constraints</h4>
+                <p>Enterprise AI tools require infrastructure investment, training and governance that most SMEs cannot absorb upfront.</p>
+                <div class="sme-stats">
+                  <div class="stat-row ent">
+                    <span class="stat-label">Large Enterprise</span>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 55%;"></div></div>
+                    <span class="stat-val">55%</span>
+                  </div>
+                  <div class="stat-row sme">
+                    <span class="stat-label">SME</span>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 12%;"></div></div>
+                    <span class="stat-val">12%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="sme-col highlight-col reveal reveal-delay-2">
+            <h3 class="sme-col-title highlight-text">How coaxis.ai Closes the Gap</h3>
+            <div class="sme-box">
+              <ul class="service-list">
+                <li>
+                  <div>
+                    <strong class="highlight-text">✓ Data Readiness First</strong>
+                    <p style="font-size: 0.9rem; margin-top: 4px; color: var(--clr-muted);">We assess and prepare your data so AI can actually use it — spreadsheets, PDFs, legacy systems all included.</p>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong class="highlight-text">✓ No AI team needed</strong>
+                    <p style="font-size: 0.9rem; margin-top: 4px; color: var(--clr-muted);">Our team is your AI team. We bring engineers, architects and domain experts you do not have yet.</p>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong class="highlight-text">✓ Fixed-fee, phased entry</strong>
+                    <p style="font-size: 0.9rem; margin-top: 4px; color: var(--clr-muted);">Start with a 4-6 week diagnostic. No open-ended commitments, no surprise costs, clear deliverables.</p>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong class="highlight-text">✓ SME-sized governance</strong>
+                    <p style="font-size: 0.9rem; margin-top: 4px; color: var(--clr-muted);">Right-sized security, compliance guardrails and human-in-the-loop — enterprise rigour without enterprise bloat.</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SOLUTION ══ -->
+    <section class="section" id="solution">
+      <div class="container">
+        <div class="solution-grid">
+          <div class="solution-body">
+            <span class="sec-label reveal">Our Philosophy</span>
+            <h2 class="section-title reveal reveal-delay-1">The Enterprise Dilemma</h2>
+            <p class="reveal reveal-delay-2">
+              Build vs Buy decisions are complex. Off-the-shelf tools fail the "last mile,"
+              while custom builds are slow and expensive. Most enterprises are stuck between two bad options.
+            </p>
+            <div class="tag-group reveal reveal-delay-2">
+              <span class="tag">Domain Expertise</span>
+              <span class="tag">Technical Depth</span>
+              <span class="tag">ROI Accountable</span>
+              <span class="tag">Human-in-the-Loop</span>
+            </div>
+            <div class="highlight-box reveal reveal-delay-3">
+              <h4>The "Borrow" Layer</h4>
+              <p>Coaxis.ai acts as your trusted integration partner — blending your domain expertise with our
+                 technical capability to close the gap between AI's promise and real-world performance.</p>
+            </div>
+          </div>
+          <div class="solution-image reveal reveal-delay-2">
+            <img
+              src="/assets/ai_solution_abstract-gjgoyf9b.png"
+              alt="AI Technology Integration"
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SERVICES ══ -->
+    <section class="section section--center" id="services">
+      <div class="container">
+        <span class="sec-label reveal">Capabilities</span>
+        <h2 class="section-title reveal reveal-delay-1">What We Do</h2>
+        <p class="section-sub reveal reveal-delay-2">
+          End-to-end AI systems integration designed for enterprise scale and measurable outcomes.
+        </p>
+        <div class="services-grid">
+          <div class="service-card reveal reveal-delay-1">
+            <div class="holo-render-wrapper">
+              <img src="/assets/ai_cube-BhJC2AYA.png" class="holo-3d-asset" alt="AI Cube">
+            </div>
+            <div class="service-content-front">
+              <h3>Neural Data Fabric</h3>
+              <p>Transforming fragmented enterprise silos into contiguous, AI-native knowledge graphs for rapid inference.</p>
+              <ul class="service-list">
+                <li><span class="check">✓</span> Multi-Modal Ingestion Pipelines</li>
+                <li><span class="check">✓</span> Semantic Vector Search &amp; RAG</li>
+                <li><span class="check">✓</span> Verifiable Truth Governance</li>
+              </ul>
+            </div>
+          </div>
+          <div class="service-card reveal reveal-delay-2">
+            <div class="holo-render-wrapper">
+              <img src="/assets/ai_brain-CsB9vHNz.png" class="holo-3d-asset" alt="AI Brain">
+            </div>
+            <div class="service-content-front">
+              <h3>Autonomous Workflows</h3>
+              <p>Secure, auditable swarms of specialized AI agents orchestrating mission-critical enterprise tasks.</p>
+              <ul class="service-list">
+                <li><span class="check">✓</span> Multi-Agent Orchestration</li>
+                <li><span class="check">✓</span> Human-in-the-Loop Safeguards</li>
+                <li><span class="check">✓</span> Legacy API Bridging</li>
+              </ul>
+            </div>
+          </div>
+          <div class="service-card reveal reveal-delay-3">
+            <div class="holo-render-wrapper">
+              <img src="/assets/ai_cube-BhJC2AYA.png" class="holo-3d-asset" alt="Deterministic Agents" style="filter: hue-rotate(180deg);">
+            </div>
+            <div class="service-content-front">
+              <h3>Deterministic Agents</h3>
+              <p>Ability to build agents which deliver deterministic, verifiable outputs with enterprise reliability.</p>
+              <ul class="service-list">
+                <li><span class="check">✓</span> Predictable Execution Paths</li>
+                <li><span class="check">✓</span> Auditable Decision Trees</li>
+                <li><span class="check">✓</span> Mathematical Verification</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ DATA SECURITY ══ -->
+    <section class="section section--center" id="security">
+      <div class="container">
+        <span class="sec-label reveal">Confidentiality</span>
+        <h2 class="section-title reveal reveal-delay-1">Data Security Layers</h2>
+        <p class="section-sub reveal reveal-delay-2">
+          Enterprise-grade protection ensuring your proprietary data remains safe, isolated, and governed.
+        </p>
+        <div class="security-grid">
+          
+          <!-- Column 1 -->
+          <div class="security-col reveal reveal-delay-1">
+            <div class="sec-header sec-network">Network Security</div>
+            <div class="sec-item">
+              <h5>HTTPS / TLS 1.3</h5>
+              <p>Encrypts all client-server traffic. Prevents man-in-the-middle attacks and eavesdropping.</p>
+            </div>
+            <div class="sec-item">
+              <h5>DDoS Protection</h5>
+              <p>AWS Shield, Azure DDoS. On-prem: Cloudflare or Akamai as upstream scrubbing center.</p>
+            </div>
+            <div class="sec-item">
+              <h5>SQL Injection</h5>
+              <p>WAF rules block malicious payloads. App layer uses parameterized queries.</p>
+            </div>
+            <div class="sec-item">
+              <h5>Encryption in Transit</h5>
+              <p>mTLS enforced between all internal microservices. No plaintext channels.</p>
+            </div>
+          </div>
+
+          <!-- Column 2 -->
+          <div class="security-col reveal reveal-delay-2">
+            <div class="sec-header sec-data">Data Security</div>
+            <div class="sec-item">
+              <h5>Encryption at REST</h5>
+              <p>AES-256 applied to all stored data — databases, object storage, backups.</p>
+            </div>
+            <div class="sec-item">
+              <h5>Cloud KMS</h5>
+              <p>AWS KMS, Azure Key Vault, GCP Cloud KMS.</p>
+            </div>
+            <div class="sec-item">
+              <h5>On-Premise</h5>
+              <p>Hardware Security Modules (HSMs) for key storage. LUKS for Linux disk encryption.</p>
+            </div>
+            <div class="sec-item">
+              <h5>Key Rotation &amp; Audit</h5>
+              <p>Automated key rotation on a schedule. All access events logged to immutable trail.</p>
+            </div>
+          </div>
+
+          <!-- Column 3 -->
+          <div class="security-col reveal reveal-delay-3">
+            <div class="sec-header sec-zero">Zero-Download Isolation</div>
+            <div class="sec-item">
+              <h5>Network Egress Block</h5>
+              <p>VM outbound traffic locked down — no uploads to external URLs or cloud sync.</p>
+            </div>
+            <div class="sec-item">
+              <h5>Clipboard Isolation</h5>
+              <p>Copy-paste between customer VM and engineer's local machine disabled via policy.</p>
+            </div>
+            <div class="sec-item">
+              <h5>DLP Scanning</h5>
+              <p>Content-aware scanning detects patterns like PII across all outbound traffic.</p>
+            </div>
+            <div class="sec-item">
+              <h5>Session Recording</h5>
+              <p>Every VM action recorded and auditable. Workers see only masked or aggregated data.</p>
+            </div>
+          </div>
+
+          <!-- Column 4 -->
+          <div class="security-col reveal reveal-delay-4">
+            <div class="sec-header sec-llm">LLM Security</div>
+            <div class="sec-item">
+              <h5>Guardrail Enabling</h5>
+              <p>Platform-level guardrails enforce safe completion policies across all model calls.</p>
+            </div>
+            <div class="sec-item">
+              <h5>Keyword Filters</h5>
+              <p>Deny-lists block known harmful terms. Embedding-based classifiers catch harmful intent.</p>
+            </div>
+            <div class="sec-item">
+              <h5>Offense Detection</h5>
+              <p>Multi-class policy classifier rejects illegal, hateful, or policy-violating requests.</p>
+            </div>
+            <div class="sec-item">
+              <h5>LLM as Judge</h5>
+              <p>A secondary LLM independently evaluates each output for safety and accuracy.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ PROCESS ══ -->
+    <section class="section section--center" id="process">
+      <div class="container">
+        <span class="sec-label reveal">Our Model</span>
+        <h2 class="section-title reveal reveal-delay-1">From Diagnostic to Scale</h2>
+        <p class="section-sub reveal reveal-delay-2">
+          A proven three-phase engagement built for speed, accountability, and lasting enterprise value.
+        </p>
+        <div class="process-grid">
+          <div class="process-connector"></div>
+          <div class="process-step reveal reveal-delay-1">
+            <div class="step-circle">
+               <div class="fx-step-icon fx-radar"></div>
+            </div>
+            <h4>Cognitive Diagnostic</h4>
+            <span class="step-duration">4 – 6 Weeks</span>
+            <p>Mapping high-friction workflows to high-value AI solutions with definitive ROI models.</p>
+          </div>
+          <div class="process-step reveal reveal-delay-2">
+            <div class="step-circle">
+               <div class="fx-step-icon fx-diamond"></div>
+            </div>
+            <h4>Agentic Proof-of-Concept</h4>
+            <span class="step-duration">6 – 8 Weeks</span>
+            <p>Rapid deployment of autonomous agents within a secure, sandboxed enterprise context.</p>
+          </div>
+          <div class="process-step reveal reveal-delay-3">
+            <div class="step-circle">
+               <div class="fx-step-icon fx-infinity">
+                  <div class="circle1"></div>
+                  <div class="circle2"></div>
+               </div>
+            </div>
+            <h4>Enterprise Synthesis</h4>
+            <span class="step-duration">Ongoing</span>
+            <p>Scaling the agentic workforce with continuous RLHF optimization and secure architecture scaling.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ CONTACT ══ -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact-box reveal">
+          <span class="sec-label" style="display:block;margin-bottom:18px">Ready to begin?</span>
+          <h2 class="section-title reveal reveal-delay-1" style="color: var(--clr-accent);">Let's build this together.</h2>
+          <p style="margin-bottom: 32px;">Ready to turn AI's promise into measurable business reality? Start the conversation today.</p>
+          <a href="javascript:void(0)" class="btn-primary" style="display:inline-flex;">
+            Start The Conversation →
+          </a>
+          <span class="contact-email">
+            or write directly to <a href="javascript:void(0)">rahul.budhraja@coaxis.ai</a>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ FOOTER ══ -->
+    <footer class="footer" id="main-footer">
+      <!-- 3D Animation Background Container -->
+      <div id="footer-3d-bg"></div>
+      
+      <div class="container footer-grid">
+        <!-- Brand & Tagline -->
+        <div class="footer-brand">
+          <div class="footer-logo-wrap">
+            <img src="/assets/coaxis_logo-CRkfgkAI.png" class="footer-brand-logo" >
+            <div class="logo-glow-footer"></div>
+          </div>
+          <p class="footer-tagline">Bridging AI’s promise and your business reality</p>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="footer-col">
+          <h5 class="footer-title">Contact</h5>
+          <div class="footer-contact-item">
+            <span class="icon">📧</span>
+            <a href="javascript:void(0)">rahul.budhraja@coaxis.ai</a>
+          </div>
+          <div class="footer-contact-item">
+            <span class="icon">📧</span>
+            <a href="javascript:void(0)">vinay.mathur@coaxis.ai</a>
+          </div>
+        </div>
+
+        <!-- Menu -->
+        <div class="footer-col">
+          <h5 class="footer-title">Company</h5>
+          <ul class="footer-menu">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Security</a></li>
+            <li><a href="#">Terms & Conditions</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h5 class="footer-title">Navigation</h5>
+          <ul class="footer-menu">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <p class="footer-copy">© 2026 Coaxis AI Systems Integrator. All rights reserved.</p>
+        <div class="footer-trust-tags">
+          <span>Human-in-the-Loop</span>
+          <span>ROI Accountable</span>
+          <span>Privacy First</span>
+        </div>
+      </div>
+    </footer>
+
+  </div><!-- /.page -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

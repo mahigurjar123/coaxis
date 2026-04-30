@@ -4,7 +4,8 @@
   "description": "Coaxis AI Landing Page",
   "main": "index.html",
   "scripts": {
-    "dev": "vite"
+    "dev": "vite",
+    "build": "vite build"
   },
   "devDependencies": {
     "vite": "^5.0.0"
