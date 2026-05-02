@@ -1,0 +1,222 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insights | Coaxis AI</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    .post-hero { min-height: 70vh; display: flex; align-items: center; padding-top: 120px; position: relative; overflow: hidden; background: radial-gradient(circle at top right, rgba(43,191,176,0.05), transparent); }
+    .post-meta { font-family: var(--font-mono); font-size: 0.9rem; color: var(--clr-accent); margin-bottom: 20px; display: flex; gap: 20px; }
+    .post-title { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900; line-height: 1.1; margin-bottom: 40px; letter-spacing: -2px; }
+    
+    .post-content-wrap { padding: 100px 0; position: relative; z-index: 1; background: transparent; }
+    .post-container { 
+      max-width: 900px; 
+      margin: 0 auto; 
+      padding: 60px; 
+      background: rgba(5, 8, 15, 0.7); 
+      backdrop-filter: blur(20px); 
+      border: 1px solid rgba(43, 191, 176, 0.1); 
+      border-radius: var(--radius-xl);
+      box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+    }
+    
+    .post-body { font-size: 1.2rem; line-height: 1.9; color: rgba(255,255,255,0.9); }
+    .post-body h2 { color: #fff; margin: 60px 0 30px; font-size: 2.2rem; letter-spacing: -1px; }
+    .post-body p { margin-bottom: 30px; }
+    .post-body blockquote { border-left: 4px solid var(--clr-accent); padding: 40px; margin: 60px 0; font-style: italic; color: #fff; font-size: 1.6rem; line-height: 1.5; background: rgba(43,191,176,0.05); border-radius: 0 20px 20px 0; }
+    
+    .post-image-large { width: 100%; border-radius: var(--radius-xl); margin: 60px 0; border: 1px solid rgba(43,191,176,0.2); overflow: hidden; transform: perspective(1000px) rotateX(2deg); box-shadow: 0 30px 60px rgba(0,0,0,0.5); position: relative; }
+    .post-image-large::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,8,15,0.4), transparent); }
+    .post-image-large img { width: 100%; display: block; transition: 0.8s; }
+    .post-image-large:hover img { transform: scale(1.05); }
+
+    .back-to-blogs { display: inline-flex; align-items: center; gap: 10px; color: var(--clr-accent); font-weight: 700; margin-bottom: 40px; transition: 0.3s; }
+    .back-to-blogs:hover { transform: translateX(-10px); }
+
+    /* ── 3D BOOK BACKGROUND (SAME AS BLOGS PAGE) ── */
+    #post-3d-bg { position: fixed; inset: 0; z-index: -1; display: flex; align-items: center; justify-content: center; opacity: 0.2; pointer-events: none; overflow: hidden; }
+    .blog-visual { position: relative; width: 100vw; height: 100vh; perspective: 1200px; transform-style: preserve-3d; }
+    .book-layer { position: absolute; left: 50%; top: 50%; width: 500px; height: 500px; transform: translate(-50%, -50%); transform-style: preserve-3d; animation: floatBook 8s ease-in-out infinite alternate; }
+    @keyframes floatBook {
+      0% { transform: translate(-50%, -50%) rotateX(60deg) rotateZ(-30deg) translateY(0px); }
+      100% { transform: translate(-50%, -50%) rotateX(55deg) rotateZ(-20deg) translateY(-50px); }
+    }
+    
+    .b-page { position: absolute; left: 50%; top: 50%; width: 300px; height: 400px; background: rgba(5,8,15,0.8); border: 1px solid var(--clr-accent); border-radius: 4px; transform-origin: left center; box-shadow: 0 0 20px rgba(43,191,176,0.2); }
+    .b-page:nth-child(1) { transform: translate(-50%, -50%) translateZ(0px) rotateY(-10deg); border-color: rgba(43,191,176,0.3); background: rgba(5,8,15,0.9); }
+    .b-page:nth-child(2) { transform: translate(-50%, -50%) translateZ(15px) rotateY(-5deg); border-color: rgba(43,191,176,0.5); }
+    .b-page:nth-child(3) { transform: translate(-50%, -50%) translateZ(30px) rotateY(0deg); animation: flipPage 6s infinite; }
+    .b-page:nth-child(4) { transform: translate(-50%, -50%) translateZ(45px) rotateY(5deg); display: flex; flex-direction: column; padding: 30px; gap: 20px; border-color: var(--clr-accent); }
+    
+    @keyframes flipPage {
+      0%, 20% { transform: translate(-50%, -50%) translateZ(30px) rotateY(0deg); }
+      80%, 100% { transform: translate(-50%, -50%) translateZ(30px) rotateY(-180deg); opacity: 0; }
+    }
+
+    .p-line { height: 6px; background: rgba(43,191,176,0.3); border-radius: 3px; width: 100%; position: relative; overflow: hidden; }
+    .p-line::after { content: ''; position: absolute; top:0; left:0; height:100%; width:40px; background: var(--clr-accent); box-shadow: 0 0 15px var(--clr-accent); animation: scanLine 2s linear infinite; }
+    @keyframes scanLine { 100% { transform: translateX(300px); } }
+  </style>
+</head>
+<body>
+  <canvas id="three-canvas"></canvas>
+  <div id="post-3d-bg">
+    <div class="blog-visual">
+      <div class="book-layer">
+        <div class="b-page"></div>
+        <div class="b-page"></div>
+        <div class="b-page"></div>
+        <div class="b-page">
+           <div style="width: 60px; height: 60px; border-radius: 50%; border: 1px solid var(--clr-accent); display:flex; align-items:center; justify-content:center;"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#2BBFB0"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+           <div class="p-line" style="width: 80%;"></div>
+           <div class="p-line" style="width: 100%;"></div>
+           <div class="p-line" style="width: 90%; animation-delay: 0.2s;"></div>
+           <div class="p-line" style="width: 60%; animation-delay: 0.4s;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page">
+    <header class="header scrolled">
+      <a href="index.html" class="logo">
+        <div class="logo-wrapper"><img src="./images/coaxis_logo.png" class="brand-logo-img"><div class="logo-glow"></div></div>
+      </a>
+      <nav class="nav">
+        <a href="index.html" class="nav-btn">Home</a>
+        <div class="nav-item">
+          <a href="solutions.html" class="nav-btn">Solutions <span style="font-size:10px;opacity:.5;">&#9660;</span></a>
+          <div class="dropdown-menu">
+            <a href="services.html" class="dropdown-link">Services</a>
+            <a href="cybersecurity.html" class="dropdown-link">Cybersecurity AI</a>
+            <a href="securitylens.html" class="dropdown-link">SecurityLens AI</a>
+            <a href="risksignal.html" class="dropdown-link">RiskSignal AI</a>
+            <a href="partners.html" class="dropdown-link">Partners</a>
+            <a href="process.html" class="dropdown-link">Process</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="insights.html" class="nav-btn active">Insights <span style="font-size:10px;opacity:.5;">&#9660;</span></a>
+          <div class="dropdown-menu">
+            <a href="news.html" class="dropdown-link">News</a>
+            <a href="blogs.html" class="dropdown-link">Blogs</a>
+            <a href="case-studies.html" class="dropdown-link">Case Studies</a>
+            <a href="what-is-ai.html" class="dropdown-link">What is AI?</a>
+            <a href="types-of-ai.html" class="dropdown-link">Types of AI</a>
+            <a href="ai-led-automation.html" class="dropdown-link">AI Automation</a>
+            <a href="ai-ready-data.html" class="dropdown-link">AI-Ready Data</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="about.html" class="nav-btn">About Us <span style="font-size:10px;opacity:.5;">&#9660;</span></a>
+          <div class="dropdown-menu">
+            <a href="about.html" class="dropdown-link">About Coaxis</a>
+            <a href="predictive-intelligence.html" class="dropdown-link">Our Expertise</a>
+          </div>
+        </div>
+        <a href="contact.html" class="nav-btn">Contact</a>
+        <a href="contact.html" class="nav-cta">Let's Build</a>
+      </nav>
+    </header>
+
+    <section class="post-hero">
+      <div class="container">
+        <a href="blogs.html" class="back-to-blogs">← Back to Insights</a>
+        <div class="post-meta reveal">
+          <span id="post-category">Strategy</span>
+          <span id="post-date">March 24, 2026</span>
+        </div>
+        <h1 class="post-title reveal reveal-delay-1" id="main-title">The Evolution of Multi-Agent Systems</h1>
+        <p class="hero-sub reveal reveal-delay-2" style="max-width: 700px; font-size: 1.4rem;" id="post-excerpt">Exploring the architectural shift from single LLM calls to collaborative neural networks that solve complex enterprise gaps.</p>
+      </div>
+    </section>
+
+    <section class="post-content-wrap">
+      <div class="post-container">
+        <div class="post-body reveal">
+          <p>The landscape of Artificial Intelligence is shifting. For the past two years, the focus has been on the "Model"—how large is the context window, how fast is the inference, and how many benchmarks can it top? But as we move into 2026, the conversation has matured. We are no longer looking for a single "God Model" to solve everything. Instead, we are looking for <strong>Orchestration</strong>.</p>
+          
+          <div class="post-image-large">
+            <img src="./images/blog1.png" alt="Neural Orchestration" id="post-main-image">
+          </div>
+
+          <h2>From Solitary Models to Collaborative Swarms</h2>
+          <p>Traditional AI implementations rely on a linear "Prompt -> Response" flow. While powerful for creative writing or code snippets, this structure breaks down when faced with multi-faceted business logic. A single model, no matter how intelligent, struggles to maintain state across complex workflows involving ERPs, CRMs, and legacy databases.</p>
+          
+          <blockquote>
+            "True enterprise intelligence doesn't reside in a single brain, but in the seamless coordination between specialized agents."
+          </blockquote>
+
+          <p>At Coaxis, we've pioneered the <strong>Agentic Backbone</strong>. By breaking down large tasks into smaller, autonomous units—each with its own tools, memory, and specialized instructions—we create a system that is self-healing and verifiable. One agent handles data retrieval, another performs validation, and a supervisor node ensures the final output aligns with corporate governance.</p>
+
+          <h2>Why MAS Wins in Production</h2>
+          <p>Multi-Agent Systems (MAS) provide three critical advantages over monolithic AI apps:</p>
+          <ul>
+            <li><strong>Reduced Hallucinations:</strong> By scoping agents to narrow domains, we significantly decrease the "distraction" factor of large context windows.</li>
+            <li><strong>Scalability:</strong> You can hot-swap models for specific agents (e.g., using a smaller, faster model for simple routing and a frontier model for complex reasoning).</li>
+            <li><strong>Auditability:</strong> Every step of the agent's thought process is logged, creating a clear chain of custody for every action taken within your infrastructure.</li>
+          </ul>
+
+          <p>As we continue to bridge AI's promise with business reality, the move toward autonomous, collaborative swarms isn't just a trend—it's the only way to achieve true ROI at scale.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div id="footer-3d-bg"></div>
+      <div class="container footer-bottom"><p class="footer-copy">© 2026 Coaxis AI. All rights reserved.</p></div>
+    </footer>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="main.js"></script>
+  <script>
+    // Simple logic to "simulate" different blog posts
+    const posts = {
+      'mas-evolution': {
+        title: "The Evolution of Multi-Agent Systems",
+        category: "Research",
+        image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1000",
+        excerpt: "Exploring the architectural shift from single LLM calls to collaborative neural networks that solve complex enterprise gaps."
+      },
+      'neural-erp': {
+        title: "Neural Orchestration: The New ERP",
+        category: "Automation",
+        image: "https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&q=80&w=1000",
+        excerpt: "Is traditional ERP software becoming obsolete? We examine how autonomous agents are creating a dynamic, self-healing middle layer."
+      },
+      'pilot-to-production': {
+        title: "Bridging the AI Gap: From Pilot to Production",
+        category: "Digital Transformation",
+        image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1000",
+        excerpt: "90% of AI pilots never make it to production. We analyze the common pitfalls in enterprise AI deployment."
+      },
+      'supply-chain-swarm': {
+        title: "Orchestrating 500+ Agents for Supply Chain",
+        category: "Case Study",
+        image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1000",
+        excerpt: "A deep dive into how Coaxis AI deployed a massive agentic swarm to manage real-time inventory and logistics."
+      },
+      'data-equity': {
+        title: "From Legacy Debt to AI Equity",
+        category: "Data Engineering",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1000",
+        excerpt: "Your LLM is only as intelligent as the data you feed it. We examine how fragmented silos and unstructured data lakes are actively hurting your inference costs."
+      }
+    };
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const postId = urlParams.get('id');
+    if (postId && posts[postId]) {
+      document.getElementById('main-title').textContent = posts[postId].title;
+      document.getElementById('post-category').textContent = posts[postId].category;
+      document.getElementById('post-main-image').src = posts[postId].image;
+      document.getElementById('post-excerpt').textContent = posts[postId].excerpt;
+      document.title = posts[postId].title + " | Coaxis AI";
+    }
+  </script>
+</body>
+</html>

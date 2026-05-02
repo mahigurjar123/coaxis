@@ -1,0 +1,446 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blogs | Coaxis AI</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ── BLOGS PAGE SPECIFIC ── */
+    .blog-hero { min-height: 100vh; display: flex; align-items: center; padding-top: 100px; padding-bottom: 60px; position: relative; overflow: hidden; }
+    .blog-hero .container { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; }
+    
+    /* ── 3D BOOK / DATA VISUAL ── */
+    .blog-visual { position: relative; width: 100%; aspect-ratio: 1 / 1; max-width: 500px; margin: 0 auto; perspective: 1200px; transform-style: preserve-3d; }
+    .book-layer { position: absolute; inset: 0; transform-style: preserve-3d; animation: floatBook 8s ease-in-out infinite alternate; }
+    @keyframes floatBook {
+      0% { transform: rotateX(60deg) rotateZ(-30deg) translateY(0px); }
+      100% { transform: rotateX(55deg) rotateZ(-20deg) translateY(-30px); }
+    }
+    
+    .b-page { position: absolute; left: 50%; top: 50%; width: 200px; height: 260px; background: rgba(5,8,15,0.8); border: 1px solid var(--clr-accent); border-radius: 4px; transform-origin: left center; box-shadow: 0 0 20px rgba(43,191,176,0.2); }
+    .b-page:nth-child(1) { transform: translate(-50%, -50%) translateZ(0px) rotateY(-10deg); border-color: rgba(43,191,176,0.3); background: rgba(5,8,15,0.9); }
+    .b-page:nth-child(2) { transform: translate(-50%, -50%) translateZ(10px) rotateY(-5deg); border-color: rgba(43,191,176,0.5); }
+    .b-page:nth-child(3) { transform: translate(-50%, -50%) translateZ(20px) rotateY(0deg); animation: flipPage 6s infinite; }
+    .b-page:nth-child(4) { transform: translate(-50%, -50%) translateZ(30px) rotateY(5deg); display: flex; flex-direction: column; padding: 20px; gap: 15px; border-color: var(--clr-accent); }
+    
+    @keyframes flipPage {
+      0%, 20% { transform: translate(-50%, -50%) translateZ(20px) rotateY(0deg); }
+      80%, 100% { transform: translate(-50%, -50%) translateZ(20px) rotateY(-180deg); opacity: 0; }
+    }
+
+    /* Page lines inside top page */
+    .p-line { height: 4px; background: rgba(43,191,176,0.3); border-radius: 2px; width: 100%; position: relative; overflow: hidden; }
+    .p-line::after { content: ''; position: absolute; top:0; left:0; height:100%; width:20px; background: var(--clr-accent); box-shadow: 0 0 10px var(--clr-accent); animation: scanLine 2s linear infinite; }
+    @keyframes scanLine { 100% { transform: translateX(200px); } }
+
+    /* ── BLOG LIST ── */
+    .blog-loop { padding: 80px 0 150px; }
+    .blog-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 50px; }
+    
+    .blog-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(43,191,176,0.1); border-radius: var(--radius-xl); padding: 40px; position: relative; overflow: hidden; transition: all 0.5s var(--ease-out); transform-style: preserve-3d; }
+    .blog-card:hover { border-color: var(--clr-accent); transform: translateY(-12px) rotateX(2deg); background: rgba(43,191,176,0.03); box-shadow: 0 40px 80px rgba(0,0,0,0.6); }
+    
+    /* 3D image placeholder for blog */
+    .bc-visual { width: 100%; height: 220px; background: rgba(5,8,15,0.8); border: 1px solid rgba(43,191,176,0.2); border-radius: var(--radius-md); margin-bottom: 30px; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .bc-visual img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; transition: 0.5s; }
+    .blog-card:hover .bc-visual img { transform: scale(1.1); opacity: 0.8; filter: brightness(1.2); }
+    
+    .bc-category { font-family: var(--font-mono); font-size: 0.8rem; color: var(--clr-accent); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; display: inline-block; padding: 4px 12px; background: rgba(43,191,176,0.1); border-radius: 20px; border: 1px solid rgba(43,191,176,0.2); }
+    .blog-card h3 { font-size: 1.8rem; color: #fff; margin-bottom: 20px; line-height: 1.3; }
+    .blog-card p { color: var(--clr-muted); line-height: 1.7; font-size: 1rem; margin-bottom: 30px; }
+    
+    .read-more { display: inline-flex; align-items: center; gap: 10px; color: var(--clr-accent); font-weight: 700; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; cursor: pointer; }
+    .read-more::after { content: '→'; transition: 0.3s; }
+    .blog-card:hover .read-more::after { transform: translateX(8px); }
+
+    /* ── BLOG MODAL ── */
+    .blog-modal { position: fixed; inset: 0; z-index: 9999; display: none; align-items: center; justify-content: center; padding: 20px; }
+    .blog-modal.active { display: flex; }
+    .modal-overlay { position: absolute; inset: 0; background: rgba(5, 8, 15, 0.95); backdrop-filter: blur(20px); }
+    .modal-container { position: relative; width: 100%; max-width: 900px; max-height: 90vh; background: #0a0f1d; border: 1px solid rgba(43, 191, 176, 0.2); border-radius: 32px; overflow-y: auto; box-shadow: 0 50px 100px rgba(0,0,0,0.9); z-index: 10; animation: modalIn 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
+    @keyframes modalIn { from { opacity: 0; transform: translateY(60px) scale(0.9); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    .modal-close { position: absolute; top: 30px; right: 30px; width: 50px; height: 50px; border-radius: 50%; background: rgba(43,191,176,0.1); border: 1px solid rgba(43,191,176,0.2); color: var(--clr-accent); font-size: 28px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s; z-index: 11; }
+    .modal-close:hover { background: var(--clr-accent); color: #000; transform: rotate(90deg) scale(1.1); }
+    .modal-content { padding: 80px 60px; }
+    .modal-img { width: 100%; height: 450px; object-fit: cover; border-radius: 20px; margin-bottom: 50px; border: 1px solid rgba(43, 191, 176, 0.2); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+    .modal-header { margin-bottom: 40px; text-align: center; }
+    .modal-category { font-family: var(--font-mono); color: var(--clr-accent); text-transform: uppercase; letter-spacing: 3px; font-size: 0.85rem; margin-bottom: 15px; display: block; }
+    .modal-title { font-size: 3.5rem; font-weight: 900; line-height: 1.1; margin-bottom: 30px; letter-spacing: -1px; }
+    .modal-body { color: var(--clr-muted); line-height: 1.9; font-size: 1.2rem; max-width: 750px; margin: 0 auto; }
+    .modal-body p { margin-bottom: 30px; }
+    .modal-body h4 { color: #fff; font-size: 1.8rem; margin: 50px 0 25px; font-weight: 800; }
+    .modal-body ul { margin-bottom: 30px; padding-left: 20px; }
+    .modal-body li { margin-bottom: 15px; color: var(--clr-text); }
+
+    @media (max-width: 900px) {
+      .blog-hero .container { grid-template-columns: 1fr; gap: 40px; }
+      .blog-grid { grid-template-columns: 1fr; }
+      .modal-content { padding: 60px 30px; }
+      .modal-title { font-size: 2.2rem; }
+      .modal-img { height: 300px; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="three-canvas"></canvas>
+  
+  <!-- ══ INTRO OVERLAY ══ -->
+  <div class="intro-overlay" id="intro-overlay">
+    <div class="intro-scanline"></div>
+    <div class="intro-glitch-layer"></div>
+    <div id="intro-3d-target" class="intro-3d-target"></div>
+    <div class="intro-hud">
+      <div class="hud-corner hud-tl"></div>
+      <div class="hud-corner hud-tr"></div>
+      <div class="hud-corner hud-bl"></div>
+      <div class="hud-corner hud-br"></div>
+    </div>
+    <img src="./images/intro_bg.png" class="intro-video-bg">
+    <button class="intro-close" id="intro-close">EXIT ARCHITECTURE</button>
+    <div class="intro-content">
+      <span class="intro-subtitle">Autonomous Enterprise Systems</span>
+      <h2 class="intro-title">COAXIS AI</h2>
+      <p class="intro-desc">Agentic backbone of the future. Solving complex productivity gaps through neural orchestration.</p>
+    </div>
+  </div>
+
+  <div class="page" style="gap: 0;">
+
+    <header class="header" id="header">
+      <a href="index.html" class="logo">
+        <div class="logo-wrapper"><img src="./images/coaxis_logo.png" class="brand-logo-img"><div class="logo-glow"></div></div>
+      </a>
+      <nav class="nav">
+        <a href="index.html" class="nav-btn">Home</a>
+        <div class="nav-item">
+          <span class="nav-btn">Solutions <span style="font-size: 10px; opacity: 0.5;">▼</span></span>
+          <div class="dropdown-menu">
+            <a href="services.html" class="dropdown-link">Services</a>
+            <a href="cybersecurity.html" class="dropdown-link">Cybersecurity AI</a>
+            <a href="securitylens.html" class="dropdown-link">SecurityLens AI</a>
+            <a href="risksignal.html" class="dropdown-link">RiskSignal AI</a>
+            <a href="partners.html" class="dropdown-link">Partners</a>
+            <a href="process.html" class="dropdown-link">Process</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <span class="nav-btn active">Insights <span style="font-size: 10px; opacity: 0.5;">▼</span></span>
+          <div class="dropdown-menu">
+            <a href="news.html" class="dropdown-link">News</a>
+            <a href="blogs.html" class="dropdown-link active">Blogs</a>
+            <a href="case-studies.html" class="dropdown-link">Case Studies</a>
+            <a href="what-is-ai.html" class="dropdown-link">What is AI?</a>
+            <a href="types-of-ai.html" class="dropdown-link">Types of AI</a>
+            <a href="ai-led-automation.html" class="dropdown-link">AI Automation</a>
+            <a href="ai-ready-data.html" class="dropdown-link">AI-Ready Data</a>
+          </div>
+        </div>
+        <div class="nav-item"><a href="about.html" class="nav-btn">About Us <span style="font-size:10px;opacity:.5;">&#9660;</span></a><div class="dropdown-menu"><a href="about.html" class="dropdown-link">About Coaxis</a><a href="predictive-intelligence.html" class="dropdown-link">Our Expertise</a></div></div>
+        <a href="contact.html" class="nav-btn">Contact</a>
+        <a href="contact.html" class="nav-cta">Let's Build</a>
+      </nav>
+    </header>
+
+    <!-- ══ HERO ══ -->
+    <section class="blog-hero">
+      <div class="container">
+        <div class="blog-hero-left">
+          <span class="hero-badge" style="margin-bottom: 24px; display: inline-flex;"><span></span>Thought Leadership</span>
+          <h1 style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; margin-bottom: 30px; letter-spacing: -1px;">Ideas that <span class="accent">Transform</span>.</h1>
+          <p style="font-size: 1.15rem; color: var(--clr-muted); line-height: 1.8; max-width: 500px;">Deep strategic insights on transitioning from legacy data debt to pure AI equity. Written by our leadership team consisting of industry veterans with over 30 years of transformation expertise.</p>
+        </div>
+        
+        <div class="blog-visual reveal">
+          <div class="book-layer">
+            <div class="b-page"></div>
+            <div class="b-page"></div>
+            <div class="b-page"></div>
+            <div class="b-page">
+               <div style="width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--clr-accent); display:flex; align-items:center; justify-content:center;"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#2BBFB0"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+               <div class="p-line" style="width: 80%;"></div>
+               <div class="p-line" style="width: 100%;"></div>
+               <div class="p-line" style="width: 90%; animation-delay: 0.2s;"></div>
+               <div class="p-line" style="width: 60%; animation-delay: 0.4s;"></div>
+               <div style="flex-grow: 1;"></div>
+               <div style="display:flex; gap:10px;">
+                  <div style="width:20px; height:20px; background: rgba(43,191,176,0.2);"></div>
+                  <div style="width:20px; height:20px; background: rgba(43,191,176,0.2);"></div>
+               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ BLOG POSTS ══ -->
+    <section class="blog-loop section">
+      <div class="container">
+        <span class="sec-label reveal">Editor's Picks</span>
+        <h2 class="section-title reveal reveal-delay-1" style="margin-bottom: 60px;">Strategy &amp; Analysis</h2>
+
+        <div class="blog-grid">
+           <!-- BLOG 1 -->
+           <article class="blog-card reveal" onclick="openBlog(1)">
+             <div class="bc-visual">
+                <img src="./images/services_hero_3d.png">
+                <div style="position: absolute; inset:0; background: radial-gradient(circle, transparent, rgba(5,8,15,0.9));"></div>
+             </div>
+             <span class="bc-category">Strategy</span>
+             <h3>Build vs Buy vs Partner: The True Cost of AI Architecture</h3>
+             <p>As enterprises rush to adopt Agentic AI, the sheer volume of choices is paralyzing. We analyze the hidden costs of building internal teams from scratch.</p>
+             <a class="read-more">Read Full Article</a>
+           </article>
+
+           <!-- BLOG 2 -->
+           <article class="blog-card reveal reveal-delay-1" onclick="openBlog(2)">
+             <div class="bc-visual">
+                <img src="./images/ai_cube.png">
+                <div style="position: absolute; inset:0; background: radial-gradient(circle, transparent, rgba(5,8,15,0.9));"></div>
+             </div>
+             <span class="bc-category">Market Trends</span>
+             <h3>Why SMEs Have the Most to Gain From ROI-Driven AI</h3>
+             <p>It is a misconception that multi-agent systems are reserved for Fortune 500 companies. Small to Medium Enterprises are perfectly positioned to leverage AI automation.</p>
+             <a class="read-more">Read Full Article</a>
+           </article>
+
+           <!-- BLOG 3 -->
+           <article class="blog-card reveal" onclick="openBlog(3)">
+             <div class="bc-visual">
+                <img src="./images/svc_data_new.png">
+                <div style="position: absolute; inset:0; background: radial-gradient(circle, transparent, rgba(5,8,15,0.9));"></div>
+             </div>
+             <span class="bc-category">Data Engineering</span>
+             <h3>From Legacy Debt to AI Equity: A Strategic Shift</h3>
+             <p>Your LLM is only as intelligent as the data you feed it. We examine how fragmented silos and unstructured data lakes are actively hurting your inference costs.</p>
+             <a class="read-more">Read Full Article</a>
+           </article>
+
+           <!-- BLOG 4 -->
+           <article class="blog-card reveal reveal-delay-1" onclick="openBlog(4)">
+             <div class="bc-visual">
+                <img src="./images/ai_solution_abstract.png">
+                <div style="position: absolute; inset:0; background: radial-gradient(circle, transparent, rgba(5,8,15,0.9));"></div>
+             </div>
+             <span class="bc-category">Security</span>
+             <h3>Data Confidentiality: Keeping Your Info Secure from AI Models</h3>
+             <p>How do we ensure your raw business data never leaves your environment? We deep-dive into our Secure Orchestration Layer and Zero Data Retention configs.</p>
+             <a class="read-more">Read Full Article</a>
+           </article>
+
+           <!-- BLOG 5 -->
+           <article class="blog-card reveal" onclick="openBlog(5)">
+             <div class="bc-visual">
+                <img src="./images/process_hero_3d.png">
+                <div style="position: absolute; inset:0; background: radial-gradient(circle, transparent, rgba(5,8,15,0.9));"></div>
+             </div>
+             <span class="bc-category">Governance</span>
+             <h3>Human-in-the-Loop: Trust and Verifiability in Workflows</h3>
+             <p>As agents begin to execute tasks across ERPs and CRMs, the question of accountability arises. We explore how to implement strict governance protocols.</p>
+             <a class="read-more">Read Full Article</a>
+           </article>
+
+           <!-- BLOG 6 -->
+           <article class="blog-card reveal reveal-delay-1" onclick="openBlog(6)">
+             <div class="bc-visual">
+                <img src="./images/services_workflow_3d.png">
+                <div style="position: absolute; inset:0; background: radial-gradient(circle, transparent, rgba(5,8,15,0.9));"></div>
+             </div>
+             <span class="bc-category">Engineering</span>
+             <h3>Scaling Agentic Workflows: From Pilot to Enterprise Production</h3>
+             <p>Moving AI agents into production requires more than just a clever prompt. Learn the orchestration secrets behind managing thousands of concurrent tasks.</p>
+             <a class="read-more">Read Full Article</a>
+           </article>
+
+           <!-- BLOG 7 -->
+           <article class="blog-card reveal" onclick="openBlog(7)">
+             <div class="bc-visual">
+                <img src="./images/svc_workflow_new.png">
+                <div style="position: absolute; inset:0; background: radial-gradient(circle, transparent, rgba(5,8,15,0.9));"></div>
+             </div>
+             <span class="bc-category">Logistics</span>
+             <h3>The Generative Edge in Supply Chain Orchestration</h3>
+             <p>Discover how multi-agent swarms can bridge the gap between ERP data silos and real-world logistics disruptions in milliseconds.</p>
+             <a class="read-more">Read Full Article</a>
+           </article>
+
+           <!-- BLOG 8 -->
+           <article class="blog-card reveal reveal-delay-1" onclick="openBlog(8)">
+             <div class="bc-visual">
+                <img src="./images/ai_brain.png">
+                <div style="position: absolute; inset:0; background: radial-gradient(circle, transparent, rgba(5,8,15,0.9));"></div>
+             </div>
+             <span class="bc-category">Ethics</span>
+             <h3>AI Ethics 2.0: Moving Beyond Corporate Lip Service</h3>
+             <p>Explore the Coaxis framework for radical transparency and verifiable governance that lives in the code, not just in the legal docs.</p>
+             <a class="read-more">Read Full Article</a>
+           </article>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══ FOOTER ══ -->
+    <footer class="footer">
+      <div id="footer-3d-bg"></div>
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo-wrap"><img src="./images/coaxis_logo.png" class="footer-brand-logo"><div class="logo-glow-footer"></div></div>
+          <p class="footer-tagline">Bridging AI's promise and your business reality</p>
+        </div>
+        <div class="footer-col"><h5 class="footer-title">Solutions</h5><ul class="footer-menu"><li><a href="services.html">Services</a></li><li><a href="partners.html">Partners</a></li><li><a href="process.html">Process</a></li></ul></div>
+        <div class="footer-col"><h5 class="footer-title">Insights</h5><ul class="footer-menu"><li><a href="news.html">News</a></li><li><a href="blogs.html">Blogs</a></li><li><a href="case-studies.html">Case Studies</a></li></ul></div>
+        <div class="footer-col"><h5 class="footer-title">Company</h5><ul class="footer-menu"><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      </div>
+      <div class="container footer-bottom"><p class="footer-copy">© 2026 Coaxis AI. All rights reserved.</p></div>
+    </footer>
+  </div>
+
+  <!-- ══ BLOG MODAL ══ -->
+  <div id="blog-modal" class="blog-modal">
+    <div class="modal-overlay" onclick="closeBlog()"></div>
+    <div class="modal-container">
+      <button class="modal-close" onclick="closeBlog()">&times;</button>
+      <div class="modal-content" id="modal-content">
+        <!-- Content injected by JS -->
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="main.js"></script>
+  <script>
+    const blogData = {
+      1: {
+        category: "Strategy",
+        title: "Build vs Buy vs Partner: The True Cost of AI Architecture",
+        img: "./images/services_hero_3d.png",
+        content: `
+          <p>As enterprises rush to adopt Agentic AI, the sheer volume of choices is paralyzing. We analyze the hidden costs of building internal teams from scratch versus relying on inflexible out-of-the-box software, and why the "borrowing" strategic alliances mitigate millions in risk.</p>
+          <h4>The Illusion of Total Control</h4>
+          <p>Building in-house often feels like the "safest" route for data privacy and intellectual property. However, the talent war for LLM engineers and orchestration architects is brutal. By the time your team is up to speed, the frontier models have shifted three times.</p>
+          <h4>The Partnership Advantage</h4>
+          <p>Strategic partnerships allow for "Neural Borrowing"—leveraging established architectures and fine-tuned models while maintaining sovereign control over your data. Coaxis specializes in this hybrid approach.</p>
+          <ul>
+            <li>Reduced Time-to-Market: From months to weeks.</li>
+            <li>Cost Efficiency: Eliminate the $500k/year per engineer overhead.</li>
+            <li>Future-Proofing: Stay updated with frontier model shifts automatically.</li>
+          </ul>
+        `
+      },
+      2: {
+        category: "Market Trends",
+        title: "Why SMEs Have the Most to Gain From ROI-Driven AI",
+        img: "./images/ai_cube.png",
+        content: `
+          <p>It is a misconception that multi-agent systems are reserved for Fortune 500 companies. Small to Medium Enterprises are perfectly positioned to leverage AI automation because they don't possess the legacy debt of massive corporations.</p>
+          <h4>Agility over Scale</h4>
+          <p>Massive corporations struggle with 20-year-old COBOL backends. An SME can pivot to a unified vector database in weeks. This agility allows smaller firms to automate up to 70% of their operational overhead.</p>
+          <h4>Focusing on Core ROI</h4>
+          <p>We don't build AI for the sake of AI. We build for the bottom line. Reducing human cycle time on repetitive procurement or customer ticketing provides an immediate capital injection for growth.</p>
+        `
+      },
+      3: {
+        category: "Data Engineering",
+        title: "From Legacy Debt to AI Equity",
+        img: "./images/svc_data_new.png",
+        content: `
+          <p>Your LLM is only as intelligent as the data you feed it. We examine how fragmented silos and unstructured data lakes are actively hurting your inference costs.</p>
+          <h4>Clean Data is the New Oil</h4>
+          <p>Unstructured PDFs, hidden Excel sheets, and disconnected CRMs are liabilities. In the age of Agentic AI, they are fuel. Converting this debt into high-quality vector embeddings is the first step toward building AI equity.</p>
+          <h4>Radical Efficiency</h4>
+          <p>A well-structured data environment reduces agent hallucination rates by over 40% and cuts inference costs by minimizing token wastage on irrelevant context.</p>
+        `
+      },
+      4: {
+        category: "Security",
+        title: "Data Confidentiality: Keeping Your Info Secure",
+        img: "./images/ai_solution_abstract.png",
+        content: `
+          <p>How do we ensure your raw business data never leaves your environment? We deep-dive into our Secure Orchestration Layer and strict Zero Data Retention configurations.</p>
+          <h4>Sovereign AI Infrastructure</h4>
+          <p>By deploying local inference nodes or private VPC gateways, Coaxis ensures that PII is scrubbed before reaching any public API. Your prompts stay yours.</p>
+          <h4>The Zero-Trust Agent</h4>
+          <p>Each agent in our swarm operates on a "Least Privilege" model. An agent tasked with analyzing shipping logs has zero access to payroll data, even within the same neural orchestration.</p>
+        `
+      },
+      5: {
+        category: "Governance",
+        title: "Human-in-the-Loop: Trust and Verifiability",
+        img: "./images/process_hero_3d.png",
+        content: `
+          <p>As agents begin to execute tasks across ERPs and CRMs, the question of accountability arises. We explore how to implement strict governance protocols and supervisor nodes.</p>
+          <h4>The Supervisor Node</h4>
+          <p>Every complex workflow we deploy includes a "Human-in-the-Loop" trigger. High-stakes decisions—like major financial approvals—require a final digital signature from a human operator.</p>
+          <h4>Transparent Auditing</h4>
+          <p>We maintain a "Neural Log" that tracks every thought, tool call, and decision made by our agents, making post-action reviews simple and legally defensible.</p>
+        `
+      },
+      6: {
+        category: "Engineering",
+        title: "Scaling Agentic Workflows for Enterprise",
+        img: "./images/services_workflow_3d.png",
+        content: `
+          <p>Moving AI agents into production requires more than just a clever prompt. Learn the orchestration secrets behind managing thousands of concurrent tasks.</p>
+          <h4>Orchestration vs. Simple Prompting</h4>
+          <p>A single agent is a tool; a swarm is a workforce. Scaling requires a robust middleware that can handle state management, tool-failure retries, and inter-agent communication.</p>
+          <h4>Production-Grade Reliability</h4>
+          <p>We implement circuit breakers and fallback models. If a primary agent fails, a "Shadow Agent" with a different model architecture steps in automatically.</p>
+        `
+      },
+      7: {
+        category: "Logistics",
+        title: "The Generative Edge in Supply Chain",
+        img: "./images/svc_workflow_new.png",
+        content: `
+          <p>Supply chains are inherently fragmented. Discover how multi-agent swarms can bridge the gap between ERP data silos and real-world logistics disruptions.</p>
+          <h4>Predictive Disruption Mitigation</h4>
+          <p>Our agents don't just react to a delayed ship; they analyze weather patterns and alternative carrier availability to propose a new route in real-time.</p>
+          <h4>ERP Integration</h4>
+          <p>Traditional ERP integrations take months. Our Agentic connectors "read" the system like a human would, allowing for rapid deployment across legacy software.</p>
+        `
+      },
+      8: {
+        category: "Ethics",
+        title: "AI Ethics 2.0: Beyond Compliance",
+        img: "./images/ai_brain.png",
+        content: `
+          <p>Compliance isn't enough. As autonomous agents take the wheel, we need verifiable governance that lives in the code, not just in the legal docs.</p>
+          <h4>Hardcoded Ethical Bounds</h4>
+          <p>We implement "Guardrail Layers" that are mathematically separate from the agent's reasoning, preventing actions that violate corporate values.</p>
+          <h4>Radical Transparency</h4>
+          <p>True ethics requires visibility. Our dashboards allow stakeholders to see not just what the AI decided, but the "Why" behind every step of the reasoning chain.</p>
+        `
+      }
+    };
+
+    function openBlog(id) {
+      const data = blogData[id];
+      if (!data) return;
+      const modal = document.getElementById('blog-modal');
+      const content = document.getElementById('modal-content');
+      
+      content.innerHTML = `
+        <div class="modal-header">
+          <span class="modal-category">${data.category}</span>
+          <h2 class="modal-title">${data.title}</h2>
+        </div>
+        <img src="${data.img}" class="modal-img">
+        <div class="modal-body">
+          ${data.content}
+        </div>
+      `;
+      
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeBlog() {
+      const modal = document.getElementById('blog-modal');
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  </script>
+</body>
+</html> 

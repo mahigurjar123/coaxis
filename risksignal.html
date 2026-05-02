@@ -1,18 +1,86 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coaxis AI | AI Systems Integrator</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <title>RiskSignal AI — Product Detail | Coaxis AI</title>
+  <meta name="description" content="RiskSignal AI: Predictive risk scoring per network zone — like a credit score for your security posture. Stop breaches before they happen.">
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    .sol-hero{min-height:100vh;display:flex;align-items:center;padding-top:100px;padding-bottom:60px;position:relative;overflow:hidden;}
+    .sol-hero .container{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+    .sol-network{position:relative;width:100%;aspect-ratio:1;max-width:520px;margin:0 auto;}
+    .sol-network::after{content:'';position:absolute;bottom:0;left:50%;width:350px;height:70px;background:radial-gradient(ellipse at center,rgba(43,191,176,0.3) 0%,transparent 75%);transform:translateX(-50%);filter:blur(25px);z-index:1;pointer-events:none;animation:floorPulse 6s ease-in-out infinite alternate;}
+    @keyframes floorPulse{0%{opacity:.2;transform:translateX(-50%) scale(.9);}100%{opacity:.6;transform:translateX(-50%) scale(1.1);}}
+    .network-svg{width:100%;height:100%;}
+    .net-node{animation:nodeGlow 3s ease-in-out infinite alternate;}
+    @keyframes nodeGlow{0%{filter:drop-shadow(0 0 4px #2BBFB0);}100%{filter:drop-shadow(0 0 18px #2BBFB0);}}
+    .data-flow{stroke-dasharray:8 4;animation:flowDash 2s linear infinite;}
+    .data-flow-r{stroke-dasharray:8 4;animation:flowDashR 2s linear infinite;}
+    @keyframes flowDash{to{stroke-dashoffset:-24;}}
+    @keyframes flowDashR{to{stroke-dashoffset:24;}}
+    .net-label{font-size:14px;font-weight:800;font-family:'DM Mono',monospace;fill:#ffffff;text-anchor:middle;paint-order:stroke fill;stroke:#05080f;stroke-width:4px;}
+    .float-badge{animation:floatY 4s ease-in-out infinite alternate;}
+    @keyframes floatY{0%{transform:translateY(0);}100%{transform:translateY(-12px);}}
+    .sol-summary-sec{padding:120px 0;background:linear-gradient(180deg,transparent,rgba(43,191,176,.02),transparent);}
+    .sol-card{background:rgba(255,255,255,.03);backdrop-filter:blur(10px);border:1px solid rgba(43,191,176,.15);border-radius:40px;padding:60px;margin-bottom:100px;display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center;transition:all .6s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,.3);}
+    .sol-card::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at center,rgba(43,191,176,.08) 0%,transparent 50%);opacity:0;transition:.8s;pointer-events:none;}
+    .sol-card:hover{border-color:rgba(43,191,176,.5);transform:translateY(-12px) scale(1.02);background:rgba(43,191,176,.04);box-shadow:0 50px 100px rgba(0,0,0,.6),0 0 30px rgba(43,191,176,.1);}
+    .sol-card:hover::before{opacity:1;transform:translate(10%,10%);}
+    .sol-card:nth-child(even){grid-template-columns:1fr 1.2fr;}
+    .sol-card-text h2{font-size:clamp(2rem,4vw,2.8rem);margin-bottom:24px;line-height:1.1;font-weight:900;color:#fff;}
+    .sol-card-text p{color:var(--clr-muted);font-size:1.1rem;line-height:1.8;margin-bottom:30px;}
+    .sol-card-btn{display:inline-flex;align-items:center;gap:12px;color:#fff;background:rgba(43,191,176,.1);border:1px solid rgba(43,191,176,.3);padding:14px 28px;border-radius:12px;font-weight:700;text-decoration:none;font-size:1rem;transition:.4s;}
+    .sol-card-btn:hover{background:var(--clr-accent);color:#05080f;gap:18px;}
+    .sol-card-visual{position:relative;width:100%;height:380px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.02);border-radius:30px;border:1px dashed rgba(43,191,176,.1);}
+    .sol-feat-list{display:flex;flex-direction:column;gap:18px;margin:30px 0;}
+    .sol-feat{display:flex;align-items:flex-start;gap:16px;font-size:1.05rem;color:rgba(255,255,255,.9);}
+    .sol-feat-icon{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,rgba(43,191,176,.2),rgba(43,191,176,.05));border:1px solid rgba(43,191,176,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .sol-feat-icon svg{width:20px;height:20px;stroke:var(--clr-accent);}
+    .sol-feat span{line-height:1.5;}
+    .opportunity-sec{padding:100px 0;background:rgba(43,191,176,.015);border-top:1px solid rgba(43,191,176,.08);border-bottom:1px solid rgba(43,191,176,.08);}
+    .opp-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:60px;}
+    .opp-stat{text-align:center;padding:50px 30px;background:rgba(5,8,15,.8);border:1px solid rgba(43,191,176,.12);border-radius:var(--radius-xl);position:relative;overflow:hidden;transition:.4s;}
+    .opp-stat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--clr-accent),transparent);}
+    .opp-stat:hover{border-color:var(--clr-accent);transform:translateY(-8px);}
+    .opp-stat .stat-val{font-size:4rem;font-weight:900;color:var(--clr-accent);font-family:var(--font-mono);line-height:1;display:block;margin-bottom:15px;}
+    .opp-stat p{color:var(--clr-muted);font-size:.95rem;line-height:1.6;}
+    .arch-sec{padding:120px 0;background:rgba(5,8,15,.6);border-top:1px solid rgba(43,191,176,.08);}
+    .arch-flow{display:flex;flex-direction:column;gap:0;margin-top:60px;max-width:800px;margin-inline:auto;}
+    .arch-step{display:grid;grid-template-columns:80px 1fr;gap:30px;padding:40px 0;border-bottom:1px solid rgba(43,191,176,.08);align-items:flex-start;transition:.3s;}
+    .arch-step:last-child{border-bottom:none;}
+    .arch-step:hover{background:rgba(43,191,176,.02);border-radius:var(--radius-md);padding-left:20px;}
+    .arch-num{width:55px;height:55px;border-radius:50%;border:2px solid var(--clr-accent);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-weight:900;color:var(--clr-accent);font-size:1.1rem;box-shadow:0 0 20px rgba(43,191,176,.2);flex-shrink:0;}
+    .arch-step h4{font-size:1.3rem;color:#fff;font-family:var(--font-mono);margin-bottom:10px;}
+    .arch-step p{color:var(--clr-muted);line-height:1.7;font-size:1rem;}
+    .arch-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+    .arch-tag{background:rgba(43,191,176,.08);color:var(--clr-accent);padding:4px 12px;border-radius:20px;font-size:.8rem;font-family:var(--font-mono);border:1px solid rgba(43,191,176,.15);}
+    @media(max-width:900px){.sol-hero .container{grid-template-columns:1fr;text-align:center;}.sol-card{grid-template-columns:1fr !important;padding:40px;}.opp-stats{grid-template-columns:1fr;}}
+  </style>
 </head>
 <body>
   <canvas id="three-canvas"></canvas>
+  <div class="intro-overlay" id="intro-overlay">
+    <div class="intro-scanline"></div>
+    <div class="intro-glitch-layer"></div>
+    <div id="intro-3d-target" class="intro-3d-target"></div>
+    <div class="intro-hud">
+      <div class="hud-corner hud-tl"></div>
+      <div class="hud-corner hud-tr"></div>
+      <div class="hud-corner hud-bl"></div>
+      <div class="hud-corner hud-br"></div>
+    </div>
+    <img src="./images/intro_bg.png" class="intro-video-bg">
+    <button class="intro-close" id="intro-close">EXIT ARCHITECTURE</button>
+    <div class="intro-content">
+      <span class="intro-subtitle">RiskSignal AI</span>
+      <h2 class="intro-title">COAXIS AI</h2>
+      <p class="intro-desc">Predictive risk scores for every network zone — stop breaches before they happen.</p>
+    </div>
+  </div>
 
-  <div class="page">
+  <div class="page" style="gap:0;">
     <header class="header" id="header">
       <a href="index.html" class="logo">
         <div class="logo-wrapper">
@@ -20,129 +88,410 @@
           <div class="logo-glow"></div>
         </div>
       </a>
-
       <nav class="nav">
         <a href="index.html" class="nav-btn">Home</a>
-        
         <div class="nav-item">
-          <a href="solutions.html" class="nav-btn active">Solutions <span style="font-size: 10px; opacity: 0.5;">▼</span></a>
+          <a href="solutions.html" class="nav-btn active">Solutions <span style="font-size:10px;opacity:.5;">▼</span></a>
           <div class="dropdown-menu">
             <a href="services.html" class="dropdown-link">Services</a>
+            <a href="cybersecurity.html" class="dropdown-link">Cybersecurity AI</a>
+            <a href="securitylens.html" class="dropdown-link">SecurityLens AI</a>
+            <a href="risksignal.html" class="dropdown-link">RiskSignal AI</a>
             <a href="partners.html" class="dropdown-link">Partners</a>
             <a href="process.html" class="dropdown-link">Process</a>
           </div>
         </div>
-
         <div class="nav-item">
-          <a href="insights.html" class="nav-btn">Insights <span style="font-size: 10px; opacity: 0.5;">▼</span></a>
+          <a href="insights.html" class="nav-btn">Insights <span style="font-size:10px;opacity:.5;">▼</span></a>
           <div class="dropdown-menu">
             <a href="news.html" class="dropdown-link">News</a>
             <a href="blogs.html" class="dropdown-link">Blogs</a>
             <a href="case-studies.html" class="dropdown-link">Case Studies</a>
+            <a href="what-is-ai.html" class="dropdown-link">What is AI?</a>
+            <a href="types-of-ai.html" class="dropdown-link">Types of AI</a>
+            <a href="ai-led-automation.html" class="dropdown-link">AI Automation</a>
+            <a href="ai-ready-data.html" class="dropdown-link">AI-Ready Data</a>
           </div>
         </div>
-
-        <a href="about.html" class="nav-btn">About Us</a>
+        <div class="nav-item"><a href="about.html" class="nav-btn">About Us <span style="font-size:10px;opacity:.5;">&#9660;</span></a><div class="dropdown-menu"><a href="about.html" class="dropdown-link">About Coaxis</a><a href="predictive-intelligence.html" class="dropdown-link">Our Expertise</a></div></div>
         <a href="contact.html" class="nav-btn">Contact</a>
         <a href="contact.html" class="nav-cta">Let's Build</a>
       </nav>
     </header>
 
-    <section class="hero" style="min-height: 40vh; padding-top: 150px; padding-bottom: 50px;">
-      <div class="container hero-container">
-        <div class="hero-content" style="max-width: 100%;">
-          <span class="hero-badge"><span></span>For Security managers, CISOs, C-suite</span>
-          <h1 class="hero-title" style="font-size: 3.5rem;">
-            RiskSignal AI — Product Detail
-          </h1>
+    <section class="sol-hero">
+      <div class="glow-blob" style="right:-100px;top:30%;"></div>
+      <div class="container reveal">
+        <div class="sol-hero-left">
+          <span class="hero-badge" style="margin-bottom:24px;"><span></span>For Security Managers, CISOs &amp; C-Suite</span>
+          <h1 style="font-size:clamp(3rem,7vw,4.8rem);line-height:.95;">RiskSignal<br><span class="accent">AI</span></h1>
+          <p style="font-size:1.25rem;color:var(--clr-muted);line-height:1.8;max-width:580px;margin-top:30px;">Traditional security tools tell you what happened. RiskSignal AI tells you what's about to happen. By learning from years of past incidents and watching live network behaviour, it generates a predictive risk score for every zone in your network — like a credit score for your security posture.</p>
+          <div style="display:flex;gap:30px;margin-top:40px;flex-wrap:wrap;">
+            <div style="border-left:3px solid var(--clr-accent);padding-left:20px;">
+              <span style="font-family:var(--font-mono);font-size:2rem;font-weight:900;color:#fff;display:block;">24/7</span>
+              <span style="font-size:.8rem;color:var(--clr-muted);text-transform:uppercase;letter-spacing:1px;">Continuous Scoring</span>
+            </div>
+            <div style="border-left:3px solid var(--clr-accent);padding-left:20px;">
+              <span style="font-family:var(--font-mono);font-size:2rem;font-weight:900;color:#fff;display:block;">48h</span>
+              <span style="font-size:.8rem;color:var(--clr-muted);text-transform:uppercase;letter-spacing:1px;">Avg Breach Warning</span>
+            </div>
+            <div style="border-left:3px solid var(--clr-accent);padding-left:20px;">
+              <span style="font-family:var(--font-mono);font-size:2rem;font-weight:900;color:#fff;display:block;">0-100</span>
+              <span style="font-size:.8rem;color:var(--clr-muted);text-transform:uppercase;letter-spacing:1px;">Per-Zone Risk Score</span>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;margin-top:40px;">
+            <a href="contact.html" class="cta-btn">Book a Demo →</a>
+            <a href="cybersecurity.html" style="display:inline-flex;align-items:center;gap:10px;color:var(--clr-accent);font-weight:700;text-decoration:none;padding:16px 28px;border:1px solid rgba(43,191,176,.3);border-radius:var(--radius-md);transition:.3s;">← Back to Cybersecurity</a>
+          </div>
+        </div>
+        <div class="sol-network">
+          <svg class="network-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="bgGradRS" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="rgba(43,191,176,0.12)"/>
+                <stop offset="100%" stop-color="rgba(5,8,15,0)"/>
+              </radialGradient>
+              <filter id="glowRS">
+                <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+            <circle cx="250" cy="250" r="240" fill="url(#bgGradRS)"/>
+            <circle cx="250" cy="250" r="200" fill="none" stroke="rgba(255,50,50,0.05)" stroke-width="2" stroke-dasharray="20 10"/>
+            <circle cx="250" cy="250" r="150" fill="none" stroke="rgba(255,170,0,0.08)" stroke-width="2" stroke-dasharray="15 8"/>
+            <circle cx="250" cy="250" r="100" fill="none" stroke="rgba(43,191,176,0.12)" stroke-width="2" stroke-dasharray="10 5"/>
+            <g class="float-badge" style="animation-delay:0s;">
+              <circle cx="250" cy="60" r="35" fill="rgba(5,8,15,0.95)" stroke="#ff3232" stroke-width="2.5" filter="url(#glowRS)"/>
+              <text x="250" y="54" text-anchor="middle" fill="#ff3232" font-size="20" font-family="DM Mono" font-weight="900" paint-order="stroke fill" stroke="#05080f" stroke-width="3">87</text>
+              <text x="250" y="72" text-anchor="middle" fill="rgba(255,107,107,0.8)" font-size="8" font-family="DM Mono">DMZ</text>
+            </g>
+            <g class="float-badge" style="animation-delay:0.5s;">
+              <circle cx="430" cy="180" r="30" fill="rgba(5,8,15,0.95)" stroke="#ff9600" stroke-width="2"/>
+              <text x="430" y="175" text-anchor="middle" fill="#ffaa00" font-size="18" font-family="DM Mono" font-weight="900" paint-order="stroke fill" stroke="#05080f" stroke-width="3">64</text>
+              <text x="430" y="191" text-anchor="middle" fill="rgba(255,170,0,0.8)" font-size="7" font-family="DM Mono">CORP</text>
+            </g>
+            <g class="float-badge" style="animation-delay:1s;">
+              <circle cx="430" cy="340" r="28" fill="rgba(5,8,15,0.95)" stroke="#ffaa00" stroke-width="1.5"/>
+              <text x="430" y="335" text-anchor="middle" fill="#ffaa00" font-size="16" font-family="DM Mono" font-weight="900" paint-order="stroke fill" stroke="#05080f" stroke-width="3">41</text>
+              <text x="430" y="350" text-anchor="middle" fill="rgba(255,170,0,0.7)" font-size="7" font-family="DM Mono">VPN</text>
+            </g>
+            <g class="float-badge" style="animation-delay:1.5s;">
+              <circle cx="250" cy="440" r="28" fill="rgba(5,8,15,0.95)" stroke="#2BBFB0" stroke-width="1.5"/>
+              <text x="250" y="435" text-anchor="middle" fill="#2BBFB0" font-size="16" font-family="DM Mono" font-weight="900" paint-order="stroke fill" stroke="#05080f" stroke-width="3">22</text>
+              <text x="250" y="450" text-anchor="middle" fill="rgba(43,191,176,0.8)" font-size="7" font-family="DM Mono">CLOUD</text>
+            </g>
+            <g class="float-badge" style="animation-delay:2s;">
+              <circle cx="70" cy="340" r="28" fill="rgba(5,8,15,0.95)" stroke="#2BBFB0" stroke-width="1.5"/>
+              <text x="70" y="335" text-anchor="middle" fill="#2BBFB0" font-size="16" font-family="DM Mono" font-weight="900" paint-order="stroke fill" stroke="#05080f" stroke-width="3">18</text>
+              <text x="70" y="350" text-anchor="middle" fill="rgba(43,191,176,0.8)" font-size="7" font-family="DM Mono">OT/IT</text>
+            </g>
+            <g class="float-badge" style="animation-delay:2.5s;">
+              <circle cx="70" cy="180" r="28" fill="rgba(5,8,15,0.95)" stroke="#2BBFB0" stroke-width="1.5"/>
+              <text x="70" y="175" text-anchor="middle" fill="#2BBFB0" font-size="16" font-family="DM Mono" font-weight="900" paint-order="stroke fill" stroke="#05080f" stroke-width="3">09</text>
+              <text x="70" y="190" text-anchor="middle" fill="rgba(43,191,176,0.8)" font-size="7" font-family="DM Mono">DATA</text>
+            </g>
+            <g stroke="rgba(43,191,176,0.2)" stroke-width="1" stroke-dasharray="5 3">
+              <line x1="250" y1="95" x2="250" y2="202"/>
+              <line x1="400" y1="195" x2="285" y2="230"/>
+              <line x1="402" y1="330" x2="286" y2="264"/>
+              <line x1="250" y1="412" x2="250" y2="298"/>
+              <line x1="98" y1="330" x2="214" y2="264"/>
+              <line x1="98" y1="195" x2="215" y2="230"/>
+            </g>
+            <g filter="url(#glowRS)" class="net-node">
+              <circle cx="250" cy="250" r="52" fill="rgba(43,191,176,0.15)" stroke="#2BBFB0" stroke-width="2.5"/>
+              <circle cx="250" cy="250" r="32" fill="rgba(5,8,15,0.9)" stroke="#2BBFB0" stroke-width="1.5"/>
+              <text x="250" y="246" text-anchor="middle" fill="#fff" font-size="9" font-family="DM Mono" font-weight="900" paint-order="stroke fill" stroke="#05080f" stroke-width="2">RISK</text>
+              <text x="250" y="259" text-anchor="middle" fill="#2BBFB0" font-size="8" font-family="DM Mono" paint-order="stroke fill" stroke="#05080f" stroke-width="2">SIGNAL AI</text>
+            </g>
+          </svg>
         </div>
       </div>
     </section>
 
-    <section class="section" style="padding-top: 0;">
+    <section class="opportunity-sec section">
       <div class="container">
-        <div class="solution-grid">
-          <div class="solution-body">
-            
-      <div class="services-grid" style="margin-top:40px;">
-        <div class="service-card reveal">
-          <div class="service-content-front">
-            <h3>Historical Intelligence</h3>
-            <p>Learns from years of past incidents, watches live traffic, device behaviour, and access patterns continuously.</p>
-          </div>
+        <div style="text-align:center;" class="reveal">
+          <span class="sec-label">Predictive vs Reactive Security</span>
+          <h2 class="section-title">The Case for Predictive Risk Intelligence</h2>
+          <p class="section-sub" style="max-width:700px;margin:0 auto;">The best time to stop a breach is before it happens. RiskSignal AI gives you the early warning system your security team has always needed.</p>
         </div>
-        <div class="service-card reveal reveal-delay-1">
-          <div class="service-content-front">
-            <h3>Risk Scoring (Like Credit Score)</h3>
-            <p>Provides a dynamic risk score per network zone, refreshing continuously as threats evolve.</p>
+        <div class="opp-stats">
+          <div class="opp-stat reveal">
+            <span class="stat-val">93%</span>
+            <p>Of breaches show detectable early warning signals in network data 24–72 hours before the breach — signals traditional tools miss.</p>
+            <span class="stat-source" style="font-size:.75rem;color:rgba(255,255,255,.3);margin-top:10px;font-family:var(--font-mono);">Source: Mandiant Threat Intelligence</span>
           </div>
-        </div>
-        <div class="service-card reveal reveal-delay-2">
-          <div class="service-content-front">
-            <h3>Threshold Alerts & Explainability</h3>
-            <p>Fires threshold alerts when risk spikes, providing fully explainable scores for management reporting.</p>
+          <div class="opp-stat reveal reveal-delay-1">
+            <span class="stat-val">68%</span>
+            <p>Reduction in breach probability when predictive risk scoring is applied to network zone monitoring — vs reactive detection alone.</p>
+            <span class="stat-source" style="font-size:.75rem;color:rgba(255,255,255,.3);margin-top:10px;font-family:var(--font-mono);">Source: Gartner Security Research</span>
           </div>
-        </div>
-      </div>
-    
-          </div>
-          <div class="solution-image reveal reveal-delay-2" style="display: flex; align-items: center; justify-content: center;">
-            <img src="./images/cybersecurity_ai.png" alt="RiskSignal AI — Product Detail" style="border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); width: 100%; object-fit: cover;">
+          <div class="opp-stat reveal reveal-delay-2">
+            <span class="stat-val">$2.2M</span>
+            <p>Average savings per breach when AI-powered security is in place — through faster containment and reduced dwell time.</p>
+            <span class="stat-source" style="font-size:.75rem;color:rgba(255,255,255,.3);margin-top:10px;font-family:var(--font-mono);">Source: IBM Cost of Data Breach</span>
           </div>
         </div>
       </div>
     </section>
-  
-    <footer class="footer" id="main-footer">
+
+    <section class="sol-summary-sec section">
+      <div class="container">
+
+        <div class="sol-card reveal">
+          <div class="sol-card-text">
+            <span class="sec-label">Capability 01</span>
+            <h2>Learns from Years of Past Incidents</h2>
+            <p>RiskSignal AI is trained on historical security incident data from your environment and across industries. It builds a precise model of what "risky" looks like in your specific infrastructure — not just generic threat intelligence. The longer it runs, the more accurate its predictions become.</p>
+            <div class="sol-feat-list">
+              <div class="sol-feat">
+                <div class="sol-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2BBFB0" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+                <span>Trained on your historical incident logs — understands your specific risk environment, not just generic patterns</span>
+              </div>
+              <div class="sol-feat">
+                <div class="sol-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2BBFB0" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+                <span>Continuously re-trains on new incidents — accuracy improves with every event it processes</span>
+              </div>
+              <div class="sol-feat">
+                <div class="sol-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2BBFB0" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+                <span>Industry threat intelligence feeds supplement your local data for broad situational awareness</span>
+              </div>
+            </div>
+          </div>
+          <div class="sol-card-visual">
+            <svg width="320" height="340" viewBox="0 0 320 340">
+              <defs><filter id="glow-rs1"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+              <line x1="40" y1="290" x2="280" y2="290" stroke="rgba(43,191,176,0.3)" stroke-width="1.5"/>
+              <text x="40" y="306" fill="rgba(255,255,255,0.3)" font-size="7" font-family="DM Mono">2021</text>
+              <text x="110" y="306" fill="rgba(255,255,255,0.3)" font-size="7" font-family="DM Mono">2022</text>
+              <text x="180" y="306" fill="rgba(255,255,255,0.3)" font-size="7" font-family="DM Mono">2023</text>
+              <text x="245" y="306" fill="rgba(255,255,255,0.3)" font-size="7" font-family="DM Mono">2024</text>
+              <circle cx="55" cy="290" r="5" fill="#ff6b6b"/>
+              <line x1="55" y1="285" x2="55" y2="230" stroke="rgba(255,107,107,0.4)" stroke-width="1"/>
+              <circle cx="90" cy="290" r="4" fill="#ffaa00"/>
+              <line x1="90" y1="286" x2="90" y2="250" stroke="rgba(255,170,0,0.4)" stroke-width="1"/>
+              <circle cx="130" cy="290" r="6" fill="#ff3232"/>
+              <line x1="130" y1="284" x2="130" y2="210" stroke="rgba(255,50,50,0.4)" stroke-width="1"/>
+              <circle cx="165" cy="290" r="3" fill="#ffaa00"/>
+              <circle cx="200" cy="290" r="5" fill="#ff6b6b"/>
+              <line x1="200" y1="285" x2="200" y2="235" stroke="rgba(255,107,107,0.4)" stroke-width="1"/>
+              <circle cx="240" cy="290" r="7" fill="#ff3232"/>
+              <line x1="240" y1="283" x2="240" y2="200" stroke="rgba(255,50,50,0.4)" stroke-width="1"/>
+              <polyline points="40,270 55,265 90,260 130,240 165,235 200,225 240,210 280,190" fill="none" stroke="#2BBFB0" stroke-width="2" stroke-dasharray="6 2">
+                <animate attributeName="stroke-dashoffset" values="0;-16" dur="1s" repeatCount="indefinite"/>
+              </polyline>
+              <rect x="60" y="165" width="200" height="40" rx="10" fill="rgba(43,191,176,0.1)" stroke="rgba(43,191,176,0.3)" stroke-width="1"/>
+              <text x="160" y="182" text-anchor="middle" fill="#fff" font-size="9" font-family="DM Mono" font-weight="700">PATTERN RECOGNITION</text>
+              <text x="160" y="197" text-anchor="middle" fill="rgba(43,191,176,0.7)" font-size="8" font-family="DM Mono">ACCURACY IMPROVES OVER TIME</text>
+              <line x1="280" y1="190" x2="300" y2="165" stroke="#2BBFB0" stroke-width="2.5" filter="url(#glow-rs1)"/>
+              <polygon points="300,155 307,172 293,172" fill="#2BBFB0" filter="url(#glow-rs1)"/>
+              <text x="295" y="148" fill="#2BBFB0" font-size="8" font-family="DM Mono" font-weight="700">PREDICTS</text>
+            </svg>
+          </div>
+        </div>
+
+        <div class="sol-card reveal">
+          <div class="sol-card-text">
+            <span class="sec-label">Capability 02</span>
+            <h2>Live Traffic, Behaviour &amp; Access Monitoring</h2>
+            <p>RiskSignal AI watches every packet, every login, every device interaction across your network in real time. It builds dynamic behavioural baselines for each zone — so when something deviates, it knows immediately and adjusts the risk score accordingly.</p>
+            <div class="sol-feat-list">
+              <div class="sol-feat">
+                <div class="sol-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2BBFB0" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+                <span>Real-time traffic analysis across all network segments and endpoints simultaneously</span>
+              </div>
+              <div class="sol-feat">
+                <div class="sol-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2BBFB0" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+                <span>Device and user behaviour profiling — detects anomalous access patterns before abuse escalates</span>
+              </div>
+              <div class="sol-feat">
+                <div class="sol-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2BBFB0" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/></svg></div>
+                <span>Per-zone risk scores refresh continuously — live rolling assessments, not daily snapshots</span>
+              </div>
+            </div>
+          </div>
+          <div class="sol-card-visual">
+            <svg width="320" height="340" viewBox="0 0 320 340">
+              <defs><filter id="glow-rs2"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+              <rect x="120" y="135" width="80" height="50" rx="10" fill="rgba(43,191,176,0.15)" stroke="#2BBFB0" stroke-width="2" filter="url(#glow-rs2)"/>
+              <text x="160" y="157" text-anchor="middle" fill="#fff" font-size="8" font-family="DM Mono" font-weight="700">RISK</text>
+              <text x="160" y="170" text-anchor="middle" fill="#2BBFB0" font-size="7" font-family="DM Mono">ENGINE</text>
+              <rect x="20" y="55" width="75" height="32" rx="7" fill="rgba(5,8,15,0.9)" stroke="rgba(43,191,176,0.3)" stroke-width="1"/>
+              <text x="57" y="74" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="7" font-family="DM Mono">TRAFFIC FLOW</text>
+              <rect x="225" y="55" width="75" height="32" rx="7" fill="rgba(5,8,15,0.9)" stroke="rgba(43,191,176,0.3)" stroke-width="1"/>
+              <text x="263" y="74" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="7" font-family="DM Mono">LOGIN EVENTS</text>
+              <rect x="20" y="235" width="75" height="32" rx="7" fill="rgba(5,8,15,0.9)" stroke="rgba(43,191,176,0.3)" stroke-width="1"/>
+              <text x="57" y="254" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="7" font-family="DM Mono">DEVICE BEHAV.</text>
+              <rect x="225" y="235" width="75" height="32" rx="7" fill="rgba(5,8,15,0.9)" stroke="rgba(43,191,176,0.3)" stroke-width="1"/>
+              <text x="263" y="254" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="7" font-family="DM Mono">ACCESS PATT.</text>
+              <g stroke="rgba(43,191,176,0.4)" stroke-width="1" stroke-dasharray="5 3">
+                <line x1="95" y1="71" x2="120" y2="153"><animate attributeName="stroke-dashoffset" values="0;-16" dur="0.8s" repeatCount="indefinite"/></line>
+                <line x1="225" y1="71" x2="200" y2="153"><animate attributeName="stroke-dashoffset" values="0;-16" dur="1s" repeatCount="indefinite"/></line>
+                <line x1="95" y1="251" x2="120" y2="177"><animate attributeName="stroke-dashoffset" values="0;-16" dur="0.9s" repeatCount="indefinite"/></line>
+                <line x1="225" y1="251" x2="200" y2="177"><animate attributeName="stroke-dashoffset" values="0;-16" dur="1.1s" repeatCount="indefinite"/></line>
+              </g>
+              <line x1="160" y1="185" x2="160" y2="280" stroke="#2BBFB0" stroke-width="2"/>
+              <rect x="80" y="282" width="48" height="28" rx="7" fill="rgba(5,8,15,0.9)" stroke="#2BBFB0" stroke-width="1.5"/>
+              <text x="104" y="300" text-anchor="middle" fill="#2BBFB0" font-size="12" font-family="DM Mono" font-weight="900">12</text>
+              <rect x="136" y="282" width="48" height="28" rx="7" fill="rgba(5,8,15,0.9)" stroke="#ffaa00" stroke-width="1.5"/>
+              <text x="160" y="300" text-anchor="middle" fill="#ffaa00" font-size="12" font-family="DM Mono" font-weight="900">54</text>
+              <rect x="192" y="282" width="48" height="28" rx="7" fill="rgba(5,8,15,0.9)" stroke="#ff3232" stroke-width="1.5"/>
+              <text x="216" y="300" text-anchor="middle" fill="#ff3232" font-size="12" font-family="DM Mono" font-weight="900">87</text>
+              <text x="104" y="322" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="6" font-family="DM Mono">DATA</text>
+              <text x="160" y="322" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="6" font-family="DM Mono">CORP</text>
+              <text x="216" y="322" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="6" font-family="DM Mono">DMZ</text>
+            </svg>
+          </div>
+        </div>
+
+        <div class="sol-card reveal">
+          <div class="sol-card-text">
+            <span class="sec-label">Capability 03</span>
+            <h2>Explainable Scores &amp; Threshold Alerts</h2>
+            <p>A risk score is only useful if you know why it changed. RiskSignal AI provides full explainability — showing exactly which behaviours contributed to each score. When risk crosses configurable thresholds, alerts are sent with complete context so management can act immediately without needing to understand the raw data.</p>
+            <div class="sol-feat-list">
+              <div class="sol-feat">
+                <div class="sol-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2BBFB0" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg></div>
+                <span>Configurable risk thresholds — alert when any zone crosses your defined risk tolerance level</span>
+              </div>
+              <div class="sol-feat">
+                <div class="sol-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2BBFB0" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+                <span>Explainable AI — every score comes with a full breakdown of the top contributing risk factors</span>
+              </div>
+              <div class="sol-feat">
+                <div class="sol-feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2BBFB0" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07"/></svg></div>
+                <span>Multi-channel alerts — dashboard, email, Slack, Teams — with C-suite-ready executive summaries</span>
+              </div>
+            </div>
+            <a href="contact.html" class="sol-card-btn">Request a Live Demo <span>→</span></a>
+          </div>
+          <div class="sol-card-visual">
+            <svg width="320" height="340" viewBox="0 0 320 340">
+              <defs><filter id="glow-rs3"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+              <rect x="20" y="20" width="280" height="300" rx="14" fill="rgba(5,8,15,0.9)" stroke="rgba(255,50,50,0.3)" stroke-width="1.5"/>
+              <rect x="20" y="20" width="280" height="40" rx="14" fill="rgba(255,50,50,0.1)"/>
+              <text x="160" y="37" text-anchor="middle" fill="#ff6b6b" font-size="8" font-family="DM Mono">&#9888; RISK THRESHOLD EXCEEDED</text>
+              <text x="160" y="52" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="7" font-family="DM Mono">DMZ Zone — Score: 87/100 (Threshold: 75)</text>
+              <circle cx="160" cy="130" r="62" fill="none" stroke="rgba(43,191,176,0.1)" stroke-width="8"/>
+              <circle cx="160" cy="130" r="62" fill="none" stroke="#ff3232" stroke-width="8" stroke-dasharray="312" stroke-dashoffset="42" transform="rotate(-90 160 130)" filter="url(#glow-rs3)"/>
+              <text x="160" y="123" text-anchor="middle" fill="#ff3232" font-size="28" font-family="DM Mono" font-weight="900">87</text>
+              <text x="160" y="142" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9" font-family="DM Mono">RISK SCORE</text>
+              <text x="35" y="215" fill="rgba(43,191,176,0.8)" font-size="8" font-family="DM Mono" font-weight="700">TOP CONTRIBUTING FACTORS:</text>
+              <rect x="35" y="222" width="180" height="13" rx="3" fill="rgba(255,50,50,0.2)"/>
+              <rect x="35" y="222" width="155" height="13" rx="3" fill="rgba(255,50,50,0.5)"/>
+              <text x="222" y="233" fill="rgba(255,255,255,0.5)" font-size="7" font-family="DM Mono">86%</text>
+              <rect x="35" y="242" width="180" height="13" rx="3" fill="rgba(255,170,0,0.15)"/>
+              <rect x="35" y="242" width="108" height="13" rx="3" fill="rgba(255,170,0,0.4)"/>
+              <text x="222" y="253" fill="rgba(255,255,255,0.5)" font-size="7" font-family="DM Mono">60%</text>
+              <rect x="35" y="262" width="180" height="13" rx="3" fill="rgba(255,170,0,0.1)"/>
+              <rect x="35" y="262" width="72" height="13" rx="3" fill="rgba(255,170,0,0.3)"/>
+              <text x="222" y="273" fill="rgba(255,255,255,0.5)" font-size="7" font-family="DM Mono">40%</text>
+              <text x="36" y="234" fill="rgba(255,255,255,0.6)" font-size="6" font-family="DM Mono">Unusual outbound traffic</text>
+              <text x="36" y="254" fill="rgba(255,255,255,0.6)" font-size="6" font-family="DM Mono">Port scan activity</text>
+              <text x="36" y="274" fill="rgba(255,255,255,0.6)" font-size="6" font-family="DM Mono">Auth failures</text>
+              <rect x="55" y="290" width="210" height="22" rx="8" fill="rgba(43,191,176,0.15)" stroke="#2BBFB0" stroke-width="1" filter="url(#glow-rs3)"/>
+              <text x="160" y="304" text-anchor="middle" fill="#2BBFB0" font-size="8" font-family="DM Mono" font-weight="700">VIEW RECOMMENDED ACTIONS &#x2192;</text>
+            </svg>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="arch-sec section">
+      <div class="container reveal">
+        <div style="text-align:center;margin-bottom:70px;">
+          <span class="sec-label">Under the Hood</span>
+          <h2 style="font-size:3rem;color:#fff;">How RiskSignal AI Works</h2>
+          <p style="color:var(--clr-muted);max-width:650px;margin:20px auto 0;font-size:1.1rem;line-height:1.8;">A continuously running predictive intelligence engine that turns network behaviour data into actionable risk scores — in real time.</p>
+        </div>
+        <div class="arch-flow">
+          <div class="arch-step">
+            <div class="arch-num">01</div>
+            <div>
+              <h4>Historical Incident Learning</h4>
+              <p>Pre-trained on years of security incident data and then fine-tuned on your organisation's own historical logs. It builds a precise model of what "risky" looks like in your specific environment, not just generic threat signatures.</p>
+              <div class="arch-tags"><span class="arch-tag">Transfer Learning</span><span class="arch-tag">Domain Fine-Tuning</span><span class="arch-tag">Incident Corpus</span></div>
+            </div>
+          </div>
+          <div class="arch-step">
+            <div class="arch-num">02</div>
+            <div>
+              <h4>Real-Time Behavioural Baseline</h4>
+              <p>Continuous monitoring of traffic patterns, authentication events, device behaviour, and access patterns establishes dynamic baselines for each network zone. Normal changes over time — RiskSignal adapts automatically.</p>
+              <div class="arch-tags"><span class="arch-tag">Streaming Analytics</span><span class="arch-tag">Dynamic Baselines</span><span class="arch-tag">Zone Segmentation</span></div>
+            </div>
+          </div>
+          <div class="arch-step">
+            <div class="arch-num">03</div>
+            <div>
+              <h4>Predictive Risk Scoring</h4>
+              <p>Anomalies are combined with historical patterns to generate a 0-100 risk score for each zone. Scores refresh on a rolling basis — your risk posture is always current, not a snapshot from yesterday.</p>
+              <div class="arch-tags"><span class="arch-tag">ML Risk Models</span><span class="arch-tag">Rolling Scores</span><span class="arch-tag">Per-Zone Granularity</span></div>
+            </div>
+          </div>
+          <div class="arch-step">
+            <div class="arch-num">04</div>
+            <div>
+              <h4>Explainable Threshold Alerts</h4>
+              <p>When a zone's score crosses your defined threshold, RiskSignal sends a plain-language alert with full explainability — the top contributing factors, trend data, and recommended actions — to the right stakeholders immediately.</p>
+              <div class="arch-tags"><span class="arch-tag">Explainable AI</span><span class="arch-tag">Configurable Thresholds</span><span class="arch-tag">Multi-Channel Delivery</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding:100px 0;">
+      <div class="container reveal" style="text-align:center;">
+        <span class="sec-label">Get Ahead of Threats</span>
+        <h2 style="font-size:3rem;color:#fff;margin-bottom:25px;">Know your risk before it becomes a breach.</h2>
+        <p style="color:var(--clr-muted);font-size:1.2rem;max-width:650px;margin:0 auto 50px;line-height:1.8;">Book a live demo. We'll show RiskSignal AI running on a real network environment — and walk you through exactly how it would score your current security posture.</p>
+        <div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap;">
+          <a href="contact.html" class="cta-btn" style="font-size:1.1rem;padding:20px 40px;">Book a Demo →</a>
+          <a href="securitylens.html" style="display:inline-flex;align-items:center;gap:10px;color:var(--clr-accent);font-weight:700;text-decoration:none;padding:20px 40px;border:1px solid rgba(43,191,176,.3);border-radius:var(--radius-md);transition:.3s;">Also see SecurityLens AI</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
       <div id="footer-3d-bg"></div>
       <div class="container footer-grid">
         <div class="footer-brand">
-          <div class="footer-logo-wrap">
-            <img src="./images/coaxis_logo.png" class="footer-brand-logo" >
-            <div class="logo-glow-footer"></div>
-          </div>
+          <div class="footer-logo-wrap"><img src="./images/coaxis_logo.png" class="footer-brand-logo"><div class="logo-glow-footer"></div></div>
           <p class="footer-tagline">Bridging AI's promise and your business reality</p>
         </div>
         <div class="footer-col">
-          <h5 class="footer-title">Contact</h5>
-          <div class="footer-contact-item">
-            <span class="icon">📧</span>
-            <a href="javascript:void(0)">rahul.budhraja@coaxis.ai</a>
-          </div>
-          <div class="footer-contact-item">
-            <span class="icon">📧</span>
-            <a href="javascript:void(0)">vinay.mathur@coaxis.ai</a>
-          </div>
+          <h5 class="footer-title">Cybersecurity</h5>
+          <ul class="footer-menu">
+            <li><a href="cybersecurity.html">Overview</a></li>
+            <li><a href="securitylens.html">SecurityLens AI</a></li>
+            <li><a href="risksignal.html">RiskSignal AI</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5 class="footer-title">Insights</h5>
+          <ul class="footer-menu">
+            <li><a href="what-is-ai.html">What is AI?</a></li>
+            <li><a href="types-of-ai.html">Types of AI</a></li>
+            <li><a href="ai-led-automation.html">AI-Led Automation</a></li>
+          </ul>
         </div>
         <div class="footer-col">
           <h5 class="footer-title">Company</h5>
           <ul class="footer-menu">
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Security</a></li>
-            <li><a href="#">Terms & Conditions</a></li>
-            <li><a href="#">Careers</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h5 class="footer-title">Navigation</h5>
-          <ul class="footer-menu">
-            <li><a href="#services">Services</a></li>
-            <li><a href="#process">Process</a></li>
-            <li><a href="#contact">Contact Us</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
       </div>
       <div class="container footer-bottom">
-        <p class="footer-copy">© 2026 Coaxis AI Systems Integrator. All rights reserved.</p>
-        <div class="footer-trust-tags">
-          <span>Human-in-the-Loop</span>
-          <span>ROI Accountable</span>
-          <span>Privacy First</span>
-        </div>
+        <p class="footer-copy">© 2026 Coaxis AI. All rights reserved.</p>
       </div>
     </footer>
-  </div><!-- /.page -->
-
+  </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="main.js"></script>
 </body>
