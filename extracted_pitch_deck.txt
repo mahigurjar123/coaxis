@@ -1,0 +1,306 @@
+--- slide1.xml ---
+coaxis.ai
+AI Systems Integrator driving Productivity &amp; Revenue
+--- slide10.xml ---
+AI Workflow Automation
+Workflow Discovery and Design
+Map end‑to‑end processes, define owners and KPIs, and prioritise the highest‑value workflows for automation
+.
+Secure Agentic Orchestration
+AI agents orchestrate workflows using secure LLM integration with built‑in access controls and guardrails.
+System Integration &amp; Connectors
+Seamlessly connect enterprise systems and data using APIs, RPA, and middleware—without disrupting existing operations
+.
+Governance &amp; Human‑in‑the‑Loop
+End‑to‑end observability with audit trails, policy enforcement, and human oversight for secure, compliant automation at scale.
+Delivery Approach
+01 Map
+Identify key workflows for automation
+02 Automate
+Deploy tools, reduce effort and minimise errors
+03 Integrate
+Seamless connection to existing systems and data
+04 Scale
+Expand across business units progressively
+05 Optimise
+Refine based on performance
+--- slide11.xml ---
+Selected Tools made Enterprise Ready 
+AI-assisted automation using generative models. Automates repetitive tasks, generates workflow logic without heavy coding.
+Open-source workflow automation — connects apps and services, designs multi-step workflows visually with flexibility and extensibility.
+Enterprise RPA platform — automates structured, repeatable tasks across enterprise systems with governance, security, and scalability.
+Open-source workflow orchestration — schedules, monitors and manages complex data pipelines with dependency handling at scale.
+Tool selection is driven by the specific business problem, data environment, and governance requirements — not vendor preference
+--- slide12.xml ---
+Our Delivery Model — From Diagnostic to Scale
+1
+AI Readiness Diagnostic
+4–6 weeks
+Executive workshops: identify 3–5 high-value use cases
+Assess data maturity &amp; workflow gaps
+Deliver prioritised AI roadmap with full business case
+2
+ROI-Driven POC
+6–8 weeks
+Focused proof-of-concept against defined KPIs
+Sandbox access &amp; pre-built agents
+Go/No-go decision gate based on quantified results
+03
+Integration &amp; Scale
+Ongoing
+Full workflow integration &amp; enterprise rollout
+User adoption &amp; change management
+Managed AI support with continuous monitoring
+Through all phases:  Human-in-the-loop governance · Data privacy controls · Security protocols · Compliance guardrails · Measurable KPIs
+11
+--- slide13.xml ---
+Data Confidentiality — How We Keep Your Data Secure from AI models
+11
+Secure Architecture:
+Users / Employees
+Secure Orchestration Layer
+LLM + RAG + Secure Tools
+Enterprise Data (Stays on-Premise)
+Schema-Only Access
+The AI model sees only database structure (schema), never raw business data. Metadata, schema definitions and tool outputs are shared — not underlying sensitive records. The LLM generates queries that run inside your environment; only approved results are returned.
+Secure Orchestration Layer
+A control layer sits between the AI model and company data, enforcing security policies, prompt control, access permissions and tool routing. Only safe, sanitised inputs reach the LLM — metadata, schema or document excerpts — never full databases or raw files.
+Frontier AI Guardrails
+AI systems are designed to hide personal and sensitive information, limit access based on user roles, check AI responses for safety and appropriateness, and keep a full record of everything the AI sees and produces. 
+.
+Zero Data Retention
+API calls to frontier AI providers (OpenAI, Anthropic, etc.) are configured with zero data retention. Prompts and outputs are never stored or used for model training. For maximum control, the LLM can run inside your own cloud or on-premise infrastructure.
+Private RAG &amp; Observability
+Enterprise documents stay in client storage — only the most relevant excerpts are sent to the AI via a private vector database (RAG). Full action-level audit trails ·
+coaxis.ai treats your data as your most valuable asset. Our security architecture is designed so your data never leaves your environment — enterprise &amp; regulated-industry standards from day one.
+--- slide14.xml ---
+Security Layers — Deep Dive 
+11
+🌐 Network Security
+HTTPS / TLS 1.3
+Encrypts all client-server traffic. Prevents man-in-the-middle attacks and eavesdropping. Enforced at load balancer and API gateway.
+DDoS Protection
+AWS Shield (Standard &amp; Advanced), Azure DDoS Protection Plan, GCP Cloud Armor. On-prem: Cloudflare or Akamai as upstream scrubbing center.
+SQL Injection
+WAF rules (AWS WAF, Azure Front Door WAF) block malicious payloads. App layer uses parameterized queries and ORM-enforced input validation.
+Encryption in Transit
+mTLS enforced between all internal microservices. No plaintext channels even inside private VPC/VNet — zero-trust network model.
+🗄️ Data Security
+Encryption at REST
+AES-256 applied to all stored data — databases, object storage, backups, snapshots, and log archives.
+Cloud KMS
+AWS KMS, Azure Key Vault, GCP Cloud KMS handle key generation, storage, rotation, and IAM-bound access policies.
+On-Premise
+Hardware Security Modules (HSMs) for key storage. LUKS for Linux disk encryption, VeraCrypt for file-level. HashiCorp Vault for secrets management.
+Key Rotation &amp; Audit
+Automated key rotation on a schedule. All access events logged to immutable audit trail via AWS CloudTrail or Azure Monitor.
+🔒 Zero-Download Isolation
+Network Egress Block
+VM outbound traffic locked down — no uploads to external URLs, no email, no cloud sync (Dropbox/GDrive). Enforced via security groups &amp; egress firewall rules.
+Clipboard Isolation + USB Block
+Copy-paste between customer VM and engineer's local machine disabled via VDI policy. USB and physical media transfers are hardware-blocked at the hypervisor.
+DLP Scanning
+Content-aware scanning on all outbound traffic. Patterns like credit card numbers, PII, SSNs, or structured data are detected and blocked before leaving the network.
+Session Recording + Masking
+Every VM action recorded and auditable. Workers see only masked or aggregated data — no raw sensitive records exposed at any interface.
+🤖 LLM Security
+Guardrail Enabling
+Platform-level guardrails (AWS Bedrock Guardrails, Azure AI Content Safety) enforce safe completion policies across all model calls.
+Keyword + Semantic Filters
+Deny-lists block known harmful terms. Embedding-based semantic classifiers catch harmful intent even when phrasing varies or bypasses keyword filters.
+Offense Detection
+Multi-class policy classifier rejects illegal, hateful, or policy-violating requests — applied both at prompt ingestion and output generation.
+LLM as Judge
+A secondary LLM independently evaluates each output for safety, accuracy, and policy adherence before delivery to the user.
+Data Security Layers
+--- slide15.xml ---
+Strategic Partnerships — Best-of-Breed Ecosystem
+11
+coaxis.ai
+Business
+Architecture
+&amp; ROI
+Partner: 
+emergence AI (USA)
+    AI Data &amp; Insights
+    Workflow Automation
+Partner: 
+Specialist Automation Firms
+--- slide16.xml ---
+Our Leadership Team
+11
+Rahul Budhraja
+Data, Analytics &amp; Strategy
+30+ yrs | Nielsen, Genpact, Analytic Edge. Led global analytics consulting for CXOs, shaping strategy and driving business impact.
+Vinay Mathur
+Business Transformation &amp; Strategy
+30+ yrs | PepsiCo, Heineken, Suntory Garuda. CFO, CEO, MD and Board Member — growth, turnarounds and transformation across Asia and Africa.
+Blending business leadership with technical execution to deliver AI solutions that drive measurable outcomes.
+14
+Jishnu Bhattacharya
+Data Science , Applied ML 
+25+ yrs | Tata, Dun &amp; Bradstreet , ICICI Bank. Data science leader in applied machine learning , customer analytics and AI driven insights. 
+Abirami Kamatchi
+AI-ML Engineering 
+8+ yrs | AI/ML Practice Manager with of 8+ yrs experience building scalable ML platforms,  agentic AI solutions, and production-grade decision systems.
+--- slide17.xml ---
+Next Steps
+A clear low-risk path to get started with coaxis.ai
+--- slide18.xml ---
+Why coaxis.ai &amp; What Happens Next
+11
+We own the outcome
+ROI accountability from diagnostic through rollout. Commercially aligned with your success.
+Best-of-breed ecosystem
+emergence AI + specialist automation partners, all coordinated by coaxis.ai.
+Human-in-the-loop
+AI augments your people — it does not replace them. Governance embedded by design.
+Speed to value
+4–6 week diagnostic → 6–8 week POC with defined KPIs. No endless pilots.
+Business-first
+We speak P&amp;L before technology. Every use case anchored to margin, revenue or capital.
+Proposed Next Steps:
+① 30-min discovery call
+② Complimentary AI Readiness scoping session
+③ Fixed-fee Diagnostic proposal with defined deliverables &amp; timeline
+Bridging AI's promise and your business reality
+--- slide19.xml ---
+Let’s build this together
+Rahul Budhraja
+rahul.budhraja@coaxis.ai
+Vinay Mathur
+vinay.mathur@coaxis.ai
+--- slide2.xml ---
+The AI Moment
+Agentic AI is the defining opportunity of this decade, enterprises seek a trusted partner to seize it
+--- slide3.xml ---
+The Agentic AI Opportunity
+$3T
+Source : KPMG Study
+5
+42%
+57%
+Fear of being left behind has led many to buy off-the-shelf solutions — but build/buy decisions are complex, and the blended approach is winning. 
+coaxis.ai is the trusted 'borrow' layer that makes the blend work.
+Productivity opportunity powered by Agentic AI 
+of enterprises have successfully integrated AI agents - up from 11% in early 2025
+of organizations favor a blend of build &amp; buy AI agents
+--- slide4.xml ---
+The Enterprise AI Dilemma : Build, Buy or Partner ?
+Maximum control 
+&amp; differentiation
+Requires advanced AI talent
+, scalable infrastructure &amp; mature 
+AgentOps
+High up-front investment 
+&amp; long lead times
+Best for large enterprises in regulated sectors
+BUILD
+Source : KPMG Study
+5
+BUY
+PARTNER
+Rapid deployment 
+with support
+Limited 
+customisation
+ 
+&amp; vendor lock-in
+Data ownership 
+&amp; compliance concerns
+95%
+ of such 
+deployments fail 
+because it fails to address the last mile problem (MIT Study)
+Blends
+ your 
+domain
+ expertise with partner's 
+technical
+ 
+capability
+. Addresses the 
+last-mile problem
+! 
+Lower up-front cost
+, shared risk
+Faster time-to-value 
+&amp; flexibility 
+Ideal for early-to-mid maturity 
+organisations
+High maturity orgs
+Early / mid AI maturity
+★  coaxis.ai enables this
+--- slide5.xml ---
+SMEs have the Most to Gain from AI
+Why SMEs Struggle More
+D
+Fragmented Data
+Information lives in spreadsheets, email threads and legacy systems — not integrated platforms.
+Large Enterprise  62%
+SME  14%
+IT
+No Dedicated IT / AI Team
+Large enterprises have dedicated AI teams. SMEs must figure out integration entirely on their own.
+Large Enterprise  71%
+SME  18%
+$
+Budget Constraints
+Enterprise AI tools require infrastructure investment, training and governance that most SMEs cannot absorb upfront.
+Large Enterprise  55%
+SME  12%
+How coaxis.ai Closes the Gap
+✓  Data Readiness First
+We assess and prepare your data so AI can actually use it — spreadsheets, PDFs, legacy systems all included.
+✓  No AI team needed
+Our team is your AI team. We bring engineers, architects and domain experts you do not have yet.
+✓  Fixed-fee, phased entry
+Start with a 4-6 week diagnostic. No open-ended commitments, no surprise costs, clear deliverables.
+✓  SME-sized governance
+Right-sized security, compliance guardrails and human-in-the-loop — enterprise rigour without enterprise bloat.
+Source: Singapore Digital Economy Report 2024 / IMDA   ·   Enterprise vs SME AI adoption rates
+--- slide6.xml ---
+About coaxis.ai
+Our partner ecosystem and domain experience makes us an ideal AI Systems Integrator for your business
+--- slide7.xml ---
+Who we are
+Source : Add source here
+Our Mission
+Bridge the gap between AI's promise and business reality — augmenting human capability so companies achieve more than they thought possible.
+Our Values
+Collaboration for value creation · Data privacy first · Human in the loop · ROI accountability at every stage.
+Our Partnerships
+emergence AI (USA) — AI data readiness &amp; insights. Specialist workflow automation partners — RPA, orchestration &amp; system integration.
+OUR EXPERIENCE
+  Data, analytics, strategy and business transformation
+GEOGRAPHY KNOWLEDGE 
+South-East Asia
+Middle East &amp; Africa
+--- slide8.xml ---
+What We Do — Two Core Service Lines
+AI Data Readiness &amp; Insights
+AI ready data that can be consumed by both humans and agents for powering faster, deeper insights.  
+AI Workflow Automation
+End‑to‑end AI automation and agentic orchestration for faster, more consistent and secure execution of workflows at scale. 
+We convert your AI investments into sustained productivity improvements and revenue growth
+--- slide9.xml ---
+AI Data Readiness &amp; Insights 
+Data Ingestion and Quality
+Structured &amp; Unstructured data ingestion, metadata enrichment and data quality monitoring.
+AI Explanations &amp; Context
+Context aware AI agents explain trends, anomalies, and forecasts in plain language—clarifying what matters and why
+Human Verified Insights
+Turn data into AI‑driven, actionable insights with human‑in‑the‑loop oversight—enabling faster, confident decisions
+End‑to‑end data governance ensuring integrity, transparency, and secure enterprise LLM integration
+Delivery Approach
+01 Business Goals
+Align data strategies with business goals
+02 AI Data Readiness
+Evaluate and prepare data quality and structure for AI-ready insights
+03 AI Insights
+Generate AI insights for informed decision making
+04 Adoption
+Embed insights into daily operations for adoption
+05 Continuous Improvement
+Feedback loops for ongoing improvement
+Trusted Data Governance
